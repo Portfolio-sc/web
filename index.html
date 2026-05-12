@@ -28,6 +28,9 @@
 <style>
   :root {
     --bg: #F6F4EE;
+    --bg-1: #FAF8F2;
+    --bg-2: #F6F4EE;
+    --bg-3: #EFECE3;
     --fg: #0A0A0A;
     --fg-muted: #5C5A53;
     --fg-faint: #8C887D;
@@ -41,6 +44,9 @@
 
   [data-theme="dark"] {
     --bg: #0A0A0A;
+    --bg-1: #181818;
+    --bg-2: #0A0A0A;
+    --bg-3: #030303;
     --fg: #E6E6E6;
     --fg-muted: #9A968C;
     --fg-faint: #6B675F;
@@ -54,7 +60,11 @@
   html, body {
     margin: 0;
     padding: 0;
-    background: var(--bg);
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 0%, var(--bg-1) 0%, transparent 60%),
+      linear-gradient(180deg, var(--bg-2) 0%, var(--bg-3) 100%);
+    background-attachment: fixed;
     color: var(--fg);
     font-family: var(--font-body);
     font-size: 18px;
@@ -113,14 +123,21 @@
   }
   .body-block p:last-child { margin-bottom: 0; }
 
-  .closing {
+  .bridge {
     font-family: var(--font-display);
-    font-size: clamp(22px, 3vw, 26px);
+    font-size: clamp(26px, 4vw, 36px);
     font-weight: 500;
-    letter-spacing: -0.035em;
-    line-height: 1.25;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
     color: var(--fg);
-    margin: 24px 0 28px;
+    margin: 40px 0 36px;
+  }
+  .closing-line {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--fg);
+    margin: 0 0 32px;
   }
 
   /* Buttons */
@@ -175,14 +192,16 @@
   <h1 class="header">A special projects studio for democracy.</h1>
 
   <div class="body-block">
-    <p>Two forces are reshaping American society. The first is rising authoritarianism. The second is AI. AI will either retrench concentrated power, or expand human agency and democratic life.</p>
-
-    <p>We are professionals from across disciplines taking time from our regularly scheduled careers to build high-leverage, unconventional initiatives. We form small, fast-moving teams that take an idea, test it under real-world conditions, and&mdash;if it works&mdash;spin it out as a lasting operating entity.</p>
-
-    <p>Our favorite reaction to get: &ldquo;That&rsquo;s so crazy it just might work.&rdquo;</p>
+    <p>Two forces are reshaping American society: rising authoritarianism and AI. AI will either retrench concentrated power, or expand human agency and democratic life.</p>
   </div>
 
-  <p class="closing">If you&rsquo;re looking for ways to put your talents to work in service of a flourishing democratic future, let&rsquo;s talk.</p>
+  <p class="bridge">We&rsquo;re working for democracy.</p>
+
+  <div class="body-block">
+    <p>We&rsquo;re professionals taking time from regular careers to form small, fast teams. We take an idea, test it live, and&mdash;if it works&mdash;spin it out as a lasting operating entity.</p>
+  </div>
+
+  <p class="closing-line">Our favorite reaction: &ldquo;That&rsquo;s so crazy it just might work.&rdquo; If you want to put your talents to work for democracy, let&rsquo;s talk.</p>
 
   <a href="https://contact.portfolio.sc/portfolio" class="btn btn-lg">Get in touch <span class="arrow">&rarr;</span></a>
 </main>
