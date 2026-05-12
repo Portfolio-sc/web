@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — A special projects studio for democracy</title>
+<meta name="description" content="Portfolio is a special projects studio for democracy. We form small, fast-moving teams to build high-leverage, unconventional initiatives at the intersection of AI and democracy.">
+
+<meta property="og:title" content="Portfolio">
+<meta property="og:description" content="A special projects studio for democracy.">
+<meta property="og:url" content="https://portfolio.sc/">
+<meta property="og:type" content="website">
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Momo+Trust+Display:wght@400;500&display=swap" rel="stylesheet">
+
+<script>
+  // Randomize between light and dark on each visit.
+  // Runs before paint to avoid flash.
+  (function () {
+    document.documentElement.setAttribute('data-theme', Math.random() < 0.5 ? 'light' : 'dark');
+  })();
+</script>
+
+<style>
+  :root {
+    --bg: #F6F4EE;
+    --fg: #0A0A0A;
+    --fg-muted: #5C5A53;
+    --fg-faint: #8C887D;
+    --hairline: #DDD7C5;
+    --btn-bg: #0A0A0A;
+    --btn-fg: #F6F4EE;
+
+    --font-display: 'Momo Trust Display', Nunito, system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0A0A0A;
+    --fg: #E6E6E6;
+    --fg-muted: #9A968C;
+    --fg-faint: #6B675F;
+    --hairline: #2A2A2A;
+    --btn-bg: #E6E6E6;
+    --btn-fg: #0A0A0A;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    letter-spacing: -0.0125em;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  /* Top bar */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px clamp(24px, 6vw, 80px);
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.06em;
+    color: var(--fg);
+    text-decoration: none;
+  }
+  /* Content */
+  main {
+    max-width: 640px;
+    padding: 64px clamp(24px, 6vw, 80px) 96px;
+  }
+
+  .header {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 1.04;
+    margin: 0 0 40px;
+    color: var(--fg);
+  }
+
+  .body-block p {
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--fg);
+    margin: 0 0 22px;
+  }
+  .body-block p:last-child { margin-bottom: 0; }
+
+  .closing {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 26px);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1.25;
+    color: var(--fg);
+    margin: 24px 0 28px;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    border-radius: 999px;
+    transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.2s ease;
+  }
+  .btn .arrow { transition: transform 0.2s ease; display: inline-block; }
+  .btn:hover { opacity: 0.92; transform: translateY(-1px); }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  .btn-sm {
+    font-size: 13.5px;
+    padding: 8px 16px;
+  }
+
+  .btn-lg {
+    font-size: 16px;
+    padding: 18px 30px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.10);
+  }
+  [data-theme="dark"] .btn-lg {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(255,255,255,0.06);
+  }
+  .btn-lg:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.14);
+  }
+  [data-theme="dark"] .btn-lg:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5), 0 12px 32px rgba(255,255,255,0.08);
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="wordmark">Portfolio</a>
+    <a href="https://contact.portfolio.sc/portfolio" class="btn btn-sm">Get in touch <span class="arrow">&rarr;</span></a>
+  </div>
+</header>
+
+<main>
+  <h1 class="header">A special projects studio for democracy.</h1>
+
+  <div class="body-block">
+    <p>Two forces are reshaping American society. The first is rising authoritarianism. The second is AI. AI will either retrench concentrated power, or expand human agency and democratic life.</p>
+
+    <p>We are professionals from across disciplines taking time from our regularly scheduled careers to build high-leverage, unconventional initiatives. We form small, fast-moving teams that take an idea, test it under real-world conditions, and&mdash;if it works&mdash;spin it out as a lasting operating entity.</p>
+
+    <p>Our favorite reaction to get: &ldquo;That&rsquo;s so crazy it just might work.&rdquo;</p>
+  </div>
+
+  <p class="closing">If you&rsquo;re looking for ways to put your talents to work in service of a flourishing democratic future, let&rsquo;s talk.</p>
+
+  <a href="https://contact.portfolio.sc/portfolio" class="btn btn-lg">Get in touch <span class="arrow">&rarr;</span></a>
+</main>
+
+</body>
+</html>
