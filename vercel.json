@@ -3,6 +3,14 @@
     {
       "source": "/contact",
       "destination": "/contact/index.html"
+    },
+    {
+      "source": "/formation",
+      "destination": "https://formation-portfoliostudios.vercel.app/formation"
+    },
+    {
+      "source": "/formation/:path*",
+      "destination": "https://formation-portfoliostudios.vercel.app/formation/:path*"
     }
   ]
 }
