@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Involved — Portfolio</title>
+<meta name="description" content="We're always looking for people who want to put their talents to work for democracy.">
+
+<meta property="og:title" content="Get Involved — Portfolio">
+<meta property="og:description" content="A special projects studio for democracy.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Momo+Trust+Display:wght@400;500&display=swap" rel="stylesheet">
+
+<script>
+  // Randomize between light and dark on each visit.
+  (function () {
+    document.documentElement.setAttribute('data-theme', Math.random() < 0.5 ? 'light' : 'dark');
+  })();
+</script>
+
+<style>
+  :root {
+    --bg: #F6F4EE;
+    --bg-input: #FFFFFF;
+    --bg-raised: #EFEDE5;
+    --fg: #0A0A0A;
+    --fg-muted: #5C5A53;
+    --fg-faint: #8C887D;
+    --hairline: #DDD7C5;
+    --hairline-strong: #C9C3B1;
+    --btn-bg: #0A0A0A;
+    --btn-fg: #F6F4EE;
+    --error: #B04A2F;
+    --success: #2C7A4B;
+    --focus-ring: rgba(10,10,10,0.08);
+
+    --font-display: 'Momo Trust Display', Nunito, system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  [data-theme="dark"] {
+    --bg: #0A0A0A;
+    --bg-input: #141414;
+    --bg-raised: #1A1A1A;
+    --fg: #E6E6E6;
+    --fg-muted: #9A968C;
+    --fg-faint: #6B675F;
+    --hairline: #2A2A2A;
+    --hairline-strong: #3D3D3D;
+    --btn-bg: #E6E6E6;
+    --btn-fg: #0A0A0A;
+    --error: #E07A60;
+    --success: #5BB585;
+    --focus-ring: rgba(230,230,230,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    letter-spacing: -0.0125em;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    padding: 14px clamp(24px, 6vw, 80px);
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.06em;
+    color: var(--fg);
+    text-decoration: none;
+  }
+
+  main {
+    max-width: 640px;
+    padding: 64px clamp(24px, 6vw, 80px) 96px;
+  }
+
+  .header {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 7vw, 64px);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+    margin: 0 0 24px;
+    color: var(--fg);
+  }
+
+  .subhead {
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--fg-muted);
+    margin: 0 0 48px;
+    max-width: 520px;
+  }
+
+  .roles-section { margin-bottom: 48px; }
+  .section-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--fg-faint);
+    margin-bottom: 14px;
+  }
+  .roles-list { display: flex; flex-direction: column; gap: 8px; }
+  .role-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 18px;
+    background: var(--bg-input);
+    border: 0.5px solid var(--hairline);
+    border-radius: 12px;
+    transition: border-color 0.15s ease;
+  }
+  .role-row:hover { border-color: var(--hairline-strong); }
+  .role-row-left { flex: 1; min-width: 0; }
+  .role-row-title {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    margin-bottom: 2px;
+  }
+  .role-row-meta {
+    font-size: 13px;
+    letter-spacing: -0.01em;
+    color: var(--fg-muted);
+  }
+  .role-row-btn {
+    flex-shrink: 0;
+    padding: 7px 16px;
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    border: none;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .role-row-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .form-group { margin-bottom: 18px; }
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    margin-bottom: 6px;
+  }
+  label .opt {
+    color: var(--fg-faint);
+    font-weight: 400;
+    font-size: 13px;
+    margin-left: 6px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    background: var(--bg-input);
+    border: 0.5px solid var(--hairline);
+    border-radius: 12px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    outline: none;
+  }
+  input:focus, textarea:focus {
+    border-color: var(--hairline-strong);
+    box-shadow: 0 0 0 3px var(--focus-ring);
+  }
+  textarea { resize: vertical; min-height: 110px; line-height: 1.55; }
+  ::placeholder { color: var(--fg-faint); }
+
+  .file-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--bg-input);
+    border: 0.5px solid var(--hairline);
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+  }
+  .file-wrap:hover { border-color: var(--hairline-strong); }
+  .file-wrap input[type="file"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    font-size: 0;
+  }
+  .file-btn {
+    flex-shrink: 0;
+    padding: 5px 11px;
+    background: var(--bg-raised);
+    border: 0.5px solid var(--hairline);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--fg-muted);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .file-name {
+    font-size: 13px;
+    color: var(--fg-faint);
+    letter-spacing: -0.01em;
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .checkbox-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 3px;
+    accent-color: var(--fg);
+  }
+  .checkbox-row span {
+    font-size: 14.5px;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: var(--fg-muted);
+  }
+
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 28px;
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    border: none;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    cursor: pointer;
+    margin-top: 28px;
+    transition: opacity 0.15s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.10);
+  }
+  [data-theme="dark"] .btn-submit {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(255,255,255,0.06);
+  }
+  .btn-submit:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.14);
+  }
+  [data-theme="dark"] .btn-submit:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5), 0 12px 32px rgba(255,255,255,0.08);
+  }
+  .btn-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+  .btn-submit .arrow { transition: transform 0.2s ease; display: inline-block; }
+  .btn-submit:hover:not(:disabled) .arrow { transform: translateX(3px); }
+
+  .form-status {
+    margin-top: 14px;
+    font-size: 14px;
+    letter-spacing: -0.01em;
+    color: var(--fg-muted);
+  }
+  .form-status.error { color: var(--error); }
+  .form-status.success { color: var(--success); }
+
+  #modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  #modal-overlay.open { display: flex; }
+  .modal {
+    display: none;
+    background: var(--bg);
+    border: 0.5px solid var(--hairline);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 480px;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.16);
+  }
+  .modal.active { display: block; }
+  .modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 24px 24px 0;
+    gap: 16px;
+  }
+  .modal-header h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    color: var(--fg);
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .modal-header p {
+    font-size: 13.5px;
+    letter-spacing: -0.01em;
+    color: var(--fg-muted);
+  }
+  .modal-role-badge {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--fg);
+    background: var(--bg-raised);
+    border: 0.5px solid var(--hairline);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin: 18px 24px 0;
+  }
+  .modal-close {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 0.5px solid var(--hairline);
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--fg-muted);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .modal-close:hover { background: var(--bg-raised); color: var(--fg); }
+  .modal-body { padding: 18px 24px 24px; }
+
+  footer {
+    max-width: 640px;
+    padding: 32px clamp(24px, 6vw, 80px) 40px;
+    border-top: 0.5px solid var(--hairline);
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  footer a {
+    color: var(--fg-muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+  }
+  footer a:hover { color: var(--fg); }
+  footer .footer-tagline {
+    font-size: 13px;
+    color: var(--fg-faint);
+    letter-spacing: -0.01em;
+  }
+
+  @media (max-width: 600px) {
+    main { padding: 48px 20px 72px; }
+    .topbar-inner { padding: 12px 20px; }
+    footer { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="wordmark">Portfolio</a>
+  </div>
+</header>
+
+<main>
+  <div id="form-state">
+    <h1 class="header">Get involved.</h1>
+    <p class="subhead">We're always looking for people who want to put their talents to work for democracy.</p>
+
+    <div class="roles-section" id="roles-section" style="display:none;">
+      <div class="section-label">Open roles</div>
+      <div class="roles-list" id="roles-list"></div>
+    </div>
+
+    <form id="form-main" novalidate>
+    <div class="form-group">
+      <label for="main-name">Name</label>
+      <input type="text" id="main-name" name="name" autocomplete="name" placeholder="Your full name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="main-email">Email</label>
+      <input type="email" id="main-email" name="email" autocomplete="email" placeholder="you@example.com" required>
+    </div>
+
+    <div class="form-group">
+      <label for="main-linkedin">LinkedIn or personal website <span class="opt">(optional)</span></label>
+      <input type="url" id="main-linkedin" name="linkedin" placeholder="https://...">
+    </div>
+
+    <div class="form-group">
+      <label>CV or resume <span class="opt">(optional, max 5 MB)</span></label>
+      <div class="file-wrap">
+        <span class="file-btn">Choose file</span>
+        <span class="file-name" id="main-resume-name">No file chosen</span>
+        <input type="file" id="main-resume" name="resume" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+          onchange="document.getElementById('main-resume-name').textContent = this.files[0] ? this.files[0].name : 'No file chosen'">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="main-statement">What are your superpowers? <span class="opt">(optional)</span></label>
+      <textarea id="main-statement" name="statement" rows="4" placeholder="What are you uniquely good at, and where would you most want to point it?"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="main-idea">Got an idea worth building? <span class="opt">(optional)</span></label>
+      <textarea id="main-idea" name="idea" rows="3" placeholder="Half-baked ideas welcome…"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="main-referral">How did you hear about us? <span class="opt">(optional)</span></label>
+      <input type="text" id="main-referral" name="referral" placeholder="A colleague, newsletter, social media…">
+    </div>
+
+    <div class="form-group" style="margin-top: 24px;">
+      <div class="checkbox-row">
+        <input type="checkbox" id="main-mailing" name="mailing" value="yes">
+        <span>Add me to the Portfolio mailing list (once it exists).</span>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="main-share" name="share" value="yes">
+        <span>Other pro-democracy organizations also need good people. OK to share your info if opportunities come up?</span>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-submit" id="main-submit">Submit <span class="arrow">&rarr;</span></button>
+    <div class="form-status" id="main-status"></div>
+  </form>
+  </div>
+
+  <div id="success-state" style="display:none;">
+    <h1 class="header">Submitted.</h1>
+    <p class="subhead">We&rsquo;ll be in touch.</p>
+  </div>
+</main>
+
+<footer>
+  <a href="/">Portfolio</a>
+  <span class="footer-tagline">A special projects studio for democracy.</span>
+</footer>
+
+<div id="modal-overlay" role="dialog" aria-modal="true">
+  <div class="modal" id="modal-apply">
+    <div class="modal-header">
+      <div>
+        <h3>Apply for this role</h3>
+        <p>Your application goes directly to the hiring team.</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-role-badge" id="apply-role-badge"></div>
+    <div class="modal-body">
+      <form id="form-apply" novalidate>
+        <input type="hidden" id="apply-role-title" name="roleTitle">
+
+        <div class="form-group">
+          <label for="apply-name">Name</label>
+          <input type="text" id="apply-name" name="name" autocomplete="name" placeholder="Your full name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="apply-email">Email</label>
+          <input type="email" id="apply-email" name="email" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="apply-linkedin">LinkedIn or website <span class="opt">(optional)</span></label>
+          <input type="url" id="apply-linkedin" name="linkedin" placeholder="https://...">
+        </div>
+
+        <div class="form-group">
+          <label>CV or resume <span class="opt">(optional, max 5 MB)</span></label>
+          <div class="file-wrap">
+            <span class="file-btn">Choose file</span>
+            <span class="file-name" id="apply-resume-name">No file chosen</span>
+            <input type="file" id="apply-resume" name="resume" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
+              onchange="document.getElementById('apply-resume-name').textContent = this.files[0] ? this.files[0].name : 'No file chosen'">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="apply-statement">Why are you a good fit?</label>
+          <textarea id="apply-statement" name="statement" rows="4" placeholder="Your relevant experience and why this role interests you…" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="apply-submit" style="margin-top: 20px;">Submit application <span class="arrow">&rarr;</span></button>
+        <div class="form-status" id="apply-status"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  function esc(str) {
+    if (!str) return '';
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+  function setStatus(id, msg, type) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = msg;
+    el.className = 'form-status' + (type ? ' ' + type : '');
+  }
+  function setSubmitting(btnId, isSubmitting, defaultHTML) {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+    btn.disabled = isSubmitting;
+    btn.innerHTML = isSubmitting ? 'Submitting…' : defaultHTML;
+  }
+
+  const overlay = document.getElementById('modal-overlay');
+  function openApplyModal(roleTitle) {
+    document.getElementById('apply-role-badge').textContent = roleTitle;
+    document.getElementById('apply-role-title').value = roleTitle;
+    document.getElementById('modal-apply').classList.add('active');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+  }
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  async function loadRoles() {
+    try {
+      const res = await fetch('/api/roles?audience=Portfolio');
+      if (!res.ok) throw new Error();
+      const roles = await res.json();
+      if (!roles.length) return;
+
+      const section = document.getElementById('roles-section');
+      const list = document.getElementById('roles-list');
+      list.innerHTML = roles.map(r => `
+        <div class="role-row">
+          <div class="role-row-left">
+            <div class="role-row-title">${esc(r.title)}</div>
+            <div class="role-row-meta">${r.type === 'Stealth' ? 'Stealth role' : esc(r.org || '')}${r.category ? ' · ' + esc(r.category) : ''}</div>
+          </div>
+          <button class="role-row-btn" onclick="openApplyModal('${esc(r.title)}')">Apply</button>
+        </div>
+      `).join('');
+      section.style.display = 'block';
+    } catch (e) {}
+  }
+
+  document.getElementById('form-main').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name      = form.querySelector('#main-name').value.trim();
+    const email     = form.querySelector('#main-email').value.trim();
+    const linkedin  = form.querySelector('#main-linkedin').value.trim();
+    const statement = form.querySelector('#main-statement').value.trim();
+    const idea      = form.querySelector('#main-idea').value.trim();
+    const referral  = form.querySelector('#main-referral').value.trim();
+    const mailing   = form.querySelector('#main-mailing').checked;
+    const share     = form.querySelector('#main-share').checked;
+    const resumeFile = form.querySelector('#main-resume').files[0];
+
+    if (!name || !email) {
+      setStatus('main-status', 'Please fill in name and email.', 'error');
+      return;
+    }
+
+    setSubmitting('main-submit', true);
+    setStatus('main-status', '', '');
+
+    try {
+      const fd = new FormData();
+      fd.append('name', name);
+      fd.append('email', email);
+      if (linkedin)  fd.append('linkedin', linkedin);
+      if (statement) fd.append('statement', statement);
+      if (referral)  fd.append('referral', referral);
+      if (mailing)   fd.append('mailingList', 'yes');
+      if (share)     fd.append('shareWithAllies', 'yes');
+      if (resumeFile) fd.append('resume', resumeFile);
+
+      const res = await fetch('/api/submit', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Submission failed.');
+
+      if (idea) {
+        fetch('/api/ideas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ idea, email }),
+        }).catch(() => {});
+      }
+
+      document.getElementById('form-state').style.display = 'none';
+      document.getElementById('success-state').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      setStatus('main-status', err.message || 'Something went wrong. Please try again.', 'error');
+    } finally {
+      setSubmitting('main-submit', false, 'Submit <span class="arrow">&rarr;</span>');
+    }
+  });
+
+  document.getElementById('form-apply').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name      = form.querySelector('#apply-name').value.trim();
+    const email     = form.querySelector('#apply-email').value.trim();
+    const linkedin  = form.querySelector('#apply-linkedin').value.trim();
+    const statement = form.querySelector('#apply-statement').value.trim();
+    const roleTitle = form.querySelector('#apply-role-title').value;
+    const resumeFile = form.querySelector('#apply-resume').files[0];
+
+    if (!name || !email || !statement) {
+      setStatus('apply-status', 'Please fill in all required fields.', 'error');
+      return;
+    }
+
+    setSubmitting('apply-submit', true);
+    setStatus('apply-status', '', '');
+
+    try {
+      const fd = new FormData();
+      fd.append('name', name);
+      fd.append('email', email);
+      if (linkedin)   fd.append('linkedin', linkedin);
+      fd.append('statement', statement);
+      if (roleTitle)  fd.append('roleTitle', roleTitle);
+      if (resumeFile) fd.append('resume', resumeFile);
+
+      const res = await fetch('/api/submit', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Submission failed.');
+
+      setStatus('apply-status', 'Application submitted — thanks.', 'success');
+      form.reset();
+      document.getElementById('apply-resume-name').textContent = 'No file chosen';
+      setTimeout(closeModal, 2200);
+    } catch (err) {
+      setStatus('apply-status', err.message || 'Something went wrong. Please try again.', 'error');
+    } finally {
+      setSubmitting('apply-submit', false, 'Submit application <span class="arrow">&rarr;</span>');
+    }
+  });
+
+  loadRoles();
+</script>
+
+</body>
+</html>
