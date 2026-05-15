@@ -1,4 +1,4 @@
-# Portfolio — Brand Guide
+# Portfolio—Brand Guide
 
 *May 2026*
 
@@ -8,7 +8,7 @@
 
 Portfolio's visual identity is minimal, high-contrast, and modern. The brand projects seriousness of purpose through restraint: a two-color palette per mode, tight typography, and generous whitespace. The aesthetic says *professionals building infrastructure*, not *advocacy nonprofit*. Every element earns its place.
 
-The site at **portfolio.sc** is the canonical expression of the brand. The system supports two modes — dark (the default) and light (used for documents and any light-mode web surface). Both modes are deliberately monochromatic, with no accent colors.
+The site at **portfolio.sc** is the canonical expression of the brand. The system supports two modes—dark (the default) and light (used for documents and any light-mode web surface). Both modes are deliberately monochromatic, with no accent colors.
 
 This guide replaces the March 2026 version. Notable changes: a light mode mirror was added, the typeface system was simplified from three fonts to two (Mint Sans was dropped in favor of using Momo Trust Display for the wordmark), a surface system was introduced for sectioned layouts, an icon set was specified, and document and channel templates were added.
 
@@ -16,7 +16,7 @@ This guide replaces the March 2026 version. Notable changes: a light mode mirror
 
 ## Color Palette
 
-Portfolio uses two paired palettes — one for dark surfaces, one for light. Each is essentially two colors at high contrast, with one intermediate surface for sectioned layouts and one hairline rule color for boundaries. No accent colors. No saturated hues.
+Portfolio uses two paired palettes—one for dark surfaces, one for light. Each is essentially two colors at high contrast, with one intermediate surface for sectioned layouts and one hairline rule color for boundaries. No accent colors. No saturated hues.
 
 ### Dark mode (default)
 
@@ -44,9 +44,9 @@ Portfolio uses two paired palettes — one for dark surfaces, one for light. Eac
 | Emphasis | `#000000` | 0, 0, 0 | Hero heading, emphasis (use sparingly) |
 | Muted | `#6E6B62` | 110, 107, 98 | Captions, footer meta, eyebrow labels |
 
-The light mode ground is slightly warm — a hint of cream that distinguishes Portfolio's documents and surfaces from generic-default white. The dark mode stays neutral. The two modes are intentionally asymmetric in temperature: warm light + neutral dark.
+The light mode ground is slightly warm—a hint of cream that distinguishes Portfolio's documents and surfaces from generic-default white. The dark mode stays neutral. The two modes are intentionally asymmetric in temperature: warm light + neutral dark.
 
-If color is ever needed (charts, diagrams, status indicators), use shades from these scales — never saturated hues.
+If color is ever needed (charts, diagrams, status indicators), use shades from these scales—never saturated hues.
 
 ---
 
@@ -54,9 +54,9 @@ If color is ever needed (charts, diagrams, status indicators), use shades from t
 
 Portfolio uses two typefaces:
 
-**Momo Trust Display** — Display type and wordmark. A rounded, approachable geometric sans-serif designed by TYPE Associates (2024). Available on Google Fonts under the SIL Open Font License. Its soft geometry balances the severity of the monochromatic palette — warmth without softness.
+**Momo Trust Display**—Display type and wordmark. A rounded, approachable geometric sans-serif designed by TYPE Associates (2024). Available on Google Fonts under the SIL Open Font License. Its soft geometry balances the severity of the monochromatic palette—warmth without softness.
 
-**Inter** — Body, UI, and metadata. Regular (400) for body copy, Medium (500) for subheadings, buttons, and eyebrow labels. Loaded as a web font, falls back to system sans-serif.
+**Inter**—Body, UI, and metadata. Regular (400) for body copy, Medium (500) for subheadings, buttons, and eyebrow labels. Loaded as a web font, falls back to system sans-serif.
 
 | Role | Typeface | Weight | Fallback |
 |------|----------|--------|----------|
@@ -94,7 +94,7 @@ Portfolio uses two typefaces:
 **Eyebrow / Section Label**
 - Font: Inter Medium, uppercase
 - Size: 11px
-- Letter-spacing: `0.18em` (positive — uppercase needs space)
+- Letter-spacing: `0.18em` (positive—uppercase needs space)
 - Line-height: 1
 - Color: muted
 
@@ -107,13 +107,13 @@ Portfolio uses two typefaces:
 
 ### Tracking Note
 
-Portfolio uses **negative letter-spacing across all running type sizes** — roughly −5% of font size for display type and −2.5% for body. This tight tracking is a signature of the brand: text feels dense and purposeful rather than loose and decorative. The only exception is uppercase eyebrow and caption labels, which use **positive** tracking (`0.18em`) — uppercase needs room to breathe. Never set Portfolio type at default (0) tracking.
+Portfolio uses **negative letter-spacing across all running type sizes**—roughly −5% of font size for display type and −2.5% for body. This tight tracking is a signature of the brand: text feels dense and purposeful rather than loose and decorative. The only exception is uppercase eyebrow and caption labels, which use **positive** tracking (`0.18em`)—uppercase needs room to breathe. Never set Portfolio type at default (0) tracking.
 
 ---
 
 ## Wordmark
 
-The Portfolio wordmark is set in **Momo Trust Display Medium**, with capital P and lowercase remaining letters. The mark renders light-on-dark in dark mode and dark-on-light in light mode. There is no icon or symbol — the name is the mark.
+The Portfolio wordmark is set in **Momo Trust Display Medium**, with capital P and lowercase remaining letters. The mark renders light-on-dark in dark mode and dark-on-light in light mode. There is no icon or symbol—the name is the mark.
 
 | Property | Value |
 |----------|-------|
@@ -129,7 +129,7 @@ The Portfolio wordmark is set in **Momo Trust Display Medium**, with capital P a
 
 **Usage rules:** The wordmark always appears as a standalone element with generous clear space. It should never be combined with taglines, icons, or other graphic elements in a lockup. The tagline ("A special projects studio for democracy") is a separate text element, never part of the wordmark.
 
-**Color variations:** Two versions only — light wordmark on dark, dark wordmark on light. Never use the wordmark in color, gradients, or with effects like drop shadows or outlines.
+**Color variations:** Two versions only—light wordmark on dark, dark wordmark on light. Never use the wordmark in color, gradients, or with effects like drop shadows or outlines.
 
 **Note on weight:** Momo Trust Display ships as Regular on Google Fonts; the Medium weight used for the wordmark is browser-synthesized. For canonical wordmark renders (logo files, partner exports), export an SVG with the path baked in rather than relying on font-weight synthesis, which renders slightly differently across operating systems.
 
@@ -137,7 +137,7 @@ The Portfolio wordmark is set in **Momo Trust Display Medium**, with capital P a
 
 ## Buttons & Interactive Elements
 
-Two button styles, both using Inter Medium at 15px. The filled side of the brand is constant across modes — only foreground and background swap.
+Two button styles, both using Inter Medium at 15px. The filled side of the brand is constant across modes—only foreground and background swap.
 
 ### Primary button (filled)
 
@@ -179,7 +179,7 @@ Portfolio uses generous, cinematic spacing. Large vertical padding creates breat
 | Section padding (horizontal) | `24px` | `200px` |
 | Element gap | `16px` | `24px` |
 | Min viewport height | `720px` | `1080px` |
-| Breakpoint | — | `1280px` |
+| Breakpoint |—| `1280px` |
 | Border radius (all surfaces) | `12px` | `12px` |
 
 Content is always centered. Layouts use flexbox with column orientation on mobile and row on desktop.
@@ -188,7 +188,7 @@ Content is always centered. Layouts use flexbox with column orientation on mobil
 
 ## Surface System
 
-The brand uses three surface layers to create depth without ornament. This is a tonal architecture — no shadows, no chrome, no card outlines.
+The brand uses three surface layers to create depth without ornament. This is a tonal architecture—no shadows, no chrome, no card outlines.
 
 | Layer | Dark mode | Light mode | Use |
 |-------|-----------|------------|-----|
@@ -204,7 +204,7 @@ The brand uses three surface layers to create depth without ornament. This is a 
 
 ## Imagery & Illustration
 
-Minimal SVG illustrations only — abstract, geometric, monochromatic. Rendered in the same primary text color as running type (`#E6E6E6` dark / `#0A0A0A` light). SVGs use CSS custom properties (`var(--fill-0)`) for theming across modes.
+Minimal SVG illustrations only—abstract, geometric, monochromatic. Rendered in the same primary text color as running type (`#E6E6E6` dark / `#0A0A0A` light). SVGs use CSS custom properties (`var(--fill-0)`) for theming across modes.
 
 **Style:** Geometric, abstract, monochromatic. Illustrations complement the text without competing with it.
 
@@ -216,7 +216,7 @@ Minimal SVG illustrations only — abstract, geometric, monochromatic. Rendered 
 
 ## Iconography
 
-When general-purpose icons are needed (UI controls, list bullets, table indicators, button affixes), use the **Tabler outline** icon set. Outline weight only — never filled variants. Sized to match the surrounding type, typically 16px or 20px.
+When general-purpose icons are needed (UI controls, list bullets, table indicators, button affixes), use the **Tabler outline** icon set. Outline weight only—never filled variants. Sized to match the surrounding type, typically 16px or 20px.
 
 The brand has no proprietary icon system. The wordmark is the only mark.
 
@@ -226,13 +226,23 @@ The brand has no proprietary icon system. The wordmark is the only mark.
 
 Portfolio's written voice mirrors its visual identity: stripped down, direct, and serious without being stiff. It reads like a pitch from someone who respects your time and trusts your intelligence.
 
-**Direct** — Short sentences. Active voice. No hedging or corporate filler. "Now's the time" — not "we believe the current moment presents an opportunity."
+**Direct**—Short sentences. Active voice. No hedging or corporate filler. "Now's the time"—not "we believe the current moment presents an opportunity."
 
-**Serious** — The stakes are real and the tone reflects it. No exclamation points, no emojis, no forced optimism. Urgency comes from substance, not punctuation.
+**Serious**—The stakes are real and the tone reflects it. No exclamation points, no emojis, no forced optimism. Urgency comes from substance, not punctuation.
 
-**Invitational** — Despite the gravity, the voice is warm and welcoming. "Get in touch" — not "Apply now." The CTA is a handshake, not a form submission.
+**Invitational**—Despite the gravity, the voice is warm and welcoming. "Get in touch"—not "Apply now." The CTA is a handshake, not a form submission.
 
-**Professional** — Written for peers, not donors or volunteers. Assumes intelligence and agency. "Professionals from across disciplines" — people with real careers and real expertise.
+**Professional**—Written for peers, not donors or volunteers. Assumes intelligence and agency. "Professionals from across disciplines"—people with real careers and real expertise.
+
+### Punctuation
+
+**Em-dashes set tight.** No spaces around the em-dash, ever. Write "like this—not like this." The MIT/Chicago convention, not AP. Use em-dashes for clause-level pivots and parenthetical breaks; apply the same rule in titles, body, UI copy, and email.
+
+**Oxford commas.** Always.
+
+**Curly quotes**, not straight. Single quotes for contractions ('it's), double quotes for actual quotation ("like this").
+
+**No exclamation points** outside dialogue. The voice creates urgency through substance, not punctuation.
 
 ### The canonical tagline
 
@@ -272,9 +282,9 @@ Light mode by default. Off-white background (`#F6F4EE`), wordmark top-left at 22
 
 ### Google Docs
 
-**Template file:** `Studio/Brand/Portfolio Doc Template.docx` — opens directly in Word and Pages, and converts to Google Docs automatically when uploaded to Google Drive.
+**Template file:** `Studio/Brand/Portfolio Doc Template.docx`—opens directly in Word and Pages, and converts to Google Docs automatically when uploaded to Google Drive.
 
-The template uses Inter for body (Google Docs supports Inter under Recommended Fonts). Wordmark "Portfolio" set as a header in Inter Bold 18pt — Nunito Bold is acceptable as fallback if Momo Trust Display is not available in the font picker. Body 11pt, line spacing 1.5. Headings: H1 Inter Regular 24pt, H2 Inter Regular 16pt. Background stays default white. The header has a 0.5pt hairline rule in `#B8B1A0` between the wordmark and the contact line; the footer has the same in `#DDD7C5`.
+The template uses Inter for body (Google Docs supports Inter under Recommended Fonts). Wordmark "Portfolio" set as a header in Inter Bold 18pt—Nunito Bold is acceptable as fallback if Momo Trust Display is not available in the font picker. Body 11pt, line spacing 1.5. Headings: H1 Inter Regular 24pt, H2 Inter Regular 16pt. Background stays default white. The header has a 0.5pt hairline rule in `#B8B1A0` between the wordmark and the contact line; the footer has the same in `#DDD7C5`.
 
 ### Email signature
 
@@ -288,11 +298,11 @@ Set in system sans-serif (email clients are unreliable with web fonts). No image
 
 ### Decks (Keynote / Google Slides)
 
-Light mode default for external decks; dark mode for internal review or staff-facing material. Same type system, same surface architecture. Title slide is wordmark plus tagline only. Section openers use the section-heading scale. Body slides keep bullets short — fewer than 5 lines per slide.
+Light mode default for external decks; dark mode for internal review or staff-facing material. Same type system, same surface architecture. Title slide is wordmark plus tagline only. Section openers use the section-heading scale. Body slides keep bullets short—fewer than 5 lines per slide.
 
 ### Web (portfolio.sc)
 
-Dark mode default. Light mode mirror available via `data-theme="light"` on the document root. Both modes use the same component primitives — only the palette swaps. The `tokens.css` companion file in this folder provides all CSS variables for both modes.
+Dark mode default. Light mode mirror available via `data-theme="light"` on the document root. Both modes use the same component primitives—only the palette swaps. The `tokens.css` companion file in this folder provides all CSS variables for both modes.
 
 ---
 
@@ -302,7 +312,7 @@ Beyond the website, Portfolio shows up on stationery, social previews, and small
 
 ### Favicon
 
-The favicon is the wordmark reduced to a single letter — capital P — not an icon system. There is still no Portfolio symbol; the favicon is a constrained typographic mark adapted to a 16×16 surface.
+The favicon is the wordmark reduced to a single letter—capital P—not an icon system. There is still no Portfolio symbol; the favicon is a constrained typographic mark adapted to a 16×16 surface.
 
 | Property | Value |
 |----------|-------|
@@ -313,7 +323,7 @@ The favicon is the wordmark reduced to a single letter — capital P — not an 
 | Construction | `<text>` element set in Momo Trust Display, font loaded via embedded `@import` so the favicon's P matches the wordmark exactly. For mobile app icons (Apple touch-icon, Android PWA) where the font may not load at render time, export outlined paths from the actual font in a design tool |
 | HTML reference | `<link rel="icon" type="image/svg+xml" href="/favicon.svg">` |
 
-The shipped `favicon.svg` uses dark mode colors only. If a light-mode favicon is ever needed (rare — most browsers darken tab chrome regardless of page theme), produce a second file rather than using `prefers-color-scheme` inside the SVG (cross-browser support remains uneven).
+The shipped `favicon.svg` uses dark mode colors only. If a light-mode favicon is ever needed (rare—most browsers darken tab chrome regardless of page theme), produce a second file rather than using `prefers-color-scheme` inside the SVG (cross-browser support remains uneven).
 
 ### Letterhead
 
@@ -324,17 +334,17 @@ US Letter (8.5×11 in) and A4 templates exist. Light mode default. Body in Inter
 | Page size | US Letter (8.5×11 in) or A4 (210×297 mm) |
 | Margins | 1 in (US Letter) / 25 mm (A4) |
 | Header | Wordmark `Portfolio` in Momo Trust Display Medium, 18–22pt, top-left |
-| Header rule | 0.5px hairline in `#B8B1A0` (warm gray, matches the ghost-button border), tight to the wordmark — 4pt above, 6pt below |
+| Header rule | 0.5px hairline in `#B8B1A0` (warm gray, matches the ghost-button border), tight to the wordmark—4pt above, 6pt below |
 | Sub-header | "A special projects studio for democracy" plus address, Inter 9pt, `#6E6B62` |
 | Body | Inter Regular 11pt, line-height 1.5, `#2A2A2A` |
 | Footer | Contact line in Inter 9pt, `#6E6B62`, separated by 0.5px hairline |
 | Ground | `#F6F4EE` if printing on coated stock; white acceptable on uncoated |
 
-No drop shadows. No decorative elements. The page is type and rule — nothing else.
+No drop shadows. No decorative elements. The page is type and rule—nothing else.
 
 ### Business Cards
 
-Standard 3.5×2 in (89×51 mm) or 85×55 mm (metric). Light cards are the canonical version — ink wordmark on warm off-white ground, mirroring the brand's document and printed-material treatment. A dark variant exists for premium uncoated black stock when the occasion calls for it.
+Standard 3.5×2 in (89×51 mm) or 85×55 mm (metric). Light cards are the canonical version—ink wordmark on warm off-white ground, mirroring the brand's document and printed-material treatment. A dark variant exists for premium uncoated black stock when the occasion calls for it.
 
 #### Light card (canonical)
 
@@ -356,7 +366,7 @@ Same layout, palette swapped: ground `#0A0A0A`, wordmark and name in `#E6E6E6`, 
 
 ### Social Share Image (OG card)
 
-The Open Graph image used for `og:image` and Twitter `summary_large_image` previews. 1200×630 pixels (Facebook/LinkedIn) — Twitter scales this down automatically.
+The Open Graph image used for `og:image` and Twitter `summary_large_image` previews. 1200×630 pixels (Facebook/LinkedIn)—Twitter scales this down automatically.
 
 | Property | Value |
 |----------|-------|
@@ -367,7 +377,7 @@ The Open Graph image used for `og:image` and Twitter `summary_large_image` previ
 | Tagline | "A special projects studio for democracy" in Momo Trust Display Regular, 76pt, `#000000`, left-aligned, bottom-left at 64px margin, max width 1000px |
 | File | `og-default.png` |
 
-Light mode is the default because social preview cards typically render in light UI surfaces. Variant images can be produced for specific shares (project launches, press) — same structure, same type system, swap the body copy.
+Light mode is the default because social preview cards typically render in light UI surfaces. Variant images can be produced for specific shares (project launches, press)—same structure, same type system, swap the body copy.
 
 ### LinkedIn Header
 
@@ -393,7 +403,7 @@ The square logo displayed as a circle on LinkedIn company pages.
 | Source file | `Studio/Brand/assets/linkedin-avatar.svg` |
 | Ground | `#0A0A0A` |
 | Wordmark | `Portfolio` in Momo Trust Display Medium, 44pt, `#E6E6E6`, centered |
-| Display | LinkedIn crops to circle — wordmark stays within the inscribed circle (radius 150 from center) |
+| Display | LinkedIn crops to circle—wordmark stays within the inscribed circle (radius 150 from center) |
 | Export | PNG at 1× and 2× for retina displays |
 
 ### GitHub Organization Avatar
@@ -406,7 +416,7 @@ The square avatar for Portfolio's GitHub organization page. Reduces cleanly to a
 | Source file | `Studio/Brand/assets/github-avatar.svg` |
 | Ground | `#0A0A0A`, rounded corners (`rx=80`, 16% of viewBox) |
 | Mark | "P" in Momo Trust Display Medium, ~76% of viewport height, `#E6E6E6`, centered |
-| Display | GitHub shows avatars as circles or rounded squares depending on context — keep the P within the inscribed circle |
+| Display | GitHub shows avatars as circles or rounded squares depending on context—keep the P within the inscribed circle |
 
 ### Twitter / X Header
 
@@ -436,22 +446,22 @@ For partners, press, and project teams that need to use Portfolio's wordmark. Av
 
 | File | Use |
 |------|-----|
-| `assets/wordmark-light.svg` | Ink wordmark (`#0A0A0A`) for use on light grounds — documents, light-mode web, slide footers |
-| `assets/wordmark-dark.svg` | Light gray wordmark (`#E6E6E6`) for use on dark grounds — portfolio.sc default, dark print |
+| `assets/wordmark-light.svg` | Ink wordmark (`#0A0A0A`) for use on light grounds—documents, light-mode web, slide footers |
+| `assets/wordmark-dark.svg` | Light gray wordmark (`#E6E6E6`) for use on dark grounds—portfolio.sc default, dark print |
 
-For PNG exports at specific sizes, open the SVG in a design tool and export. For ironclad production fidelity (printed materials, partner deliverables), outline the wordmark to paths in the design tool before exporting — see `logo-usage.md` for the production workflow.
+For PNG exports at specific sizes, open the SVG in a design tool and export. For ironclad production fidelity (printed materials, partner deliverables), outline the wordmark to paths in the design tool before exporting—see `logo-usage.md` for the production workflow.
 
 ### Deck Templates
 
 Templates for Keynote and Google Slides. Three slide types:
 
-**Title slide** — Wordmark top-left at 22pt. Deck title centered vertically in Momo Trust Display Regular 56pt. Subtitle in Inter Regular 20pt below the title. Light mode default for external decks; dark mode for internal review.
+**Title slide**—Wordmark top-left at 22pt. Deck title centered vertically in Momo Trust Display Regular 56pt. Subtitle in Inter Regular 20pt below the title. Light mode default for external decks; dark mode for internal review.
 
-**Section divider** — Section number in Inter Medium 11pt eyebrow at top. Section title in Momo Trust Display Regular 48pt below. Brief sub-description in Inter Regular 16pt.
+**Section divider**—Section number in Inter Medium 11pt eyebrow at top. Section title in Momo Trust Display Regular 48pt below. Brief sub-description in Inter Regular 16pt.
 
-**Content slide** — Slide title in Momo Trust Display Regular 32pt top-left. Body content in Inter Regular 16pt. Footer with wordmark (left) and slide number (right) in Inter Regular 11pt muted. Keep bullets under 5 per slide.
+**Content slide**—Slide title in Momo Trust Display Regular 32pt top-left. Body content in Inter Regular 16pt. Footer with wordmark (left) and slide number (right) in Inter Regular 11pt muted. Keep bullets under 5 per slide.
 
-**Template file:** `Studio/Brand/Portfolio Deck Template.pptx` — opens directly in Keynote and PowerPoint, and converts to Google Slides automatically when uploaded to Google Drive. Built from the spec above; use as a starting point and duplicate slides as needed.
+**Template file:** `Studio/Brand/Portfolio Deck Template.pptx`—opens directly in Keynote and PowerPoint, and converts to Google Slides automatically when uploaded to Google Drive. Built from the spec above; use as a starting point and duplicate slides as needed.
 
 ---
 
@@ -476,7 +486,7 @@ All downloadable Portfolio brand assets live in `Studio/Brand/assets/`. The favi
 | `assets/twitter-avatar.svg` | Twitter / X profile pic |
 | `assets/og-default.svg` | Default Open Graph card |
 
-For PNG exports at specific sizes, open the SVG in a design tool (Illustrator, Figma, Sketch, Affinity Designer) and export at the size needed. For ironclad production exports, outline the wordmark text to paths first — see `logo-usage.md`.
+For PNG exports at specific sizes, open the SVG in a design tool (Illustrator, Figma, Sketch, Affinity Designer) and export at the size needed. For ironclad production exports, outline the wordmark text to paths first—see `logo-usage.md`.
 
 Both fonts (Momo Trust Display, Inter) are on Google Fonts under the SIL Open Font License. See `## Font Sources` at the end of this guide.
 
@@ -509,8 +519,8 @@ Both fonts (Momo Trust Display, Inter) are on Google Fonts under the SIL Open Fo
 
 ## Font Sources
 
-- **Momo Trust Display:** [Google Fonts](https://fonts.google.com/specimen/Momo+Trust+Display) — SIL Open Font License
-- **Inter:** [Google Fonts](https://fonts.google.com/specimen/Inter) — SIL Open Font License
+- **Momo Trust Display:** [Google Fonts](https://fonts.google.com/specimen/Momo+Trust+Display)—SIL Open Font License
+- **Inter:** [Google Fonts](https://fonts.google.com/specimen/Inter)—SIL Open Font License
 
 ### Recommended loading (web)
 
@@ -531,5 +541,5 @@ Both fonts (Momo Trust Display, Inter) are on Google Fonts under the SIL Open Fo
 
 ## Companion files
 
-- `tokens.css` — drop-in CSS custom properties for the entire system. Import into any Portfolio project.
-- `Portfolio Brand Guide.html` — visual reference showing the system rendered in both modes.
+- `tokens.css`—drop-in CSS custom properties for the entire system. Import into any Portfolio project.
+- `Portfolio Brand Guide.html`—visual reference showing the system rendered in both modes.
