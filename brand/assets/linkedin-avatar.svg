@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <style type="text/css"><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
+    ]]></style>
+  </defs>
+  <rect width="300" height="300" fill="#0A0A0A"/>
+  <text x="150" y="168" text-anchor="middle" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="44" font-weight="500" fill="#E6E6E6" letter-spacing="-2.6">Portfolio</text>
+</svg>

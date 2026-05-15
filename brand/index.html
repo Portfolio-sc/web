@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Brand Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--pf-bg-ground);
+      color: var(--pf-text-body);
+      font-family: var(--pf-font-sans);
+      transition: background 0.2s ease, color 0.2s ease;
+      min-height: 100vh;
+    }
+    .top-nav {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--pf-bg-ground);
+      border-bottom: 0.5px solid var(--pf-hairline);
+      padding: 18px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .nav-links { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .nav-link {
+      font-family: var(--pf-font-sans); font-weight: 500; font-size: 13px;
+      letter-spacing: -0.3px; color: var(--pf-text-body); text-decoration: none;
+      padding: 6px 12px; border-radius: 8px; transition: color 0.15s, background 0.15s;
+    }
+    .nav-link:hover { color: var(--pf-text-emphasis); background: var(--pf-bg-section); }
+    .mode-toggle {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border-radius: 10px;
+      border: 1px solid var(--pf-border-ghost); background: transparent;
+      color: var(--pf-text-wordmark);
+      font-family: var(--pf-font-sans); font-weight: 500; font-size: 13px;
+      letter-spacing: -0.3px; cursor: pointer;
+    }
+    .mode-toggle:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 72px 32px 96px; }
+    .doc-title {
+      font-family: var(--pf-font-display); font-weight: 400;
+      font-size: 64px; letter-spacing: -3.2px; line-height: 1.02;
+      color: var(--pf-text-emphasis); margin-bottom: 16px;
+    }
+    .doc-date {
+      font-family: var(--pf-font-sans); font-size: 14px;
+      color: var(--pf-text-muted); letter-spacing: -0.3px;
+      margin-bottom: 16px;
+    }
+    .doc-intro {
+      font-family: var(--pf-font-sans); font-size: 17px;
+      letter-spacing: -0.4px; line-height: 1.55;
+      color: var(--pf-text-body); max-width: 640px;
+      margin-bottom: 56px;
+    }
+    .toc-card {
+      background: var(--pf-bg-section); border-radius: 12px;
+      padding: 28px 32px; margin-bottom: 80px;
+    }
+    .toc-eyebrow {
+      font-family: var(--pf-font-sans); font-weight: 500;
+      font-size: 11px; letter-spacing: 0.18em; line-height: 1;
+      text-transform: uppercase; color: var(--pf-text-muted);
+      margin-bottom: 18px;
+    }
+    .toc-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 4px 16px;
+    }
+    .toc-grid a {
+      font-family: var(--pf-font-sans); font-size: 14px;
+      letter-spacing: -0.3px; line-height: 1.7;
+      color: var(--pf-text-emphasis); text-decoration: none;
+      transition: color 0.15s;
+    }
+    .toc-grid a:hover { text-decoration: underline; }
+    .section { margin-bottom: 88px; scroll-margin-top: 80px; }
+    .section-eyebrow {
+      font-family: var(--pf-font-sans); font-weight: 500;
+      font-size: 11px; letter-spacing: 0.18em; line-height: 1;
+      text-transform: uppercase; color: var(--pf-text-muted);
+      margin-bottom: 22px;
+    }
+    .section-title {
+      font-family: var(--pf-font-display); font-weight: 400;
+      font-size: 34px; letter-spacing: -1.7px; line-height: 1.1;
+      color: var(--pf-text-emphasis); margin-bottom: 20px;
+    }
+    .section-prose {
+      font-family: var(--pf-font-sans); font-size: 16px;
+      letter-spacing: -0.4px; line-height: 1.55;
+      max-width: 640px; margin-bottom: 32px;
+    }
+    .subsection { margin-top: 56px; }
+    .subsection-title {
+      font-family: var(--pf-font-display); font-weight: 400;
+      font-size: 24px; letter-spacing: -1.2px; line-height: 1.1;
+      color: var(--pf-text-emphasis); margin-bottom: 12px;
+    }
+    .subsection-prose {
+      font-family: var(--pf-font-sans); font-size: 15px;
+      letter-spacing: -0.35px; line-height: 1.55;
+      max-width: 620px; margin-bottom: 24px; color: var(--pf-text-body);
+    }
+    .download-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .download-card {
+      background: var(--pf-bg-section); border-radius: 12px;
+      padding: 20px; text-decoration: none; color: inherit;
+      transition: transform 0.15s ease, background 0.15s ease;
+      display: flex; flex-direction: column; gap: 14px;
+      border: 0.5px solid transparent;
+    }
+    .download-card:hover { border-color: var(--pf-border-ghost); transform: translateY(-1px); }
+    .download-preview {
+      height: 100px; border-radius: 8px; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--pf-bg-ground);
+    }
+    .download-preview svg, .download-preview img { max-width: 100%; max-height: 100%; }
+    .download-meta { display: flex; flex-direction: column; gap: 4px; }
+    .download-name {
+      font-family: var(--pf-font-sans); font-weight: 500; font-size: 14px;
+      letter-spacing: -0.3px; color: var(--pf-text-emphasis);
+    }
+    .download-desc {
+      font-family: var(--pf-font-sans); font-size: 12px;
+      letter-spacing: -0.3px; color: var(--pf-text-muted); line-height: 1.45;
+    }
+    .download-type {
+      font-family: var(--pf-font-sans); font-weight: 500; font-size: 10px;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--pf-text-muted); margin-top: 2px;
+    }
+    .font-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .font-card {
+      background: var(--pf-bg-section); border-radius: 12px;
+      padding: 28px;
+    }
+    .font-display { font-family: var(--pf-font-display); font-weight: 400; font-size: 56px; letter-spacing: -2.8px; line-height: 1.05; color: var(--pf-text-emphasis); margin-bottom: 14px; }
+    .font-display-inter { font-family: var(--pf-font-sans); font-weight: 400; }
+    .font-name { font-family: var(--pf-font-sans); font-weight: 500; font-size: 16px; letter-spacing: -0.35px; color: var(--pf-text-emphasis); margin-bottom: 6px; }
+    .font-meta { font-family: var(--pf-font-sans); font-size: 13px; letter-spacing: -0.3px; color: var(--pf-text-muted); line-height: 1.55; margin-bottom: 18px; }
+    .font-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--pf-font-sans); font-weight: 500; font-size: 13px;
+      letter-spacing: -0.3px; color: var(--pf-text-emphasis);
+      text-decoration: none; padding: 8px 14px; border-radius: 8px;
+      border: 1px solid var(--pf-border-ghost);
+    }
+    .font-link:hover { text-decoration: underline; }
+    .swatch-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .swatch { padding: 24px; border-radius: 12px; border: 0.5px solid var(--pf-hairline); }
+    .swatch-block { width: 100%; height: 64px; border-radius: 8px; margin-bottom: 16px; border: 0.5px solid var(--pf-hairline); }
+    .swatch-name { font-family: var(--pf-font-sans); font-weight: 500; font-size: 14px; color: var(--pf-text-emphasis); margin-bottom: 4px; letter-spacing: -0.3px; }
+    .swatch-meta { font-family: var(--pf-font-sans); font-size: 12px; letter-spacing: -0.3px; color: var(--pf-text-muted); }
+    .type-row { padding: 28px 0; border-bottom: 0.5px solid var(--pf-hairline); }
+    .type-row:last-child { border-bottom: none; }
+    .type-meta { font-family: var(--pf-font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pf-text-muted); margin-bottom: 14px; font-weight: 500; }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .surface-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .surface-mock { border-radius: 12px; overflow: hidden; border: 0.5px solid var(--pf-hairline); }
+    .surface-mock-ground { padding: 36px 24px; }
+    .surface-mock-section { padding: 24px; }
+    .surface-mock-label { font-family: var(--pf-font-sans); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+    .page-mock { border-radius: 16px; overflow: hidden; border: 0.5px solid var(--pf-hairline); }
+    .pm-nav { display: flex; justify-content: space-between; align-items: center; padding: 28px 40px; }
+    .pm-hero { padding: 80px 40px 88px; }
+    .pm-headline { font-family: var(--pf-font-display); font-weight: 400; font-size: 44px; letter-spacing: -2.2px; line-height: 1.05; margin-bottom: 32px; max-width: 540px; }
+    .pm-body { font-family: var(--pf-font-sans); font-size: 16px; letter-spacing: -0.4px; line-height: 1.55; max-width: 480px; margin-bottom: 16px; }
+    .pm-cta { display: flex; gap: 10px; margin-top: 36px; flex-wrap: wrap; }
+    .pm-section { padding: 64px 40px 72px; border-top: 0.5px solid; }
+    .pm-eyebrow { font-family: var(--pf-font-sans); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 22px; }
+    .pm-section-heading { font-family: var(--pf-font-display); font-weight: 400; font-size: 26px; letter-spacing: -1.3px; line-height: 1.1; margin-bottom: 24px; max-width: 540px; }
+    .pm-footer { padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; letter-spacing: -0.3px; flex-wrap: wrap; gap: 16px; }
+    .pm-dark { background: #0A0A0A; color: #C8C8C8; }
+    .pm-dark .pm-wordmark, .pm-dark .pm-mark-sm { color: #E6E6E6; }
+    .pm-dark .pm-headline, .pm-dark .pm-section-heading { color: #FFFFFF; }
+    .pm-dark .pm-section { background: #161616; border-top-color: #262626; }
+    .pm-dark .pm-footer { border-top: 0.5px solid #262626; color: #888888; }
+    .pm-dark .pm-eyebrow { color: #888888; }
+    .pm-dark .pm-btn-primary { background: #E6E6E6; color: #0A0A0A; }
+    .pm-dark .pm-btn-ghost { background: transparent; color: #E6E6E6; border: 1px solid #333333; }
+    .pm-light { background: #F6F4EE; color: #2A2A2A; }
+    .pm-light .pm-wordmark, .pm-light .pm-mark-sm { color: #0A0A0A; }
+    .pm-light .pm-headline, .pm-light .pm-section-heading { color: #000000; }
+    .pm-light .pm-section { background: #EEEAE0; border-top-color: #DDD7C5; }
+    .pm-light .pm-footer { border-top: 0.5px solid #DDD7C5; color: #6E6B62; }
+    .pm-light .pm-eyebrow { color: #6E6B62; }
+    .pm-light .pm-btn-primary { background: #0A0A0A; color: #F6F4EE; }
+    .pm-light .pm-btn-ghost { background: transparent; color: #0A0A0A; border: 1px solid #B8B1A0; }
+    .pm-wordmark { font-family: var(--pf-font-display); font-weight: 500; font-size: 22px; letter-spacing: -1.3px; line-height: 1; }
+    .pm-mark-sm { font-family: var(--pf-font-display); font-weight: 500; font-size: 18px; letter-spacing: -1px; line-height: 1; }
+    .pm-btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 12px; font-family: var(--pf-font-sans); font-weight: 500; font-size: 15px; letter-spacing: -0.3px; line-height: 1; text-decoration: none; }
+    .pm-btn:hover { text-decoration: underline; }
+    .pm-meta-row { display: flex; gap: 24px; flex-wrap: wrap; }
+    .wordmark-stage { padding: 80px 32px; background: var(--pf-bg-section); border-radius: 12px; text-align: center; }
+    .wordmark-stage .pf-wordmark { font-size: 72px; letter-spacing: -4.3px; }
+    .reference-block { padding: 24px; background: var(--pf-bg-section); border-radius: 12px; }
+    .reference-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 0.5px solid var(--pf-hairline); font-family: var(--pf-font-sans); font-size: 13px; letter-spacing: -0.3px; gap: 16px; }
+    .reference-row:last-child { border-bottom: none; }
+    .reference-row .label { color: var(--pf-text-muted); }
+    .reference-row .value { color: var(--pf-text-emphasis); font-variant-numeric: tabular-nums; text-align: right; }
+    .artifact-stage { padding: 48px 32px; background: var(--pf-bg-section); border-radius: 12px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 24px; }
+    .voice-block { padding: 28px 32px; background: var(--pf-bg-section); border-radius: 12px; margin-bottom: 16px; }
+    .voice-block-label { font-family: var(--pf-font-display); font-weight: 400; font-size: 22px; letter-spacing: -1.1px; line-height: 1.1; color: var(--pf-text-emphasis); margin-bottom: 8px; }
+    .voice-block-text { font-family: var(--pf-font-sans); font-size: 15px; letter-spacing: -0.35px; line-height: 1.6; color: var(--pf-text-body); }
+    .voice-quote { font-family: var(--pf-font-display); font-weight: 400; font-style: italic; font-size: 24px; letter-spacing: -1.2px; line-height: 1.25; color: var(--pf-text-emphasis); padding: 24px 32px; border-left: 2px solid var(--pf-border-ghost); margin: 24px 0; }
+    .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .do-dont-card { padding: 24px; background: var(--pf-bg-section); border-radius: 12px; }
+    .do-dont-label { font-family: var(--pf-font-sans); font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pf-text-muted); margin-bottom: 16px; }
+    .do-dont-line { font-family: var(--pf-font-sans); font-size: 14px; letter-spacing: -0.3px; line-height: 1.6; color: var(--pf-text-body); padding: 8px 0; border-bottom: 0.5px solid var(--pf-hairline); }
+    .do-dont-line:last-child { border-bottom: none; }
+    @media (max-width: 720px) {
+      .top-nav { padding: 14px 20px; }
+      .nav-link { font-size: 12px; padding: 5px 10px; }
+      .container { padding: 48px 24px 64px; }
+      .doc-title { font-size: 42px; letter-spacing: -2.1px; }
+      .section-title { font-size: 26px; letter-spacing: -1.3px; }
+      .swatch-grid, .surface-demo, .font-grid, .do-dont { grid-template-columns: 1fr; }
+      .pm-hero { padding: 56px 24px 64px; }
+      .pm-headline { font-size: 32px; letter-spacing: -1.6px; }
+      .pm-nav, .pm-section, .pm-footer { padding-left: 24px; padding-right: 24px; }
+      .wordmark-stage .pf-wordmark { font-size: 44px; letter-spacing: -2.6px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <div class="pf-wordmark">Portfolio</div>
+    <div class="nav-links">
+      <a class="nav-link" href="#downloads">Downloads</a>
+      <a class="nav-link" href="#fonts">Fonts</a>
+      <a class="nav-link" href="#color">Color</a>
+      <a class="nav-link" href="#artifacts">Artifacts</a>
+      <a class="nav-link" href="#voice">Voice</a>
+      <button class="mode-toggle" onclick="toggleTheme()"><span id="mode-label">Dark mode</span></button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="doc-title">Brand Guide</h1>
+    <div class="doc-date">May 2026 · canonical reference</div>
+    <p class="doc-intro">Portfolio's visual identity is minimal, high-contrast, and modern. Two modes, two fonts, one wordmark, no decoration. This page is the live reference — assets to download, fonts to install, specs to implement.</p>
+
+    <section class="toc-card">
+      <div class="toc-eyebrow">Contents</div>
+      <div class="toc-grid">
+        <a href="#downloads">Downloads</a>
+        <a href="#fonts">Fonts</a>
+        <a href="#color">Color</a>
+        <a href="#typography">Typography</a>
+        <a href="#wordmark">Wordmark</a>
+        <a href="#buttons">Buttons</a>
+        <a href="#surfaces">Surface system</a>
+        <a href="#mockups">Page mockups</a>
+        <a href="#artifacts">Brand artifacts</a>
+        <a href="#voice">Voice &amp; tone</a>
+        <a href="#reference">Quick reference</a>
+      </div>
+    </section>
+
+    <section class="section" id="downloads">
+      <div class="section-eyebrow">Downloads</div>
+      <h2 class="section-title">All assets in one place.</h2>
+      <p class="section-prose">Click any card to download. SVGs are canonical — for PNG / JPG exports at specific sizes, open the SVG in a design tool (Illustrator, Figma, Sketch, Affinity) and export at the size you need. For production work where font fidelity matters, outline the wordmark text to paths before exporting — see <a href="logo-usage.md" style="color: var(--pf-text-emphasis); text-decoration: underline;">logo-usage.md</a>.</p>
+      <div class="download-grid">
+        <a class="download-card" href="assets/wordmark-light.svg" download>
+          <div class="download-preview" style="background: #F6F4EE;"><span style="font-family: var(--pf-font-display); font-weight: 500; font-size: 36px; letter-spacing: -2.2px; color: #0A0A0A;">Portfolio</span></div>
+          <div class="download-meta"><div class="download-name">Wordmark · light</div><div class="download-desc">For dark grounds — ink mark</div><div class="download-type">SVG</div></div>
+        </a>
+        <a class="download-card" href="assets/wordmark-dark.svg" download>
+          <div class="download-preview" style="background: #0A0A0A;"><span style="font-family: var(--pf-font-display); font-weight: 500; font-size: 36px; letter-spacing: -2.2px; color: #E6E6E6;">Portfolio</span></div>
+          <div class="download-meta"><div class="download-name">Wordmark · dark</div><div class="download-desc">For dark grounds — light mark</div><div class="download-type">SVG</div></div>
+        </a>
+        <a class="download-card" href="favicon.svg" download>
+          <div class="download-preview"><svg viewBox="0 0 32 32" width="64" height="64" style="border-radius: 12px;"><rect width="32" height="32" rx="6" fill="#0A0A0A"/><g transform="translate(16 16) scale(0.022 -0.022) translate(-356 -375)" fill="#E6E6E6"><path d="M74 0V750H362Q502 750 582.0 686.5Q662 623 662 506Q662 389 582.0 325.5Q502 262 362 262H248V0ZM248 409H362Q415 409 448.5 433.0Q482 457 482 506Q482 556 448.5 579.5Q415 603 362 603H248Z"/></g></svg></div>
+          <div class="download-meta"><div class="download-name">Favicon</div><div class="download-desc">32×32 browser tab icon</div><div class="download-type">SVG</div></div>
+        </a>
+        <a class="download-card" href="assets/linkedin-header.svg" download>
+          <div class="download-preview" style="padding: 12px;"><svg viewBox="0 0 1128 191" style="width: 100%;"><rect width="1128" height="191" fill="#F6F4EE"/><text x="64" y="56" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="22" font-weight="500" fill="#0A0A0A" letter-spacing="-1.3">Portfolio</text><line x1="64" x2="200" y1="74" y2="74" stroke="#DDD7C5" stroke-width="0.5"/><text x="64" y="142" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="48" font-weight="500" fill="#0A0A0A" letter-spacing="-2.4">A special projects studio for democracy.</text></svg></div>
+          <div class="download-meta"><div class="download-name">LinkedIn header</div><div class="download-desc">1128 × 191 company banner</div><div class="download-type">SVG · PNG · PNG@2x</div></div>
+        </a>
+        <a class="download-card" href="assets/linkedin-avatar.svg" download>
+          <div class="download-preview"><svg viewBox="0 0 300 300" width="80" height="80" style="border-radius: 50%;"><rect width="300" height="300" fill="#0A0A0A"/><text x="150" y="168" text-anchor="middle" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="44" font-weight="500" fill="#E6E6E6" letter-spacing="-2.6">Portfolio</text></svg></div>
+          <div class="download-meta"><div class="download-name">LinkedIn avatar</div><div class="download-desc">300 × 300 company logo</div><div class="download-type">SVG</div></div>
+        </a>
+        <a class="download-card" href="assets/github-avatar.svg" download>
+          <div class="download-preview"><svg viewBox="0 0 500 500" width="80" height="80" style="border-radius: 16px;"><rect width="500" height="500" rx="80" fill="#0A0A0A"/><g transform="translate(250 250) scale(0.38 -0.38) translate(-356 -375)" fill="#E6E6E6"><path d="M74 0V750H362Q502 750 582.0 686.5Q662 623 662 506Q662 389 582.0 325.5Q502 262 362 262H248V0ZM248 409H362Q415 409 448.5 433.0Q482 457 482 506Q482 556 448.5 579.5Q415 603 362 603H248Z"/></g></svg></div>
+          <div class="download-meta"><div class="download-name">GitHub avatar</div><div class="download-desc">500 × 500 organization avatar</div><div class="download-type">SVG</div></div>
+        </a>
+        <a class="download-card" href="assets/twitter-header.svg" download>
+          <div class="download-preview" style="padding: 12px;"><svg viewBox="0 0 1500 500" style="width: 100%;"><rect width="1500" height="500" fill="#0A0A0A"/><text x="80" y="180" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="64" font-weight="500" fill="#E6E6E6" letter-spacing="-3.8">Portfolio</text><text x="80" y="250" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="40" font-weight="400" fill="#FFFFFF" letter-spacing="-2">A special projects studio for democracy</text></svg></div>
+          <div class="download-meta"><div class="download-name">Twitter / X header</div><div class="download-desc">1500 × 500 banner</div><div class="download-type">SVG</div></div>
+        </a>
+        <a class="download-card" href="assets/twitter-avatar.svg" download>
+          <div class="download-preview"><svg viewBox="0 0 400 400" width="80" height="80" style="border-radius: 50%;"><rect width="400" height="400" fill="#0A0A0A"/><g transform="translate(200 200) scale(0.304 -0.304) translate(-356 -375)" fill="#E6E6E6"><path d="M74 0V750H362Q502 750 582.0 686.5Q662 623 662 506Q662 389 582.0 325.5Q502 262 362 262H248V0ZM248 409H362Q415 409 448.5 433.0Q482 457 482 506Q482 556 448.5 579.5Q415 603 362 603H248Z"/></g></svg></div>
+          <div class="download-meta"><div class="download-name">Twitter / X avatar</div><div class="download-desc">400 × 400 profile pic</div><div class="download-type">SVG</div></div>
+        </a>
+        <a class="download-card" href="assets/og-default.svg" download>
+          <div class="download-preview" style="padding: 8px;"><svg viewBox="0 0 1200 630" style="width: 100%;"><rect width="1200" height="630" fill="#F6F4EE"/><text x="64" y="120" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="56" font-weight="500" fill="#0A0A0A" letter-spacing="-3.4">Portfolio</text><text x="64" y="540" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="64" font-weight="400" fill="#000000" letter-spacing="-3.2">A special projects studio for democracy</text></svg></div>
+          <div class="download-meta"><div class="download-name">OG card</div><div class="download-desc">1200 × 630 default social share image</div><div class="download-type">SVG</div></div>
+        </a>
+        <a class="download-card" href="Portfolio Deck Template.pptx" download>
+          <div class="download-preview" style="padding: 6px;">
+            <svg viewBox="0 0 1333 750" style="width: 100%; height: 100%; box-shadow: 0 0 0 0.5px var(--pf-hairline);">
+              <rect width="1333" height="750" fill="#F6F4EE"/>
+              <text x="60" y="90" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-weight="500" font-size="38" fill="#0A0A0A" letter-spacing="-2.3">Portfolio</text>
+              <text x="80" y="380" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-weight="400" font-size="118" fill="#000000" letter-spacing="-5.9">Deck title</text>
+              <text x="80" y="450" font-family="'Inter', sans-serif" font-size="40" fill="#2A2A2A" letter-spacing="-1">Subtitle or short description</text>
+              <text x="60" y="700" font-family="'Inter', sans-serif" font-size="22" fill="#6E6B62" letter-spacing="-0.5">May 2026 · portfolio.sc</text>
+            </svg>
+          </div>
+          <div class="download-meta"><div class="download-name">Deck template</div><div class="download-desc">Title, section, content slides — opens in Google Slides</div><div class="download-type">PPTX</div></div>
+        </a>
+        <a class="download-card" href="Portfolio Doc Template.docx" download>
+          <div class="download-preview" style="padding: 4px;">
+            <svg viewBox="0 0 850 1100" style="height: 100%; width: auto; box-shadow: 0 0 0 0.5px var(--pf-hairline);">
+              <rect width="850" height="1100" fill="#F6F4EE"/>
+              <text x="60" y="90" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-weight="500" font-size="38" fill="#0A0A0A" letter-spacing="-2.3">Portfolio</text>
+              <line x1="60" y1="115" x2="790" y2="115" stroke="#B8B1A0" stroke-width="1.5"/>
+              <text x="60" y="140" font-family="'Inter', sans-serif" font-size="18" fill="#6E6B62" letter-spacing="-0.4">A special projects studio for democracy</text>
+              <text x="60" y="162" font-family="'Inter', sans-serif" font-size="18" fill="#6E6B62" letter-spacing="-0.4">portfolio.sc · New York</text>
+              <text x="60" y="260" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A" letter-spacing="-0.5">May 11, 2026</text>
+              <text x="60" y="310" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A" letter-spacing="-0.5">Dear partner,</text>
+              <text x="60" y="370" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A" letter-spacing="-0.5">Portfolio is a special projects studio</text>
+              <text x="60" y="395" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A" letter-spacing="-0.5">for democracy. We take high-variance</text>
+              <text x="60" y="420" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A" letter-spacing="-0.5">ideas and move them from concept to</text>
+              <text x="60" y="445" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A" letter-spacing="-0.5">operating entity in weeks.</text>
+            </svg>
+          </div>
+          <div class="download-meta"><div class="download-name">Doc template</div><div class="download-desc">Letterhead with header, body, footer — opens in Google Docs</div><div class="download-type">DOCX</div></div>
+        </a>
+        <a class="download-card" href="Portfolio Memo Template.docx" download>
+          <div class="download-preview" style="padding: 4px;">
+            <svg viewBox="0 0 850 1100" style="height: 100%; width: auto; box-shadow: 0 0 0 0.5px var(--pf-hairline);">
+              <rect width="850" height="1100" fill="#F6F4EE"/>
+              <text x="60" y="90" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-weight="500" font-size="38" fill="#0A0A0A" letter-spacing="-2.3">Portfolio</text>
+              <text x="60" y="140" font-family="'Inter', sans-serif" font-size="18" fill="#6E6B62" letter-spacing="-0.4">A special projects studio for democracy</text>
+              <text x="60" y="230" font-family="'Inter', sans-serif" font-weight="700" font-size="22" fill="#6E6B62" letter-spacing="0.5">MEMO</text>
+              <text x="60" y="285" font-family="'Inter', sans-serif" font-weight="700" font-size="22" fill="#2A2A2A">TO</text>
+              <text x="180" y="285" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A">[Recipient name]</text>
+              <text x="60" y="318" font-family="'Inter', sans-serif" font-weight="700" font-size="22" fill="#2A2A2A">FROM</text>
+              <text x="180" y="318" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A">Amar Bakshi</text>
+              <text x="60" y="351" font-family="'Inter', sans-serif" font-weight="700" font-size="22" fill="#2A2A2A">DATE</text>
+              <text x="180" y="351" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A">May 11, 2026</text>
+              <text x="60" y="384" font-family="'Inter', sans-serif" font-weight="700" font-size="22" fill="#2A2A2A">RE</text>
+              <text x="180" y="384" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A">[Subject line]</text>
+              <line x1="60" y1="415" x2="790" y2="415" stroke="#B8B1A0" stroke-width="1.5"/>
+              <text x="60" y="455" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A">Open with a one-sentence summary of</text>
+              <text x="60" y="485" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A">what this memo is about. State the</text>
+              <text x="60" y="515" font-family="'Inter', sans-serif" font-size="22" fill="#2A2A2A">recommendation in the first paragraph.</text>
+            </svg>
+          </div>
+          <div class="download-meta"><div class="download-name">Memo template</div><div class="download-desc">Classic TO/FROM/DATE/RE memo — opens in Google Docs</div><div class="download-type">DOCX</div></div>
+        </a>
+        <a class="download-card" href="tokens.css" download>
+          <div class="download-preview" style="font-family: var(--pf-font-sans); font-size: 11px; color: var(--pf-text-muted); padding: 16px; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 2px;">
+            <div style="color: var(--pf-text-emphasis); font-family: 'Inter', monospace; font-weight: 500;">:root {</div>
+            <div style="padding-left: 12px; font-family: 'Inter', monospace;">--pf-bg-ground: #0A0A0A;</div>
+            <div style="padding-left: 12px; font-family: 'Inter', monospace;">--pf-text-body: #C8C8C8;</div>
+            <div style="padding-left: 12px; font-family: 'Inter', monospace;">--pf-radius: 12px;</div>
+            <div style="color: var(--pf-text-emphasis); font-family: 'Inter', monospace; font-weight: 500;">}</div>
+          </div>
+          <div class="download-meta"><div class="download-name">tokens.css</div><div class="download-desc">Drop-in CSS variables for both modes</div><div class="download-type">CSS</div></div>
+        </a>
+        <a class="download-card" href="logo-usage.md" download>
+          <div class="download-preview" style="font-family: var(--pf-font-sans); font-size: 12px; color: var(--pf-text-muted); padding: 16px; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 4px;">
+            <div style="color: var(--pf-text-emphasis); font-family: var(--pf-font-display); font-size: 18px; letter-spacing: -0.9px; font-weight: 500;">Logo Usage</div>
+            <div>Permitted uses, clear space, minimum sizes</div>
+          </div>
+          <div class="download-meta"><div class="download-name">Logo usage guide</div><div class="download-desc">Wordmark rules for partners and press</div><div class="download-type">MD</div></div>
+        </a>
+        <a class="download-card" href="Portfolio Brand Guide.md" download>
+          <div class="download-preview" style="font-family: var(--pf-font-sans); font-size: 12px; color: var(--pf-text-muted); padding: 16px; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 4px;">
+            <div style="color: var(--pf-text-emphasis); font-family: var(--pf-font-display); font-size: 18px; letter-spacing: -0.9px; font-weight: 500;">Brand Guide</div>
+            <div>Full canonical specification</div>
+          </div>
+          <div class="download-meta"><div class="download-name">Brand Guide (markdown)</div><div class="download-desc">Canonical specifications for the system</div><div class="download-type">MD</div></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="fonts">
+      <div class="section-eyebrow">Fonts</div>
+      <h2 class="section-title">Two faces. Both free.</h2>
+      <p class="section-prose">Portfolio uses two typefaces. Both are on Google Fonts under the SIL Open Font License. Install in your design tool, link from your web project, or pull via Fontsource on a CDN.</p>
+      <div class="font-grid">
+        <div class="font-card">
+          <div class="font-display">Aa</div>
+          <div class="font-name">Momo Trust Display</div>
+          <div class="font-meta">Display + wordmark. Rounded geometric sans-serif by TYPE Associates (2024). Regular weight only on Google Fonts — Medium weight used for the wordmark is browser-synthesized.</div>
+          <a class="font-link" href="https://fonts.google.com/specimen/Momo+Trust+Display" target="_blank" rel="noopener">Open on Google Fonts <span style="font-size: 15px;">↗</span></a>
+        </div>
+        <div class="font-card">
+          <div class="font-display font-display-inter">Aa</div>
+          <div class="font-name">Inter</div>
+          <div class="font-meta">Body + UI. Variable font by Rasmus Andersson. Use Regular (400) for body and Medium (500) for subheadings, buttons, and uppercase eyebrow labels.</div>
+          <a class="font-link" href="https://fonts.google.com/specimen/Inter" target="_blank" rel="noopener">Open on Google Fonts <span style="font-size: 15px;">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="color">
+      <div class="section-eyebrow">Color · dark mode</div>
+      <h2 class="section-title">Pure black ground.</h2>
+      <p class="section-prose">Default mode. Neutral, no temperature. The light gray family carries body and wordmark; pure white is reserved for hero emphasis. Section step at #161616 plus hairline at #262626 gives the page its architecture.</p>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch-block" style="background: #0A0A0A;"></div><div class="swatch-name">Ground</div><div class="swatch-meta">#0A0A0A · page background</div></div>
+        <div class="swatch"><div class="swatch-block" style="background: #161616;"></div><div class="swatch-name">Section</div><div class="swatch-meta">#161616 · elevated sections</div></div>
+        <div class="swatch"><div class="swatch-block" style="background: #262626;"></div><div class="swatch-name">Hairline</div><div class="swatch-meta">#262626 · section dividers</div></div>
+        <div class="swatch"><div class="swatch-block" style="background: #C8C8C8;"></div><div class="swatch-name">Body</div><div class="swatch-meta">#C8C8C8 · body copy</div></div>
+        <div class="swatch"><div class="swatch-block" style="background: #E6E6E6;"></div><div class="swatch-name">Wordmark / Button</div><div class="swatch-meta">#E6E6E6 · wordmark, buttons</div></div>
+        <div class="swatch"><div class="swatch-block" style="background: #FFFFFF;"></div><div class="swatch-name">Emphasis</div><div class="swatch-meta">#FFFFFF · hero, sparingly</div></div>
+      </div>
+
+      <div class="subsection">
+        <div class="section-eyebrow">Color · light mode</div>
+        <h3 class="subsection-title">Warm off-white.</h3>
+        <p class="subsection-prose">Document and printed-material default. The off-white is slightly warm — a hint of cream that distinguishes Portfolio's surfaces from generic-default white. The asymmetric temperature (warm light, neutral dark) is intentional.</p>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="swatch-block" style="background: #F6F4EE;"></div><div class="swatch-name">Off-white</div><div class="swatch-meta">#F6F4EE · page ground</div></div>
+          <div class="swatch"><div class="swatch-block" style="background: #EEEAE0;"></div><div class="swatch-name">Section</div><div class="swatch-meta">#EEEAE0 · elevated sections</div></div>
+          <div class="swatch"><div class="swatch-block" style="background: #DDD7C5;"></div><div class="swatch-name">Hairline</div><div class="swatch-meta">#DDD7C5 · section dividers</div></div>
+          <div class="swatch"><div class="swatch-block" style="background: #2A2A2A;"></div><div class="swatch-name">Body</div><div class="swatch-meta">#2A2A2A · body copy</div></div>
+          <div class="swatch"><div class="swatch-block" style="background: #0A0A0A;"></div><div class="swatch-name">Wordmark / Button</div><div class="swatch-meta">#0A0A0A · wordmark, buttons</div></div>
+          <div class="swatch"><div class="swatch-block" style="background: #000000;"></div><div class="swatch-name">Emphasis</div><div class="swatch-meta">#000000 · hero, sparingly</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="typography">
+      <div class="section-eyebrow">Typography</div>
+      <h2 class="section-title">Two fonts. Tight tracking.</h2>
+      <p class="section-prose">Momo Trust Display for display and wordmark. Inter for body and UI. Negative tracking across all running sizes — about −5% of font size for display, −2.5% for body. Uppercase eyebrows use positive 0.18em.</p>
+      <div class="type-row"><div class="type-meta">Hero · Momo Trust Display Regular · 50/52 · −2.5</div><div style="font-family: var(--pf-font-display); font-weight: 400; font-size: 50px; letter-spacing: -2.5px; line-height: 1.05; color: var(--pf-text-emphasis);">A special projects studio for democracy</div></div>
+      <div class="type-row"><div class="type-meta">Section · Momo Trust Display Regular · 25/27 · −1.25</div><div style="font-family: var(--pf-font-display); font-weight: 400; font-size: 25px; letter-spacing: -1.25px; line-height: 1.07; color: var(--pf-text-emphasis);">We pick projects with extreme leverage ratios.</div></div>
+      <div class="type-row"><div class="type-meta">Body · Inter Regular · 16/24 · −0.4</div><div style="font-family: var(--pf-font-sans); font-size: 16px; letter-spacing: -0.4px; line-height: 1.5; color: var(--pf-text-body);">We take high-variance ideas and move them from concept to operating entity in weeks. The times are weird. What is missing is not more organizations doing conventional work.</div></div>
+      <div class="type-row"><div class="type-meta">Eyebrow · Inter Medium uppercase · 11 · +0.18em</div><div class="pf-eyebrow">What we do</div></div>
+      <div class="type-row"><div class="type-meta">Caption · Inter Regular · 13/19 · −0.4</div><div style="font-family: var(--pf-font-sans); font-size: 13px; letter-spacing: -0.4px; line-height: 1.45; color: var(--pf-text-muted);">portfolio.sc · New York · © 2026</div></div>
+    </section>
+
+    <section class="section" id="wordmark">
+      <div class="section-eyebrow">Wordmark</div>
+      <h2 class="section-title">The name is the mark.</h2>
+      <p class="section-prose">Momo Trust Display Medium. Capital P, lowercase rest. Tracking tighter than the hero (~−6% of font size). No icon, no lockup, no decoration. Light on dark, dark on light. Two versions only.</p>
+      <div class="wordmark-stage"><div class="pf-wordmark">Portfolio</div></div>
+    </section>
+
+    <section class="section" id="buttons">
+      <div class="section-eyebrow">Buttons</div>
+      <h2 class="section-title">Two styles only.</h2>
+      <p class="section-prose">Primary (filled) and Ghost (outline). 12px radius. Inter Medium 15px. The filled side stays constant across modes — wordmark color on ground color, swapped.</p>
+      <div class="btn-row"><button class="pf-btn pf-btn-primary">Get in touch</button><button class="pf-btn pf-btn-ghost">What we do</button></div>
+    </section>
+
+    <section class="section" id="surfaces">
+      <div class="section-eyebrow">Surface system</div>
+      <h2 class="section-title">Three layers, no shadows.</h2>
+      <p class="section-prose">Ground, section, hairline. Tonal architecture only — no drop shadows, no inset shadows, no card outlines. The combination of tonal step plus 0.5px hairline creates the section seam.</p>
+      <div class="surface-demo">
+        <div class="surface-mock" style="background: #0A0A0A;">
+          <div class="surface-mock-ground"><div class="surface-mock-label" style="color: #888888;">Ground · #0A0A0A</div></div>
+          <div class="surface-mock-section" style="background: #161616; border-top: 0.5px solid #262626;"><div class="surface-mock-label" style="color: #888888;">Section · #161616</div></div>
+        </div>
+        <div class="surface-mock" style="background: #F6F4EE;">
+          <div class="surface-mock-ground"><div class="surface-mock-label" style="color: #6E6B62;">Ground · #F6F4EE</div></div>
+          <div class="surface-mock-section" style="background: #EEEAE0; border-top: 0.5px solid #DDD7C5;"><div class="surface-mock-label" style="color: #6E6B62;">Section · #EEEAE0</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="mockups">
+      <div class="section-eyebrow">Page mockup · dark</div>
+      <h2 class="section-title">The system in practice.</h2>
+      <p class="section-prose">A homepage built from the brand primitives — wordmark, hero, surface step, hairline, two button styles.</p>
+      <div class="page-mock pm-dark">
+        <div class="pm-nav"><div class="pm-wordmark">Portfolio</div><a class="pm-btn pm-btn-ghost" href="#">Get in touch</a></div>
+        <div class="pm-hero">
+          <div class="pm-headline">A special projects studio for democracy</div>
+          <div class="pm-body">We take high-variance ideas and move them from concept to operating entity in weeks.</div>
+          <div class="pm-body">The times are weird. What is missing is not more organizations doing conventional work.</div>
+          <div class="pm-cta"><a class="pm-btn pm-btn-primary" href="#">Get in touch →</a><a class="pm-btn pm-btn-ghost" href="#">What we do</a></div>
+        </div>
+        <div class="pm-section">
+          <div class="pm-eyebrow">What we do</div>
+          <div class="pm-section-heading">We pick projects with extreme leverage ratios and build them with the operating tempo of a startup.</div>
+          <div class="pm-body">The studio runs as a venture series. Each project carries its own identity, team, and tempo. Portfolio provides the scaffolding.</div>
+        </div>
+        <div class="pm-footer"><div class="pm-mark-sm">Portfolio</div><div class="pm-meta-row"><span>portfolio.sc</span><span>New York</span><span>© 2026</span></div></div>
+      </div>
+
+      <div class="subsection">
+        <div class="section-eyebrow">Page mockup · light</div>
+        <h3 class="subsection-title">Same system, mirrored.</h3>
+        <p class="subsection-prose">Light mode for documents, PDFs, decks, and any light-mode web surface. Same components, palette swapped.</p>
+        <div class="page-mock pm-light">
+          <div class="pm-nav"><div class="pm-wordmark">Portfolio</div><a class="pm-btn pm-btn-ghost" href="#">Get in touch</a></div>
+          <div class="pm-hero">
+            <div class="pm-headline">A special projects studio for democracy</div>
+            <div class="pm-body">We take high-variance ideas and move them from concept to operating entity in weeks.</div>
+            <div class="pm-body">The times are weird. What is missing is not more organizations doing conventional work.</div>
+            <div class="pm-cta"><a class="pm-btn pm-btn-primary" href="#">Get in touch →</a><a class="pm-btn pm-btn-ghost" href="#">What we do</a></div>
+          </div>
+          <div class="pm-section">
+            <div class="pm-eyebrow">What we do</div>
+            <div class="pm-section-heading">We pick projects with extreme leverage ratios and build them with the operating tempo of a startup.</div>
+            <div class="pm-body">The studio runs as a venture series. Each project carries its own identity, team, and tempo. Portfolio provides the scaffolding.</div>
+          </div>
+          <div class="pm-footer"><div class="pm-mark-sm">Portfolio</div><div class="pm-meta-row"><span>portfolio.sc</span><span>New York</span><span>© 2026</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="artifacts">
+      <div class="section-eyebrow">Brand artifacts</div>
+      <h2 class="section-title">Beyond the website.</h2>
+      <p class="section-prose">Favicon, stationery, business cards, social profiles, and deck templates — each applying the same system to a different surface.</p>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Favicon</h3>
+        <p class="subsection-prose">Capital P set in Momo Trust Display via embedded `@import` so the shape matches the wordmark exactly. For mobile app icons where the font may not load, export outlined paths from the actual font.</p>
+        <div class="artifact-stage" style="gap: 40px;">
+          <div style="text-align: center;"><svg viewBox="0 0 32 32" width="128" height="128" style="border-radius: 24px; display: block; margin: 0 auto;"><rect width="32" height="32" rx="6" fill="#0A0A0A"/><text x="16" y="16" dy=".4em" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="22" font-weight="500" fill="#E6E6E6" text-anchor="middle">P</text></svg><div style="font-family: var(--pf-font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pf-text-muted); margin-top: 14px; font-weight: 500;">128</div></div>
+          <div style="text-align: center;"><svg viewBox="0 0 32 32" width="64" height="64" style="border-radius: 12px; display: block; margin: 0 auto;"><rect width="32" height="32" rx="6" fill="#0A0A0A"/><text x="16" y="16" dy=".4em" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="22" font-weight="500" fill="#E6E6E6" text-anchor="middle">P</text></svg><div style="font-family: var(--pf-font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pf-text-muted); margin-top: 14px; font-weight: 500;">64</div></div>
+          <div style="text-align: center;"><svg viewBox="0 0 32 32" width="32" height="32" style="border-radius: 6px; display: block; margin: 0 auto;"><rect width="32" height="32" rx="6" fill="#0A0A0A"/><text x="16" y="16" dy=".4em" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="22" font-weight="500" fill="#E6E6E6" text-anchor="middle">P</text></svg><div style="font-family: var(--pf-font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pf-text-muted); margin-top: 14px; font-weight: 500;">32</div></div>
+          <div style="text-align: center;"><svg viewBox="0 0 32 32" width="16" height="16" style="border-radius: 3px; display: block; margin: 0 auto;"><rect width="32" height="32" rx="6" fill="#0A0A0A"/><text x="16" y="16" dy=".4em" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="22" font-weight="500" fill="#E6E6E6" text-anchor="middle">P</text></svg><div style="font-family: var(--pf-font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pf-text-muted); margin-top: 14px; font-weight: 500;">16</div></div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Letterhead</h3>
+        <p class="subsection-prose">US Letter or A4. Light mode default. Wordmark top-left, hairline rule below, contact line beneath. Body in Inter 11pt.</p>
+        <div class="artifact-stage">
+          <div style="background: #F6F4EE; color: #2A2A2A; width: 360px; aspect-ratio: 8.5/11; padding: 36px 32px; display: flex; flex-direction: column; box-shadow: 0 0 0 0.5px var(--pf-hairline);">
+            <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 500; font-size: 18px; letter-spacing: -1.1px; color: #0A0A0A;">Portfolio</div>
+            <div style="height: 0.5px; background: #B8B1A0; margin: 4px 0 6px;"></div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 8px; color: #6E6B62; letter-spacing: -0.15px; line-height: 1.5;">A special projects studio for democracy<br>portfolio.sc · New York</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 9px; color: #2A2A2A; line-height: 1.6; letter-spacing: -0.2px; margin-top: 36px;">
+              <p style="margin-bottom: 14px;">May 11, 2026</p>
+              <p style="margin-bottom: 14px;">Dear partner,</p>
+              <p style="margin-bottom: 12px;">Portfolio is a special projects studio for democracy. We take high-variance ideas and move them from concept to operating entity in weeks.</p>
+              <p style="margin-bottom: 12px;">The times are weird. What is missing is not more organizations doing conventional work. Now's the time.</p>
+              <p>—</p>
+            </div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 8px; color: #6E6B62; letter-spacing: -0.15px; margin-top: auto; padding-top: 12px; border-top: 0.5px solid #DDD7C5;">amar@portfolio.sc · portfolio.sc</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Business cards</h3>
+        <p class="subsection-prose">3.5×2 in. Light cards are canonical — ink wordmark on warm off-white, mirroring the brand's document treatment. A dark variant exists for premium black stock.</p>
+        <div class="artifact-stage" style="gap: 28px;">
+          <div style="text-align: center;">
+            <div style="font-family: var(--pf-font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pf-text-muted); margin-bottom: 14px; font-weight: 500;">Front</div>
+            <div style="width: 280px; height: 160px; background: #F6F4EE; color: #0A0A0A; padding: 22px 24px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; box-shadow: 0 0 0 0.5px var(--pf-hairline);">
+              <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 500; font-size: 24px; letter-spacing: -1.5px; line-height: 1; color: #0A0A0A;">Portfolio</div>
+              <div style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: -0.2px; color: #6E6B62;">A special projects studio for democracy</div>
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-family: var(--pf-font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pf-text-muted); margin-bottom: 14px; font-weight: 500;">Back</div>
+            <div style="width: 280px; height: 160px; background: #F6F4EE; color: #0A0A0A; padding: 22px 24px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; box-shadow: 0 0 0 0.5px var(--pf-hairline);">
+              <div>
+                <div style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 13px; letter-spacing: -0.3px; color: #0A0A0A; margin-bottom: 2px;">Amar Bakshi</div>
+                <div style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: -0.2px; color: #6E6B62;">Title Here</div>
+              </div>
+              <div style="font-family: 'Inter', sans-serif; font-size: 10px; line-height: 1.5; letter-spacing: -0.2px; color: #2A2A2A;">amar@portfolio.sc<br>portfolio.sc · New York</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Social share image (OG card)</h3>
+        <p class="subsection-prose">1200 × 630 default Open Graph card. Light mode — social preview cards typically render in light UI surfaces. Wordmark top-left, tagline bottom-left.</p>
+        <div class="artifact-stage">
+          <div style="width: 100%; max-width: 600px; aspect-ratio: 1200/630; background: #F6F4EE; padding: 32px 38px; margin: 0 auto; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 0 0 0.5px var(--pf-hairline);">
+            <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 500; font-size: 28px; letter-spacing: -1.7px; line-height: 1; color: #0A0A0A;">Portfolio</div>
+            <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 400; font-size: 38px; letter-spacing: -1.9px; line-height: 1.05; color: #000000; max-width: 90%;">A special projects studio for democracy</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">LinkedIn header</h3>
+        <p class="subsection-prose">1128 × 191 company page banner. Dark ground, wordmark and tagline right-aligned to avoid the company logo overlap at bottom-left.</p>
+        <div class="artifact-stage">
+          <div style="width: 100%; max-width: 700px; aspect-ratio: 1128/191; background: #0A0A0A; position: relative;">
+            <div style="position: absolute; right: 6%; top: 50%; transform: translateY(-50%); text-align: right;">
+              <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 500; font-size: 30px; letter-spacing: -1.8px; line-height: 1; color: #E6E6E6;">Portfolio</div>
+              <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 400; font-size: 18px; letter-spacing: -0.9px; line-height: 1.1; color: #FFFFFF; margin-top: 6px;">A special projects studio for democracy</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">LinkedIn avatar (company logo)</h3>
+        <p class="subsection-prose">300 × 300 square. LinkedIn crops to a circle for display.</p>
+        <div class="artifact-stage" style="gap: 32px;">
+          <div style="text-align: center;">
+            <div style="width: 160px; height: 160px; background: #0A0A0A; display: flex; align-items: center; justify-content: center;">
+              <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 500; font-size: 24px; letter-spacing: -1.4px; line-height: 1; color: #E6E6E6;">Portfolio</div>
+            </div>
+            <div style="font-family: var(--pf-font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pf-text-muted); margin-top: 12px; font-weight: 500;">Square</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 160px; height: 160px; background: #0A0A0A; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+              <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 500; font-size: 24px; letter-spacing: -1.4px; line-height: 1; color: #E6E6E6;">Portfolio</div>
+            </div>
+            <div style="font-family: var(--pf-font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pf-text-muted); margin-top: 12px; font-weight: 500;">As displayed</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">GitHub organization avatar</h3>
+        <p class="subsection-prose">500 × 500 source. Reduces to a single P since GitHub displays avatars from 24px to 230px. Same P shape as the favicon, scaled up.</p>
+        <div class="artifact-stage" style="gap: 32px;">
+          <div style="text-align: center;">
+            <svg viewBox="0 0 500 500" width="180" height="180" style="border-radius: 32px;"><rect width="500" height="500" rx="80" fill="#0A0A0A"/><text x="250" y="250" dy=".4em" text-anchor="middle" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="380" font-weight="500" fill="#E6E6E6">P</text></svg>
+            <div style="font-family: var(--pf-font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pf-text-muted); margin-top: 12px; font-weight: 500;">Source</div>
+          </div>
+          <div style="text-align: center;">
+            <svg viewBox="0 0 500 500" width="180" height="180" style="border-radius: 50%;"><rect width="500" height="500" rx="80" fill="#0A0A0A"/><text x="250" y="250" dy=".4em" text-anchor="middle" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="380" font-weight="500" fill="#E6E6E6">P</text></svg>
+            <div style="font-family: var(--pf-font-sans); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pf-text-muted); margin-top: 12px; font-weight: 500;">As displayed</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">Deck templates</h3>
+        <p class="subsection-prose">Three slide types — title, section divider, content. Light mode default for external decks; dark mode for internal. The actual template file is <a href="Portfolio Deck Template.pptx" download style="color: var(--pf-text-emphasis); text-decoration: underline;">Portfolio Deck Template.pptx</a> — upload to Google Drive to convert to Google Slides, or open directly in Keynote / PowerPoint.</p>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 16px;">
+          <div style="background: #F6F4EE; aspect-ratio: 16/9; padding: 40px 56px; display: flex; flex-direction: column; box-shadow: 0 0 0 0.5px var(--pf-hairline); border-radius: 4px;">
+            <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 500; font-size: 22px; letter-spacing: -1.3px; color: #0A0A0A;">Portfolio</div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+              <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 400; font-size: 56px; letter-spacing: -2.8px; line-height: 1.05; color: #000000;">Deck title</div>
+              <div style="font-family: 'Inter', sans-serif; font-size: 20px; letter-spacing: -0.5px; color: #2A2A2A; margin-top: 16px;">Subtitle or short description</div>
+            </div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 11px; color: #6E6B62; letter-spacing: -0.2px; margin-top: auto;">May 2026 · portfolio.sc</div>
+          </div>
+          <div style="background: #F6F4EE; aspect-ratio: 16/9; padding: 40px 56px; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 0 0 0.5px var(--pf-hairline); border-radius: 4px;">
+            <div style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E6B62; margin-bottom: 14px;">Section 02</div>
+            <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 400; font-size: 48px; letter-spacing: -2.4px; line-height: 1.05; color: #000000;">What we do</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 16px; letter-spacing: -0.4px; line-height: 1.5; color: #2A2A2A; margin-top: 14px; max-width: 80%;">How Portfolio picks and builds its projects.</div>
+          </div>
+          <div style="background: #F6F4EE; aspect-ratio: 16/9; padding: 40px 56px; display: flex; flex-direction: column; box-shadow: 0 0 0 0.5px var(--pf-hairline); border-radius: 4px;">
+            <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 400; font-size: 32px; letter-spacing: -1.6px; line-height: 1.1; color: #000000;">Slide title goes here</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 15px; letter-spacing: -0.3px; line-height: 1.6; color: #2A2A2A; margin-top: 18px;">
+              <p style="margin-bottom: 8px;">— We pick projects with extreme leverage ratios.</p>
+              <p style="margin-bottom: 8px;">— Each one runs as its own venture, with its own brand and team.</p>
+              <p style="margin-bottom: 8px;">— Portfolio provides capital, infrastructure, and tempo.</p>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 24px;">
+              <div style="font-family: 'Momo Trust Display', 'Nunito', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: -0.8px; color: #0A0A0A;">Portfolio</div>
+              <div style="font-family: 'Inter', sans-serif; font-size: 11px; color: #6E6B62; letter-spacing: -0.2px;">04 / 12</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="voice">
+      <div class="section-eyebrow">Voice &amp; tone</div>
+      <h2 class="section-title">How Portfolio writes.</h2>
+      <p class="section-prose">Stripped down, direct, and serious without being stiff. The voice reads like a pitch from someone who respects your time and trusts your intelligence.</p>
+
+      <div class="voice-block">
+        <div class="voice-block-label">Direct</div>
+        <div class="voice-block-text">Short sentences. Active voice. No hedging or corporate filler. "Now's the time" — not "we believe the current moment presents an opportunity."</div>
+      </div>
+      <div class="voice-block">
+        <div class="voice-block-label">Serious</div>
+        <div class="voice-block-text">The stakes are real and the tone reflects it. No exclamation points, no emojis, no forced optimism. Urgency comes from substance, not punctuation.</div>
+      </div>
+      <div class="voice-block">
+        <div class="voice-block-label">Invitational</div>
+        <div class="voice-block-text">Despite the gravity, the voice is warm and welcoming. "Get in touch" — not "Apply now." The CTA is a handshake, not a form submission.</div>
+      </div>
+      <div class="voice-block">
+        <div class="voice-block-label">Professional</div>
+        <div class="voice-block-text">Written for peers, not donors or volunteers. Assumes intelligence and agency. "Professionals from across disciplines" — people with real careers and real expertise.</div>
+      </div>
+
+      <div class="voice-quote">A special projects studio for democracy</div>
+      <p class="section-prose" style="margin-top: -8px;">The single canonical tagline. Use as written. Do not pluralize, abbreviate, or substitute.</p>
+
+      <div class="do-dont">
+        <div class="do-dont-card">
+          <div class="do-dont-label">Do</div>
+          <div class="do-dont-line">"We take high-variance ideas and move them from concept to operating entity in weeks."</div>
+          <div class="do-dont-line">"The times are weird. What is missing is not more organizations doing conventional work."</div>
+          <div class="do-dont-line">"Now's the time."</div>
+        </div>
+        <div class="do-dont-card">
+          <div class="do-dont-label">Don't</div>
+          <div class="do-dont-line">"Join our amazing community of changemakers!"</div>
+          <div class="do-dont-line">"We're excited to announce our groundbreaking new initiative!"</div>
+          <div class="do-dont-line">"Together, we can make a difference!!!"</div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">On AI</h3>
+        <p class="subsection-prose">Portfolio is an AI-forward studio, but the brand does not advertise this. The orientation lives in what the studio does, not how it dresses. Avoid copy that names AI as a feature or differentiator.</p>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">On the broader portfolio</h3>
+        <p class="subsection-prose">Each project carries its own brand identity, team, and operating tempo. Portfolio's outward voice does not list its projects, name them publicly, or describe them in detail on portfolio.sc. Project names appear only on their own surfaces.</p>
+      </div>
+    </section>
+
+    <section class="section" id="reference">
+      <div class="section-eyebrow">Quick reference</div>
+      <h2 class="section-title">Tokens at a glance.</h2>
+      <div class="reference-block">
+        <div class="reference-row"><span class="label">Border radius</span><span class="value">12px</span></div>
+        <div class="reference-row"><span class="label">Display font</span><span class="value">Momo Trust Display</span></div>
+        <div class="reference-row"><span class="label">Body font</span><span class="value">Inter</span></div>
+        <div class="reference-row"><span class="label">Icon set</span><span class="value">Tabler outline</span></div>
+        <div class="reference-row"><span class="label">Desktop breakpoint</span><span class="value">1280px</span></div>
+        <div class="reference-row"><span class="label">Section padding (desktop)</span><span class="value">120px / 200px</span></div>
+        <div class="reference-row"><span class="label">Section padding (mobile)</span><span class="value">80px / 24px</span></div>
+        <div class="reference-row"><span class="label">Body tracking</span><span class="value">−0.4px / −2.5%</span></div>
+        <div class="reference-row"><span class="label">Display tracking</span><span class="value">~−5% of font size</span></div>
+        <div class="reference-row"><span class="label">Wordmark tracking</span><span class="value">~−6% of font size</span></div>
+        <div class="reference-row"><span class="label">Dark ground</span><span class="value">#0A0A0A</span></div>
+        <div class="reference-row"><span class="label">Light ground</span><span class="value">#F6F4EE</span></div>
+      </div>
+    </section>
+
+    <footer style="border-top: 0.5px solid var(--pf-hairline); padding-top: 32px; margin-top: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div class="pf-wordmark" style="font-size: 18px; letter-spacing: -1px;">Portfolio</div>
+      <div style="font-family: var(--pf-font-sans); font-size: 12px; letter-spacing: -0.3px; color: var(--pf-text-muted);">Brand Guide · May 2026 · canonical · amar@portfolio.sc</div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const label = document.getElementById('mode-label');
+      const current = html.getAttribute('data-theme');
+      if (current === 'light') {
+        html.setAttribute('data-theme', 'dark');
+        label.textContent = 'Light mode';
+      } else {
+        html.setAttribute('data-theme', 'light');
+        label.textContent = 'Dark mode';
+      }
+    }
+  </script>
+</body>
+</html>

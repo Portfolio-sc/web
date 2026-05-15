@@ -1,0 +1,193 @@
+/* Portfolio — Brand Tokens
+ * May 2026
+ *
+ * Drop-in CSS custom properties for the Portfolio brand system.
+ * Defaults to dark mode. Add data-theme="light" to <html> or any
+ * scoped wrapper to switch to the light mirror.
+ *
+ * Section 1: tokens (variables) — the canonical part. Reference these.
+ * Section 2: utility classes — optional, scoped to .pf- prefix.
+ *
+ * Pair with Portfolio Brand Guide.md for full spec.
+ */
+
+/* ============================================================
+ * 1. TOKENS
+ * ============================================================ */
+
+:root {
+  /* Surfaces */
+  --pf-bg-ground:           #0A0A0A;
+  --pf-bg-section:          #161616;
+
+  /* Borders */
+  --pf-hairline:            #262626;
+  --pf-border-ghost:        #333333;
+
+  /* Text */
+  --pf-text-emphasis:       #FFFFFF;
+  --pf-text-wordmark:       #E6E6E6;
+  --pf-text-body:           #C8C8C8;
+  --pf-text-muted:          #888888;
+
+  /* Buttons — filled side stays constant across modes
+   * (wordmark color on ground color). Only foreground/background swap. */
+  --pf-button-primary-bg:   #E6E6E6;
+  --pf-button-primary-fg:   #0A0A0A;
+
+  /* Typography */
+  --pf-font-display:        'Momo Trust Display', Nunito, 'Avenir Next', sans-serif;
+  --pf-font-sans:           'Inter', system-ui, Arial, sans-serif;
+
+  /* Tracking ratios */
+  --pf-tracking-display:    -0.05em;    /* -5%, hero + section headings */
+  --pf-tracking-wordmark:   -0.06em;    /* -6%, slightly tighter than hero */
+  --pf-tracking-body:       -0.025em;   /* -2.5%, body + small */
+  --pf-tracking-eyebrow:    0.18em;     /* +18%, uppercase labels */
+
+  /* Radius */
+  --pf-radius:              12px;
+
+  /* Spacing — desktop */
+  --pf-section-py:          120px;
+  --pf-section-px:          200px;
+  --pf-gap:                 24px;
+
+  /* Spacing — mobile (≤ breakpoint) */
+  --pf-section-py-mobile:   80px;
+  --pf-section-px-mobile:   24px;
+  --pf-gap-mobile:          16px;
+
+  /* Breakpoint */
+  --pf-breakpoint:          1280px;
+}
+
+[data-theme="light"] {
+  --pf-bg-ground:           #F6F4EE;
+  --pf-bg-section:          #EEEAE0;
+
+  --pf-hairline:            #DDD7C5;
+  --pf-border-ghost:        #B8B1A0;
+
+  --pf-text-emphasis:       #000000;
+  --pf-text-wordmark:       #0A0A0A;
+  --pf-text-body:           #2A2A2A;
+  --pf-text-muted:          #6E6B62;
+
+  --pf-button-primary-bg:   #0A0A0A;
+  --pf-button-primary-fg:   #F6F4EE;
+}
+
+/* ============================================================
+ * 2. UTILITY CLASSES (optional)
+ * Each class uses tokens above so it themes automatically.
+ * ============================================================ */
+
+/* Base */
+.pf-page {
+  background: var(--pf-bg-ground);
+  color: var(--pf-text-body);
+  font-family: var(--pf-font-sans);
+}
+
+.pf-section {
+  background: var(--pf-bg-section);
+  border-top: 0.5px solid var(--pf-hairline);
+  padding: var(--pf-section-py) var(--pf-section-px);
+}
+
+@media (max-width: 1280px) {
+  .pf-section {
+    padding: var(--pf-section-py-mobile) var(--pf-section-px-mobile);
+  }
+}
+
+/* Type */
+.pf-hero {
+  font-family: var(--pf-font-display);
+  font-weight: 400;
+  font-size: 50px;
+  letter-spacing: -2.5px;
+  line-height: 1.05;
+  color: var(--pf-text-emphasis);
+  margin: 0;
+}
+
+.pf-section-heading {
+  font-family: var(--pf-font-display);
+  font-weight: 400;
+  font-size: 25px;
+  letter-spacing: -1.25px;
+  line-height: 1.07;
+  color: var(--pf-text-emphasis);
+  margin: 0;
+}
+
+.pf-body {
+  font-family: var(--pf-font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: -0.4px;
+  line-height: 1.5;
+  color: var(--pf-text-body);
+}
+
+.pf-small {
+  font-family: var(--pf-font-sans);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: -0.4px;
+  line-height: 1.45;
+  color: var(--pf-text-muted);
+}
+
+.pf-eyebrow {
+  font-family: var(--pf-font-sans);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: var(--pf-tracking-eyebrow);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--pf-text-muted);
+  margin: 0;
+}
+
+.pf-wordmark {
+  font-family: var(--pf-font-display);
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -1.3px;
+  line-height: 1;
+  color: var(--pf-text-wordmark);
+  margin: 0;
+}
+
+/* Buttons */
+.pf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: var(--pf-radius);
+  font-family: var(--pf-font-sans);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: -0.3px;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.pf-btn-primary {
+  background: var(--pf-button-primary-bg);
+  color: var(--pf-button-primary-fg);
+}
+
+.pf-btn-ghost {
+  background: transparent;
+  color: var(--pf-text-wordmark);
+  border: 1px solid var(--pf-border-ghost);
+}
+
+.pf-btn:hover { text-decoration: underline; }

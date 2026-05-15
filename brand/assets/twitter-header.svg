@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500">
+  <defs>
+    <style type="text/css"><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Momo+Trust+Display&display=swap');
+    ]]></style>
+  </defs>
+  <rect width="1500" height="500" fill="#0A0A0A"/>
+  <text x="80" y="180" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="64" font-weight="500" fill="#E6E6E6" letter-spacing="-3.8">Portfolio</text>
+  <text x="80" y="250" font-family="'Momo Trust Display', 'Nunito', sans-serif" font-size="40" font-weight="400" fill="#FFFFFF" letter-spacing="-2">A special projects studio for democracy</text>
+</svg>
