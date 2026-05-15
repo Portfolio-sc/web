@@ -23,7 +23,7 @@
       position: sticky; top: 0; z-index: 50;
       background: var(--pf-bg-ground);
       border-bottom: 0.5px solid var(--pf-hairline);
-      padding: 18px 32px;
+      padding: 14px clamp(24px, 6vw, 80px);
       display: flex; justify-content: space-between; align-items: center;
       gap: 16px; flex-wrap: wrap;
     }
@@ -221,7 +221,6 @@
     .do-dont-line { font-family: var(--pf-font-sans); font-size: 14px; letter-spacing: -0.3px; line-height: 1.6; color: var(--pf-text-body); padding: 8px 0; border-bottom: 0.5px solid var(--pf-hairline); }
     .do-dont-line:last-child { border-bottom: none; }
     @media (max-width: 720px) {
-      .top-nav { padding: 14px 20px; }
       .nav-link { font-size: 12px; padding: 5px 10px; }
       .container { padding: 48px 24px 64px; }
       .doc-title { font-size: 42px; letter-spacing: -2.1px; }
