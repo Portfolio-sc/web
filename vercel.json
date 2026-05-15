@@ -1,5 +1,11 @@
 {
-  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/brand",
+      "destination": "/brand/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/contact",
