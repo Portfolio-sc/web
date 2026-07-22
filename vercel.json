@@ -8,6 +8,11 @@
   ],
   "rewrites": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "contact.portfolio.sc" }],
+      "destination": "/contact/index.html"
+    },
+    {
       "source": "/contact",
       "destination": "/contact/index.html"
     },
