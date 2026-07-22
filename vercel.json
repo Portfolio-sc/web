@@ -4,14 +4,15 @@
       "source": "/brand",
       "destination": "/brand/",
       "permanent": true
-    }
-  ],
-  "rewrites": [
+    },
     {
       "source": "/",
       "has": [{ "type": "host", "value": "contact.portfolio.sc" }],
-      "destination": "/contact/index.html"
-    },
+      "destination": "/contact",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
     {
       "source": "/contact",
       "destination": "/contact/index.html"
