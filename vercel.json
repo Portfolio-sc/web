@@ -4,12 +4,6 @@
       "source": "/brand",
       "destination": "/brand/",
       "permanent": true
-    },
-    {
-      "source": "/",
-      "has": [{ "type": "host", "value": "contact.portfolio.sc" }],
-      "destination": "/contact",
-      "permanent": false
     }
   ],
   "rewrites": [
