@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="100" viewBox="0 0 360 100" role="img" aria-labelledby="title">
+  <title id="title">MoMA</title>
+  <defs><clipPath id="frame"><rect width="360" height="100"/></clipPath></defs>
+  <g clip-path="url(#frame)">
+    <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDkiIGhlaWdodD0iNTMiPjxwYXRoIGQ9Ik00MS45OTggNTEuOTk2VjEzLjMzMmwtOS42MiAzOC42NjRIMjEuNDk1bC05LjQ5OC0zOC43OHYzOC43OEgwVjBoMTkuNjM1bDcuOTA0IDMyLjg3N0wzNS41NCAwaDE5LjQ1M3Y1MS45OTZoLTEzem0xMDEgMGgxM1YwaC0xOS40NTRsLTguMDA1IDMyLjg3N0wxMjAuNjMgMEgxMDF2NTEuOTk2aDExLjk5N3YtMzguNzhsOS40OTggMzguNzhoMTAuODgzbDkuNjItMzguNjY0djM4LjY2NHptLTcxLjI0NC0xOC43N3YxLjczNmMwIDYuNTk1IDIuNjIgOS4yOTQgNi4xOTMgOS4yOTQgMy43IDAgNi4zMTctMi43IDYuMzE3LTkuMjk0di0xLjczNmMwLTYuNzEyLTIuNjE4LTkuMjktNi4zMTctOS4yOS0zLjU3MiAwLTYuMTkzIDIuNTc4LTYuMTkzIDkuMjl6bS0xMi4zMTUuNDU1YzAtMTEuNzIgOC43My0xOC4xNSAxOC4zMy0xOC4xNSA5LjczNyAwIDE4Ljc5MiA2LjQzOCAxOC43OTIgMTguMTZ2Ljc2NGMwIDExLjk3OC05LjA1NiAxOC4yODUtMTguNzkzIDE4LjI4NS05LjYwOCAwLTE4LjM0LTYuMzA4LTE4LjM0LTE4LjI4NnYtLjc2NnpNMTkzLjMyIDQzSDE3NWwtMi44NSA4Ljk5NmgtMTIuMjQ4TDE3Ni43NTIgMGgxNi4yNThsMTUuOTA1IDUxLjk5NmgtMTIuODdMMTkzLjMyNSA0M3ptLTguODItMzAuNDE1bC02LjIxIDIwLjQyaDEyLjEzNWwtNS45MjctMjAuNDJ6Ii8+PC9zdmc+DQo=" x="76" y="20" width="208" height="60" preserveAspectRatio="xMidYMid meet"/>
+  </g>
+</svg>
