@@ -12,27 +12,39 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Momo+Trust+Display:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Momo+Trust+Display:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
 
 <style>
   :root {
-    --bg: #F6F4EE;
+    /* Refined palette — matches the main site rebuild exactly, so this
+       page and the homepage read as one system rather than two. */
+    --bg: #F7F5F0;
     --bg-input: #FFFFFF;
-    --bg-raised: #EFEDE5;
-    --fg: #0A0A0A;
-    --fg-muted: #5C5A53;
-    --fg-faint: #8C887D;
-    --hairline: #DDD7C5;
-    --hairline-strong: #C9C3B1;
-    --btn-bg: #0A0A0A;
-    --btn-fg: #F6F4EE;
+    --bg-raised: #EFEBE2;
+    --fg: #1B1912;
+    --fg-muted: #6B6558;
+    --fg-faint: #6E6650;
+    --hairline: #DCD5C4;
+    --hairline-strong: #B7AF9F;
+    --btn-bg: #1B1912;
+    --btn-fg: #F7F5F0;
     --error: #B04A2F;
     --success: #2C7A4B;
-    --focus-ring: rgba(10,10,10,0.08);
+    --focus-ring: rgba(27,25,18,0.08);
 
     --font-display: 'Momo Trust Display', Nunito, system-ui, sans-serif;
+    /* Space Grotesk carries secondary headings (the modal title here);
+       the page's one big header stays Momo Trust, same rule as the
+       homepage: Momo Trust is the hero's font, not a default heading font. */
+    --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
     --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+    /* Same section padding tokens as the homepage, so the left edge of
+       this page's content lines up exactly with the homepage's at every
+       width instead of drifting per a different clamp() curve. */
+    --section-px: 200px;
+    --section-px-mobile: 24px;
   }
 
 
@@ -61,8 +73,9 @@
   .topbar-inner {
     display: flex;
     align-items: center;
-    padding: 14px clamp(24px, 6vw, 80px);
+    padding: 14px var(--section-px-mobile);
   }
+  @media (min-width: 1280px) { .topbar-inner { padding: 14px var(--section-px); } }
   .wordmark {
     font-family: var(--font-display);
     font-size: 22px;
@@ -74,8 +87,9 @@
 
   main {
     max-width: 640px;
-    padding: 64px clamp(24px, 6vw, 80px) 96px;
+    padding: 64px var(--section-px-mobile) 96px;
   }
+  @media (min-width: 1280px) { main { padding: 64px var(--section-px) 96px; } }
 
   .header {
     font-family: var(--font-display);
@@ -137,7 +151,7 @@
     background: var(--btn-bg);
     color: var(--btn-fg);
     border: none;
-    border-radius: 999px;
+    border-radius: 12px;
     font-family: var(--font-body);
     font-size: 13px;
     font-weight: 500;
@@ -260,7 +274,7 @@
     background: var(--btn-bg);
     color: var(--btn-fg);
     border: none;
-    border-radius: 999px;
+    border-radius: 12px;
     font-family: var(--font-body);
     font-size: 16px;
     font-weight: 500;
@@ -321,10 +335,10 @@
     gap: 16px;
   }
   .modal-header h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-size: 26px;
-    font-weight: 500;
-    letter-spacing: -0.035em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     color: var(--fg);
     margin-bottom: 6px;
     line-height: 1.1;
@@ -365,31 +379,60 @@
 
   footer {
     max-width: 640px;
-    padding: 32px clamp(24px, 6vw, 80px) 40px;
+    padding: 32px var(--section-px-mobile) 40px;
     border-top: 0.5px solid var(--hairline);
-    display: flex;
-    justify-content: flex-start;
-    align-items: baseline;
-    gap: 20px;
-    flex-wrap: wrap;
   }
-  footer a {
+  @media (min-width: 1280px) { footer { padding: 32px var(--section-px) 40px; } }
+  .footer-contact {
+    font-size: 13px;
+    letter-spacing: -0.01em;
     color: var(--fg-muted);
-    text-decoration: none;
-    font-size: 13px;
-    letter-spacing: -0.01em;
   }
-  footer a:hover { color: var(--fg); }
-  footer .footer-tagline {
-    font-size: 13px;
-    color: var(--fg-faint);
-    letter-spacing: -0.01em;
+  .footer-contact a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: .5px;
+    text-underline-offset: 3px;
+  }
+  .footer-contact a:hover { color: var(--fg); }
+
+  /* Same quiet pull-quote treatment as the homepage's supporters line,
+     just a little smaller here since this page already runs a slightly
+     larger base type size. */
+  .supporters-wrap {
+    max-width: 640px;
+    padding: 20px var(--section-px-mobile);
+    border-top: 0.5px solid var(--hairline);
+    border-bottom: 0.5px solid var(--hairline);
+  }
+  @media (min-width: 1280px) { .supporters-wrap { padding: 20px var(--section-px); } }
+  .supporters-line {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+    line-height: 1.4;
+    color: var(--fg-muted);
+    max-width: 460px;
+    margin: 0 auto;
+    text-align: center;
   }
 
-  @media (max-width: 600px) {
-    main { padding: 48px 20px 72px; }
-    .topbar-inner { padding: 12px 20px; }
-    footer { padding: 28px 20px; }
+  /* ============================================================
+     MOTION — same restrained scroll-entrance treatment as the
+     homepage: short fade + rise, once per element, reduced-motion safe.
+     ============================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms ease, transform 600ms ease;
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal-d1 { transition-delay: 120ms; }
+  .reveal-d2 { transition-delay: 240ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
   }
 </style>
 </head>
@@ -403,15 +446,15 @@
 
 <main>
   <div id="form-state">
-    <h1 class="header">Get involved.</h1>
-    <p class="subhead">We're always looking for people who want to put their talents to work for democracy.</p>
+    <h1 class="header reveal">Get involved.</h1>
+    <p class="subhead reveal reveal-d1">We're always looking for people who want to put their talents to work for democracy.</p>
 
     <div class="roles-section" id="roles-section" style="display:none;">
       <div class="section-label">Open roles</div>
       <div class="roles-list" id="roles-list"></div>
     </div>
 
-    <form id="form-main" novalidate>
+    <form id="form-main" class="reveal reveal-d2" novalidate>
     <div class="form-group">
       <label for="main-name">Name</label>
       <input type="text" id="main-name" name="name" autocomplete="name" placeholder="Your full name" required>
@@ -474,9 +517,12 @@
   </div>
 </main>
 
+<aside class="supporters-wrap reveal">
+  <p class="supporters-line">Thank you to our philanthropic supporters for making our work possible.</p>
+</aside>
+
 <footer>
-  <a href="/">Portfolio</a>
-  <span class="footer-tagline">A special projects studio for democracy.</span>
+  <p class="footer-contact">Get in touch at <a href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
 </footer>
 
 <div id="modal-overlay" role="dialog" aria-modal="true">
@@ -683,6 +729,32 @@
   });
 
   loadRoles();
+</script>
+
+<script>
+  // Same scroll-entrance motion as the homepage. Respects
+  // prefers-reduced-motion and fails safe to fully visible.
+  (function () {
+    const els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced || !('IntersectionObserver' in window)) {
+      els.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+    );
+    els.forEach((el) => io.observe(el));
+  })();
 </script>
 
 </body>
