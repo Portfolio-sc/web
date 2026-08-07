@@ -32,10 +32,13 @@
     --pf-font-heading: 'Space Grotesk', 'Inter', system-ui, Arial, sans-serif;
     --pf-radius: 12px;
     --pf-section-py: 120px;
-    --pf-section-px: 200px;
+    /* Fluid gutter instead of a hard 24px->200px jump at 1280px — laptop
+       windows in the ~900-1279px range (very common, and previously
+       landing in the "mobile" 24px bucket) now get a proportionally
+       scaled inset instead of hugging the left edge. */
+    --pf-section-px: clamp(24px, 19.5vw - 49px, 200px);
     --pf-gap: 24px;
     --pf-section-py-mobile: 80px;
-    --pf-section-px-mobile: 24px;
     --pf-gap-mobile: 16px;
     --pf-breakpoint: 1280px;
     /* Additions not in tokens.css: a centered max content width for very
@@ -198,7 +201,7 @@
      seams, no shadows/gradients/texture.
      ============================================================ */
   .pf-section-ground, .pf-section-elevated {
-    padding: var(--pf-section-py-mobile) var(--pf-section-px-mobile);
+    padding: var(--pf-section-py-mobile) var(--pf-section-px);
     border-top: .5px solid var(--pf-hairline);
   }
   .pf-section-ground { background: var(--pf-bg-ground); }
@@ -229,9 +232,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 28px var(--pf-section-px-mobile);
+    padding: 28px var(--pf-section-px);
   }
-  @media (min-width: 1280px) { .site-header { padding: 28px var(--pf-section-px); } }
 
   .section-heading-block { margin-bottom: var(--pf-gap-mobile); }
   @media (min-width: 1280px) { .section-heading-block { margin-bottom: var(--pf-gap); } }
@@ -344,6 +346,14 @@
   .logo-more svg { width: 15px; height: 15px; }
 
   @media (max-width: 520px) { .logo-page { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  /* Stacked layout (below the 1280px side-by-side breakpoint) has the
+     full section width to work with, not just the narrow side column —
+     scale columns up so a wide-but-not-quite-desktop window doesn't
+     show only 2-3 logos at a time. Kept in sync with columnsPerPage()
+     in the script below. */
+  @media (min-width: 521px) and (max-width: 767px) { .logo-page { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (min-width: 768px) and (max-width: 1023px) { .logo-page { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) and (max-width: 1279px) { .logo-page { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
 
   /* ============================================================
      ABOUT US — text + logo grid side by side on desktop; stacked on
@@ -376,11 +386,16 @@
      SUPPORTERS STRIP
      ============================================================ */
   .supporters-line {
-    font-family: var(--pf-font-display);
-    font-weight: 400;
+    /* Momo Trust Display only ships one (heavy) weight, so it always
+       reads as bold regardless of font-weight — moved this quiet
+       attribution line to the lighter Space Grotesk heading face at
+       its lightest loaded weight instead, with looser tracking, so it
+       sits a step below the hero/headings in visual weight. */
+    font-family: var(--pf-font-heading);
+    font-weight: 500;
     font-style: italic;
-    font-size: 20px;
-    letter-spacing: -1.1px;
+    font-size: 19px;
+    letter-spacing: -0.2px;
     line-height: 1.3;
     color: var(--pf-text-muted);
     max-width: 560px;
@@ -527,7 +542,7 @@
   <footer class="pf-section-elevated" id="involved">
     <div class="pf-inner">
       <p class="pf-body">
-        <a class="pf-link" href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a class="pf-link" href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        Contact us at <a class="pf-link" href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a class="pf-link" href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </p>
     </div>
   </footer>
@@ -550,7 +565,16 @@
       let rows = 0;
 
       function columnsPerPage() {
-        return window.matchMedia('(max-width: 520px)').matches ? 2 : 3;
+        // Mirrors the .logo-page media queries above: the narrow 3-col
+        // grid is reserved for the >=1280px side-by-side layout (a
+        // deliberately small side column); the stacked layout below
+        // that gets more columns as width allows instead of always
+        // capping at 3.
+        if (window.matchMedia('(min-width: 1280px)').matches) return 3;
+        if (window.matchMedia('(min-width: 1024px)').matches) return 6;
+        if (window.matchMedia('(min-width: 768px)').matches) return 5;
+        if (window.matchMedia('(min-width: 521px)').matches) return 4;
+        return 2;
       }
       function rowsPerPage() {
         return window.matchMedia('(min-width: 1280px)').matches ? 3 : 1;

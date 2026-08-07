@@ -40,11 +40,11 @@
     --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
     --font-body: 'Inter', system-ui, -apple-system, sans-serif;
 
-    /* Same section padding tokens as the homepage, so the left edge of
-       this page's content lines up exactly with the homepage's at every
-       width instead of drifting per a different clamp() curve. */
-    --section-px: 200px;
-    --section-px-mobile: 24px;
+    /* Same fluid section-padding curve as the homepage (see its :root),
+       so the left edge of this page's content lines up exactly with the
+       homepage's at every width, including the ~900-1279px laptop range
+       that used to fall through to the bare 24px mobile gutter here. */
+    --section-px: clamp(24px, 19.5vw - 49px, 200px);
   }
 
 
@@ -73,9 +73,8 @@
   .topbar-inner {
     display: flex;
     align-items: center;
-    padding: 14px var(--section-px-mobile);
+    padding: 14px var(--section-px);
   }
-  @media (min-width: 1280px) { .topbar-inner { padding: 14px var(--section-px); } }
   .wordmark {
     font-family: var(--font-display);
     font-size: 22px;
@@ -86,10 +85,15 @@
   }
 
   main {
+    /* content-box (overriding the page-wide border-box reset) so the
+       200px desktop side padding doesn't eat into the 640px reading
+       width — under border-box the two combined were shrinking the
+       actual form column down to ~240px on wide screens, which is what
+       made this page look like a mobile layout on a desktop monitor. */
+    box-sizing: content-box;
     max-width: 640px;
-    padding: 64px var(--section-px-mobile) 96px;
+    padding: 64px var(--section-px) 96px;
   }
-  @media (min-width: 1280px) { main { padding: 64px var(--section-px) 96px; } }
 
   .header {
     font-family: var(--font-display);
@@ -378,11 +382,11 @@
   .modal-body { padding: 18px 24px 24px; }
 
   footer {
+    box-sizing: content-box;
     max-width: 640px;
-    padding: 32px var(--section-px-mobile) 40px;
+    padding: 32px var(--section-px) 40px;
     border-top: 0.5px solid var(--hairline);
   }
-  @media (min-width: 1280px) { footer { padding: 32px var(--section-px) 40px; } }
   .footer-contact {
     font-size: 13px;
     letter-spacing: -0.01em;
@@ -400,12 +404,12 @@
      just a little smaller here since this page already runs a slightly
      larger base type size. */
   .supporters-wrap {
+    box-sizing: content-box;
     max-width: 640px;
-    padding: 20px var(--section-px-mobile);
+    padding: 20px var(--section-px);
     border-top: 0.5px solid var(--hairline);
     border-bottom: 0.5px solid var(--hairline);
   }
-  @media (min-width: 1280px) { .supporters-wrap { padding: 20px var(--section-px); } }
   .supporters-line {
     font-family: var(--font-display);
     font-style: italic;
@@ -518,7 +522,7 @@
 </main>
 
 <footer>
-  <p class="footer-contact">Get in touch at <a href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+  <p class="footer-contact">Contact us at <a href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
 </footer>
 
 <div id="modal-overlay" role="dialog" aria-modal="true">
