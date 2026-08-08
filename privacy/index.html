@@ -36,14 +36,23 @@
     padding: 64px var(--section-px) 96px;
   }
 
+  /* Same size/tracking as the homepage's .pf-hero (36px, jumping to
+     50px at 1280px) instead of a clamp() that reached its 52px ceiling
+     as soon as the viewport passed ~870px — that meant this heading
+     rendered noticeably bigger than the homepage's hero on any
+     ordinary laptop width (e.g. 52px vs. 36px at 1024px), which is
+     backwards: the homepage's headline should read at least as big. */
   .header {
     font-family: var(--font-display);
-    font-size: clamp(34px, 6vw, 52px);
+    font-size: 36px;
     font-weight: 500;
-    letter-spacing: -0.05em;
+    letter-spacing: -1.4px;
     line-height: 1.05;
     margin: 0 0 10px;
     color: var(--fg);
+  }
+  @media (min-width: 1280px) {
+    .header { font-size: 50px; letter-spacing: -2.5px; }
   }
   .effective-date {
     font-size: 14px;
