@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F7F5F0">
 <meta name="description" content="Portfolio is a special projects studio for democracy. We form small, fast-moving teams that take an idea, test it under live conditions, and — if it works — spin it out as an independent organization.">
 <title>Portfolio — A special projects studio for democracy</title>
 <link rel="canonical" href="https://portfolio.sc/">
@@ -22,6 +23,20 @@
 <meta name="twitter:title" content="Portfolio — A special projects studio for democracy">
 <meta name="twitter:description" content="We form small, fast-moving teams that take an idea, test it under live conditions, and — if it works — spin it out as an independent organization.">
 <meta name="twitter:image" content="https://portfolio.sc/brand/assets/og-default.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Portfolio",
+  "url": "https://portfolio.sc/",
+  "logo": "https://portfolio.sc/brand/assets/og-default.png",
+  "description": "Portfolio is a special projects studio for democracy. We form small, fast-moving teams that take an idea, test it under live conditions, and — if it works — spin it out as an independent organization.",
+  "sameAs": [
+    "https://www.linkedin.com/company/portfoliostudios/"
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,6 +121,27 @@
   img { display: block; max-width: 100%; }
 
   .pf-inner { max-width: var(--pf-max); margin-inline: auto; }
+
+  /* Off-screen until focused, so keyboard users can jump past the
+     header straight to the main content instead of tabbing through
+     the nav every time. */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 2000;
+    padding: 12px 20px;
+    background: var(--pf-bg-ground);
+    color: var(--pf-text-emphasis);
+    font-family: var(--pf-font-sans);
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 0 0 8px 0;
+  }
+  .skip-link:focus {
+    left: 0;
+  }
 
   /* ============================================================
      STRUCTURAL LINE LANGUAGE — thin vertical rules between the
@@ -257,24 +293,6 @@
   .pf-section-elevated { background: var(--pf-bg-section); }
   @media (min-width: 1280px) {
     .pf-section-ground, .pf-section-elevated { padding: var(--pf-section-py) var(--pf-section-px); }
-  }
-
-  /* Dark band — reassigns the token custom properties locally to the
-     brand guide's dark-mode values, so every child (text, links, buttons,
-     hairlines) that already reads var(--pf-...) flips automatically.
-     Used on Building and Get involved to give the page real dark/light
-     contrast instead of the light mode's tan elevated tint. */
-  .dark-band {
-    --pf-bg-ground: #0A0A0A;
-    --pf-bg-section: #0A0A0A;
-    --pf-hairline: #262626;
-    --pf-border-ghost: #333333;
-    --pf-text-emphasis: #FFFFFF;
-    --pf-text-wordmark: #E6E6E6;
-    --pf-text-body: #C8C8C8;
-    --pf-text-muted: #888888;
-    --pf-button-primary-bg: #E6E6E6;
-    --pf-button-primary-fg: #0A0A0A;
   }
 
   .site-header {
@@ -502,6 +520,8 @@
 </style>
 </head>
 <body>
+
+  <a class="skip-link" href="#top">Skip to main content</a>
 
   <header class="site-header">
     <div class="pf-inner" style="width:100%; display:flex; align-items:center; justify-content:space-between;">

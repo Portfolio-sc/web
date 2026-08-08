@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F7F5F0">
 <title>Get Involved — Portfolio</title>
 <meta name="description" content="We're always looking for people who want to put their talents to work for democracy.">
 <link rel="canonical" href="https://portfolio.sc/contact">
@@ -25,7 +26,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Momo+Trust+Display:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Momo+Trust+Display&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/page-shell.css">
 
 <style>
@@ -383,13 +384,15 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <header class="topbar">
   <div class="topbar-inner">
     <a href="/" class="wordmark">Portfolio</a>
   </div>
 </header>
 
-<main>
+<main id="main-content">
   <div id="form-state">
     <h1 class="header reveal">Get involved.</h1>
     <p class="subhead reveal reveal-d1">We're always looking for people who want to put their talents to work for democracy.</p>
@@ -457,7 +460,7 @@
   </div>
 
   <div id="success-state" style="display:none;">
-    <h1 class="header">Submitted.</h1>
+    <h2 class="header">Submitted.</h2>
     <p class="subhead">We&rsquo;ll be in touch.</p>
   </div>
 </main>
@@ -468,7 +471,7 @@
 </footer>
 
 <div id="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal" id="modal-apply">
+  <div class="modal" id="modal-apply" tabindex="-1">
     <div class="modal-header">
       <div>
         <h3>Apply for this role</h3>
@@ -537,20 +540,55 @@
   }
 
   const overlay = document.getElementById('modal-overlay');
+  const modalApply = document.getElementById('modal-apply');
+  let lastFocusedEl = null;
+
+  // Keyboard-accessible modal: focus moves into it on open, Tab/Shift+Tab
+  // stay trapped inside it while it's open, and focus returns to whatever
+  // triggered it (the role's "Apply" button) on close — without this, a
+  // keyboard user could tab straight through to the page behind the modal.
+  function getFocusable(container) {
+    return Array.from(container.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(el => el.offsetParent !== null);
+  }
+
   function openApplyModal(roleTitle) {
+    lastFocusedEl = document.activeElement;
     document.getElementById('apply-role-badge').textContent = roleTitle;
     document.getElementById('apply-role-title').value = roleTitle;
-    document.getElementById('modal-apply').classList.add('active');
+    modalApply.classList.add('active');
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    const focusables = getFocusable(modalApply);
+    (focusables[0] || modalApply).focus();
   }
   function closeModal() {
     overlay.classList.remove('open');
     document.body.style.overflow = '';
     document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+    if (lastFocusedEl) {
+      lastFocusedEl.focus();
+      lastFocusedEl = null;
+    }
   }
   overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', e => {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'Escape') { closeModal(); return; }
+    if (e.key !== 'Tab') return;
+    const focusables = getFocusable(modalApply);
+    if (!focusables.length) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
 
   async function loadRoles() {
     try {

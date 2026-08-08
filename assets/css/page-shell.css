@@ -75,6 +75,27 @@ html, body {
   text-decoration: none;
 }
 
+/* Off-screen until focused, so keyboard users can jump past the
+   header straight to the main content instead of tabbing through
+   the nav every time. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 2000;
+  padding: 12px 20px;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
 footer {
   box-sizing: content-box;
   max-width: 640px;
