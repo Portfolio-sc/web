@@ -370,11 +370,11 @@
   .reveal {
     opacity: 0;
     transform: translateY(14px);
-    transition: opacity 600ms ease, transform 600ms ease;
+    transition: opacity 420ms ease, transform 420ms ease;
   }
   .reveal.is-visible { opacity: 1; transform: none; }
-  .reveal-d1 { transition-delay: 120ms; }
-  .reveal-d2 { transition-delay: 240ms; }
+  .reveal-d1 { transition-delay: 80ms; }
+  .reveal-d2 { transition-delay: 160ms; }
 
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
@@ -463,8 +463,8 @@
 </main>
 
 <footer>
-  <p class="footer-contact"><a href="/privacy">Privacy Policy</a> | <a href="/sms-terms">SMS Terms</a></p>
-  <p class="footer-contact">Get in touch at <a href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+  <p class="footer-legal"><a href="/privacy">Privacy Policy</a> | <a href="/sms-terms">SMS Terms</a></p>
+  <p class="footer-invite">Get in touch at <a href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
 </footer>
 
 <div id="modal-overlay" role="dialog" aria-modal="true">
@@ -693,7 +693,7 @@
           }
         });
       },
-      { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.15, rootMargin: '0px 0px -20px 0px' }
     );
     els.forEach((el) => io.observe(el));
   })();

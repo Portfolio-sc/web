@@ -186,16 +186,32 @@
   .pf-link:hover, .pf-link:focus-visible { color: var(--pf-text-emphasis); }
 
   /* Footer: legal links on the left (quieter), the actual contact
-     invitation on the right (full-strength) — grouped by purpose
-     instead of one long pipe-separated line. */
+     invitation on the right — grouped by purpose instead of one long
+     pipe-separated line. Sized/spaced to match the shared footer on
+     contact/privacy/sms-terms (assets/css/page-shell.css) exactly, so
+     the footer reads as one component instead of two.
+
+     Both paragraphs get their own rule here (not the shared .pf-body
+     class) — .pf-body's `margin: 0 0 1.4em` combined with its
+     `:last-child` reset meant only the SECOND paragraph in this row
+     lost its bottom margin, leaving the first one sitting 1.4em lower
+     inside the flex row than the second. Giving both a single shared
+     rule with no margin removes the mismatch instead of patching it. */
   .footer-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 8px 24px;
+    gap: 6px 24px;
   }
-  .footer-legal { color: var(--pf-text-muted); }
+  .footer-row p {
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+    color: var(--pf-text-muted);
+  }
+  .footer-invite a { font-weight: 600; }
   @media (max-width: 520px) {
     .footer-row { flex-direction: column; align-items: flex-start; }
   }
@@ -309,11 +325,11 @@
   }
   /* Staggered entrance for the six domain cards — see .reveal below. */
   .project-grid .project-card:nth-child(1) { transition-delay: 0ms; }
-  .project-grid .project-card:nth-child(2) { transition-delay: 60ms; }
-  .project-grid .project-card:nth-child(3) { transition-delay: 120ms; }
-  .project-grid .project-card:nth-child(4) { transition-delay: 180ms; }
-  .project-grid .project-card:nth-child(5) { transition-delay: 240ms; }
-  .project-grid .project-card:nth-child(6) { transition-delay: 300ms; }
+  .project-grid .project-card:nth-child(2) { transition-delay: 40ms; }
+  .project-grid .project-card:nth-child(3) { transition-delay: 80ms; }
+  .project-grid .project-card:nth-child(4) { transition-delay: 120ms; }
+  .project-grid .project-card:nth-child(5) { transition-delay: 160ms; }
+  .project-grid .project-card:nth-child(6) { transition-delay: 200ms; }
   .project-name {
     margin-bottom: 8px;
     font-family: var(--pf-font-heading);
@@ -464,18 +480,18 @@
   .reveal {
     opacity: 0;
     transform: translateY(14px);
-    transition: opacity 600ms ease, transform 600ms ease;
+    transition: opacity 420ms ease, transform 420ms ease;
   }
   .reveal.is-visible { opacity: 1; transform: none; }
-  .reveal-d1 { transition-delay: 120ms; }
-  .reveal-d2 { transition-delay: 240ms; }
-  .reveal-d3 { transition-delay: 360ms; }
+  .reveal-d1 { transition-delay: 80ms; }
+  .reveal-d2 { transition-delay: 160ms; }
+  .reveal-d3 { transition-delay: 240ms; }
   /* Higher-specificity compound rule so the domain cards get BOTH the
      hover lift (translate) and the entrance fade (opacity/transform)
      without either .project-card's or .reveal's transition list
      silently overwriting the other. */
   .project-card.reveal {
-    transition: translate 220ms ease, opacity 600ms ease, transform 600ms ease;
+    transition: translate 220ms ease, opacity 420ms ease, transform 420ms ease;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -583,10 +599,10 @@
 
   <footer class="pf-section-elevated" id="involved">
     <div class="pf-inner footer-row">
-      <p class="pf-body footer-legal">
+      <p class="footer-legal">
         <a class="pf-link" href="/privacy">Privacy Policy</a> | <a class="pf-link" href="/sms-terms">SMS Terms</a>
       </p>
-      <p class="pf-body">
+      <p class="footer-invite">
         Get in touch at <a class="pf-link" href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a class="pf-link" href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </p>
     </div>
@@ -690,7 +706,7 @@
             }
           });
         },
-        { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+        { threshold: 0.15, rootMargin: '0px 0px -20px 0px' }
       );
       els.forEach((el) => io.observe(el));
     })();

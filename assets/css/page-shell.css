@@ -89,15 +89,26 @@ footer {
 @media (max-width: 520px) {
   footer { flex-direction: column; align-items: flex-start; }
 }
-.footer-contact {
+/* Legal links (left) and the contact invitation (right) — sized and
+   spaced to match the homepage's footer exactly (see its .footer-row
+   rules) so the footer reads as one shared component across every
+   page. Both paragraphs use the same base rule (no per-paragraph
+   margin) so they always sit at the same height in the flex row. */
+.footer-legal,
+.footer-invite {
+  margin: 0;
   font-size: 13px;
   letter-spacing: -0.01em;
+  line-height: 1.5;
   color: var(--fg-muted);
 }
-.footer-contact a {
+.footer-legal a,
+.footer-invite a {
   color: inherit;
   text-decoration: underline;
   text-decoration-thickness: .5px;
   text-underline-offset: 3px;
 }
-.footer-contact a:hover { color: var(--fg); }
+.footer-legal a:hover,
+.footer-invite a:hover { color: var(--fg); }
+.footer-invite a { font-weight: 600; }
