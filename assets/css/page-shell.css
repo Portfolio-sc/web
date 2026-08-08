@@ -1,0 +1,103 @@
+/* ============================================================
+   PAGE SHELL — shared by every "utility" page (contact, privacy,
+   sms-terms, and any future one-off legal/form page).
+
+   These pages all use the same warm-neutral token set, the same
+   sticky topbar/wordmark, and the same two-column footer. Before
+   this file existed, that CSS was pasted into each page's <style>
+   block, so a footer or topbar tweak meant repeating the same edit
+   three times (and easy to miss one). Keep this in sync in ONE
+   place instead.
+
+   The homepage (index.html) is NOT included here — it uses its own
+   --pf-* prefixed token system and .site-header/.pf-wordmark markup,
+   a deliberately separate (larger, dark-capable) design system, so
+   unifying it with this file would be a much bigger, riskier change
+   than what was asked for.
+
+   Pages that use this file still keep their own <style> block for
+   anything page-specific (extra tokens like --btn-bg, form styles,
+   legal-copy typography, etc.) — this file only carries the parts
+   that were byte-identical across all three pages.
+   ============================================================ */
+
+:root {
+  --bg: #F7F5F0;
+  --fg: #1B1912;
+  --fg-muted: #6B6558;
+  --fg-faint: #6E6650;
+  --hairline: #DCD5C4;
+
+  --font-display: 'Momo Trust Display', Nunito, system-ui, sans-serif;
+  --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Fluid section inset — 24px at ~375px viewport width up to a 200px
+     cap at 1280px+, so the ~900-1279px laptop range gets a
+     proportionally scaled gutter instead of jumping straight from the
+     mobile 24px value. */
+  --section-px: clamp(24px, 19.5vw - 49px, 200px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: -0.0125em;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 0.5px solid var(--hairline);
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  padding: 14px var(--section-px);
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+footer {
+  box-sizing: content-box;
+  max-width: 640px;
+  padding: 32px var(--section-px) 40px;
+  border-top: 0.5px solid var(--hairline);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px 24px;
+}
+@media (max-width: 520px) {
+  footer { flex-direction: column; align-items: flex-start; }
+}
+.footer-contact {
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  color: var(--fg-muted);
+}
+.footer-contact a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: .5px;
+  text-underline-offset: 3px;
+}
+.footer-contact a:hover { color: var(--fg); }

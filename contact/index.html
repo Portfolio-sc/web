@@ -6,82 +6,37 @@
 <title>Get Involved — Portfolio</title>
 <meta name="description" content="We're always looking for people who want to put their talents to work for democracy.">
 
+<meta property="og:site_name" content="Portfolio">
 <meta property="og:title" content="Get Involved — Portfolio">
 <meta property="og:description" content="A special projects studio for democracy.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://portfolio.sc/contact">
+<meta property="og:image" content="https://portfolio.sc/brand/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Get Involved — Portfolio">
+<meta name="twitter:description" content="A special projects studio for democracy.">
+<meta name="twitter:image" content="https://portfolio.sc/brand/assets/og-default.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Momo+Trust+Display:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="/assets/css/page-shell.css">
 
 <style>
   :root {
-    /* Refined palette — matches the main site rebuild exactly, so this
-       page and the homepage read as one system rather than two. */
-    --bg: #F7F5F0;
+    /* Extra tokens on top of the shared shell (assets/css/page-shell.css)
+       — this page's form/modal UI needs a few more surface and state
+       colors that the plain legal/utility pages don't use. */
     --bg-input: #FFFFFF;
     --bg-raised: #EFEBE2;
-    --fg: #1B1912;
-    --fg-muted: #6B6558;
-    --fg-faint: #6E6650;
-    --hairline: #DCD5C4;
     --hairline-strong: #B7AF9F;
     --btn-bg: #1B1912;
     --btn-fg: #F7F5F0;
     --error: #B04A2F;
     --success: #2C7A4B;
     --focus-ring: rgba(27,25,18,0.08);
-
-    --font-display: 'Momo Trust Display', Nunito, system-ui, sans-serif;
-    /* Space Grotesk carries secondary headings (the modal title here);
-       the page's one big header stays Momo Trust, same rule as the
-       homepage: Momo Trust is the hero's font, not a default heading font. */
-    --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
-    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-
-    /* Same fluid section-padding curve as the homepage (see its :root),
-       so the left edge of this page's content lines up exactly with the
-       homepage's at every width, including the ~900-1279px laptop range
-       that used to fall through to the bare 24px mobile gutter here. */
-    --section-px: clamp(24px, 19.5vw - 49px, 200px);
-  }
-
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html, body {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: var(--font-body);
-    font-size: 17px;
-    line-height: 1.6;
-    letter-spacing: -0.0125em;
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-  }
-
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: color-mix(in srgb, var(--bg) 92%, transparent);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-bottom: 0.5px solid var(--hairline);
-  }
-  .topbar-inner {
-    display: flex;
-    align-items: center;
-    padding: 14px var(--section-px);
-  }
-  .wordmark {
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 500;
-    letter-spacing: -0.06em;
-    color: var(--fg);
-    text-decoration: none;
   }
 
   main {
@@ -381,33 +336,6 @@
   }
   .modal-close:hover { background: var(--bg-raised); color: var(--fg); }
   .modal-body { padding: 18px 24px 24px; }
-
-  footer {
-    box-sizing: content-box;
-    max-width: 640px;
-    padding: 32px var(--section-px) 40px;
-    border-top: 0.5px solid var(--hairline);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 6px 24px;
-  }
-  @media (max-width: 520px) {
-    footer { flex-direction: column; align-items: flex-start; }
-  }
-  .footer-contact {
-    font-size: 13px;
-    letter-spacing: -0.01em;
-    color: var(--fg-muted);
-  }
-  .footer-contact a {
-    color: inherit;
-    text-decoration: underline;
-    text-decoration-thickness: .5px;
-    text-underline-offset: 3px;
-  }
-  .footer-contact a:hover { color: var(--fg); }
 
   /* Same quiet pull-quote treatment as the homepage's supporters line,
      just a little smaller here since this page already runs a slightly
