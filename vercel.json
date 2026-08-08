@@ -12,6 +12,14 @@
       "destination": "/contact/index.html"
     },
     {
+      "source": "/privacy",
+      "destination": "/privacy/index.html"
+    },
+    {
+      "source": "/sms-terms",
+      "destination": "/sms-terms/index.html"
+    },
+    {
       "source": "/formation",
       "destination": "https://formation-portfoliostudios.vercel.app/formation"
     },
