@@ -30,7 +30,10 @@
 
   --font-display: 'Momo Trust Display', Nunito, system-ui, sans-serif;
   --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  /* Matches the homepage's --pf-font-sans stack exactly (Arial instead
+     of -apple-system as the last resort) — same font, same fallback
+     chain, everywhere on the site. */
+  --font-body: 'Inter', system-ui, Arial, sans-serif;
 
   /* Fluid section inset — 24px at ~375px viewport width up to a 200px
      cap at 1280px+, so the ~900-1279px laptop range gets a
@@ -41,13 +44,19 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Base body type matches the homepage's exactly (16px / -0.4px /
+   1.5), rather than the slightly larger, looser-tracked, more
+   open-leaded values (17px / -0.0125em / 1.6) this file used before —
+   that mismatch was the biggest reason contact/privacy/sms-terms read
+   as a visibly different "font treatment" from the homepage despite
+   using the same underlying typefaces. */
 html, body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.6;
-  letter-spacing: -0.0125em;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.4px;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }

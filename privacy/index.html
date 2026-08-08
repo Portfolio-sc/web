@@ -51,20 +51,30 @@
     margin-bottom: 40px;
   }
 
-  .legal p, .legal ul { margin: 0 0 16px; color: var(--fg); }
+  /* Same paragraph rhythm as the homepage's .pf-body (margin: 0 0
+     1.4em), instead of a flat 16px that didn't scale with type size. */
+  .legal p, .legal ul { margin: 0 0 1.4em; color: var(--fg); }
   .legal p:last-child, .legal ul:last-child { margin-bottom: 0; }
   .legal ul { padding-left: 20px; }
   .legal li { margin-bottom: 8px; }
   .legal li:last-child { margin-bottom: 0; }
   .legal section { margin-bottom: 36px; }
   .legal section:last-of-type { margin-bottom: 0; }
+  /* Same size/weight/tracking as the homepage's .pf-section-heading
+     (index.html) — same font, same jump at 1280px, so a section
+     heading reads identically whether it's "About Us" on the
+     homepage or "What we collect" here. */
   .legal h2 {
     font-family: var(--font-heading);
-    font-size: 19px;
+    font-size: 22px;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.4px;
+    line-height: 1.15;
     color: var(--fg);
     margin-bottom: 12px;
+  }
+  @media (min-width: 1280px) {
+    .legal h2 { font-size: 25px; letter-spacing: -0.5px; }
   }
   .legal a { color: inherit; text-decoration: underline; text-decoration-thickness: .5px; text-underline-offset: 3px; }
   .legal a:hover { color: var(--fg); }

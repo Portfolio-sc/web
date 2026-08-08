@@ -51,7 +51,9 @@
     margin-bottom: 32px;
   }
 
-  .legal p, .legal ul { margin: 0 0 16px; color: var(--fg); }
+  /* Same paragraph rhythm as the homepage's .pf-body (margin: 0 0
+     1.4em), instead of a flat 16px that didn't scale with type size. */
+  .legal p, .legal ul { margin: 0 0 1.4em; color: var(--fg); }
   .legal p:last-child, .legal ul:last-child { margin-bottom: 0; }
   .legal ul { padding-left: 20px; }
   .legal li { margin-bottom: 12px; }
