@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#F7F5F0">
-<meta name="description" content="Portfolio is a special projects studio for democracy. We form small, fast-moving teams that take an idea, test it under live conditions, and — if it works — spin it out as an independent organization.">
+<meta name="description" content="Portfolio is a special projects studio for democracy. We form small, fast-moving teams that turn ideas into independent organizations.">
 <title>Portfolio — A special projects studio for democracy</title>
 <link rel="canonical" href="https://portfolio.sc/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -40,27 +40,37 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
 <style>
   /* ============================================================
-     TOKENS — copied verbatim from Studio/Brand/tokens.css
+     TOKENS — the brand guide's dark-mode defaults used to live here,
+     with a [data-theme="light"] block overriding them to the actual
+     "Refined" warm-neutral palette this site always ships. Since
+     there's no theme toggle anywhere and data-theme is hardcoded to
+     "light" in the <html> tag, the dark values could never actually
+     render — dead code in the same vein as the old .dark-band rule.
+     Folded down to the one palette that's ever shown.
      ============================================================ */
   :root {
-    --pf-bg-ground: #0A0A0A;
-    --pf-bg-section: #161616;
-    --pf-hairline: #262626;
-    --pf-border-ghost: #333333;
-    --pf-text-emphasis: #FFFFFF;
-    --pf-text-wordmark: #E6E6E6;
-    --pf-text-body: #C8C8C8;
-    --pf-text-muted: #888888;
-    --pf-text-tag: #888888;
-    --pf-button-primary-bg: #E6E6E6;
-    --pf-button-primary-fg: #0A0A0A;
+    --pf-bg-ground: #F7F5F0;
+    --pf-bg-section: #EFEBE2;
+    --pf-hairline: #DCD5C4;
+    --pf-border-ghost: #B7AF9F;
+    --pf-text-emphasis: #1B1912;
+    --pf-text-wordmark: #1B1912;
+    --pf-text-body: #3A362C;
+    --pf-text-muted: #6B6558;
+    /* Darkened from the lookbook's #8A8370 — that value only cleared
+       3.2–3.5:1 contrast against these backgrounds, short of the 4.5:1
+       AA floor for small uppercase eyebrow labels. This still reads as
+       a distinct, slightly warmer tone from --pf-text-muted. */
+    --pf-text-tag: #6E6650;
+    --pf-button-primary-bg: #1B1912;
+    --pf-button-primary-fg: #F7F5F0;
     --pf-font-display: 'Momo Trust Display', Nunito, 'Avenir Next', sans-serif;
     --pf-font-sans: 'Inter', system-ui, Arial, sans-serif;
     /* Space Grotesk carries section + card headings; Momo Trust Display is
-       now reserved for the hero and the wordmark only — the one deliberate
+       reserved for the hero and the wordmark only — the one deliberate
        "special" moment on the page instead of the default heading font. */
     --pf-font-heading: 'Space Grotesk', 'Inter', system-ui, Arial, sans-serif;
     --pf-radius: 12px;
@@ -79,27 +89,6 @@
        doesn't specify either — added for legibility, kept minimal. */
     --pf-max: 1320px;
     --pf-read: 640px;
-  }
-  [data-theme="light"] {
-    /* Refined palette — the warm-neutral family stays, but retuned to the
-       "Refined" look-and-feel direction: a softer, less pure-black ink
-       instead of true #000, and a distinct muted "tag" tone split out
-       from the general muted-text tone. */
-    --pf-bg-ground: #F7F5F0;
-    --pf-bg-section: #EFEBE2;
-    --pf-hairline: #DCD5C4;
-    --pf-border-ghost: #B7AF9F;
-    --pf-text-emphasis: #1B1912;
-    --pf-text-wordmark: #1B1912;
-    --pf-text-body: #3A362C;
-    --pf-text-muted: #6B6558;
-    /* Darkened from the lookbook's #8A8370 — that value only cleared
-       3.2–3.5:1 contrast against these backgrounds, short of the 4.5:1
-       AA floor for small uppercase eyebrow labels. This still reads as
-       a distinct, slightly warmer tone from --pf-text-muted. */
-    --pf-text-tag: #6E6650;
-    --pf-button-primary-bg: #1B1912;
-    --pf-button-primary-fg: #F7F5F0;
   }
 
   /* ============================================================
@@ -417,13 +406,16 @@
   .logo-more {
     /* Just the small chevron beside the grid now, not a full-width bar
        below it — flex-shrink:0 keeps it from being squeezed by the
-       logo viewport next to it. */
+       logo viewport next to it. Sized to 32x32 (up from a 24x24 that
+       sat right at the WCAG 2.5.8 minimum tap target) for a more
+       comfortable mobile tap target without turning it into a visibly
+       "big button" — still just the chevron, no border or fill at rest. */
     display: flex;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     margin: 0;
     padding: 0;
     border: 0;
@@ -432,7 +424,7 @@
     cursor: pointer;
   }
   .logo-more:hover, .logo-more:focus-visible { color: var(--pf-text-emphasis); outline: 2px solid var(--pf-border-ghost); outline-offset: -2px; border-radius: 6px; }
-  .logo-more svg { width: 15px; height: 15px; }
+  .logo-more svg { width: 16px; height: 16px; }
 
   @media (max-width: 520px) { .logo-page { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   /* Stacked layout (below the 1280px side-by-side breakpoint) has the
