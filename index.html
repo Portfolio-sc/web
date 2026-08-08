@@ -167,6 +167,21 @@
   }
   .pf-link:hover, .pf-link:focus-visible { color: var(--pf-text-emphasis); }
 
+  /* Footer: legal links on the left (quieter), the actual contact
+     invitation on the right (full-strength) — grouped by purpose
+     instead of one long pipe-separated line. */
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+  }
+  .footer-legal { color: var(--pf-text-muted); }
+  @media (max-width: 520px) {
+    .footer-row { flex-direction: column; align-items: flex-start; }
+  }
+
   @media (min-width: 1280px) {
     .pf-hero { font-size: 50px; letter-spacing: -2.5px; }
     .pf-section-heading { font-size: 25px; letter-spacing: -0.5px; }
@@ -549,9 +564,12 @@
   </main>
 
   <footer class="pf-section-elevated" id="involved">
-    <div class="pf-inner">
+    <div class="pf-inner footer-row">
+      <p class="pf-body footer-legal">
+        <a class="pf-link" href="/privacy">Privacy Policy</a> | <a class="pf-link" href="/sms-terms">SMS Terms</a>
+      </p>
       <p class="pf-body">
-        Get in touch at <a class="pf-link" href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a class="pf-link" href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a> | <a class="pf-link" href="/privacy">Privacy Policy</a> | <a class="pf-link" href="/sms-terms">SMS Terms</a>
+        Get in touch at <a class="pf-link" href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a class="pf-link" href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </p>
     </div>
   </footer>
