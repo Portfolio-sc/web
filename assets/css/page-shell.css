@@ -71,6 +71,7 @@ html, body {
   font-size: 22px;
   font-weight: 500;
   letter-spacing: -0.06em;
+  line-height: 1;
   color: var(--fg);
   text-decoration: none;
 }

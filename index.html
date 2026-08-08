@@ -204,11 +204,14 @@
     line-height: 1.45;
     color: var(--pf-text-muted);
   }
+  /* Same size/tracking as .wordmark on contact/privacy/sms-terms
+     (assets/css/page-shell.css) — this used to run larger (25px vs
+     22px) than the wordmark everywhere else on the site. */
   .pf-wordmark {
     font-family: var(--pf-font-display);
     font-weight: 500;
-    font-size: 25px;
-    letter-spacing: -1.4px;
+    font-size: 22px;
+    letter-spacing: -0.06em;
     line-height: 1;
     color: var(--pf-text-wordmark);
     text-decoration: none;
@@ -295,11 +298,21 @@
     .pf-section-ground, .pf-section-elevated { padding: var(--pf-section-py) var(--pf-section-px); }
   }
 
+  /* Sized/positioned to match the topbar on contact/privacy/sms-terms
+     exactly (sticky, blurred, same padding) — this used to be a taller,
+     non-sticky, larger-wordmark header than the other three pages. */
   .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 28px var(--pf-section-px);
+    padding: 14px var(--pf-section-px);
+    background: color-mix(in srgb, var(--pf-bg-ground) 92%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--pf-hairline);
   }
 
   .section-heading-block { margin-bottom: var(--pf-gap-mobile); }
@@ -477,8 +490,6 @@
     max-width: 560px;
     margin: 0;
     padding: 28px 0;
-    border-top: .5px solid var(--pf-hairline);
-    border-bottom: .5px solid var(--pf-hairline);
   }
   @media (min-width: 1280px) { .supporters-line { font-size: 22px; } }
 
