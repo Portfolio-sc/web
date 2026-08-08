@@ -263,11 +263,12 @@
     margin-top: 3px;
     accent-color: var(--fg);
   }
-  .checkbox-row span {
+  .checkbox-row label {
     font-size: 14.5px;
     line-height: 1.5;
     letter-spacing: -0.01em;
     color: var(--fg-muted);
+    cursor: pointer;
   }
 
   .btn-submit {
@@ -510,11 +511,11 @@
     <div class="form-group" style="margin-top: 24px;">
       <div class="checkbox-row">
         <input type="checkbox" id="main-mailing" name="mailing" value="yes">
-        <span>Add me to the Portfolio mailing list (once it exists).</span>
+        <label for="main-mailing">Add me to the Portfolio mailing list (once it exists).</label>
       </div>
       <div class="checkbox-row">
         <input type="checkbox" id="main-share" name="share" value="yes">
-        <span>Feel free to share my contact information with trusted pro-democracy organizations looking for talent.</span>
+        <label for="main-share">Feel free to share my contact information with trusted pro-democracy organizations looking for talent.</label>
       </div>
     </div>
 
