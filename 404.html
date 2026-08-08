@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F7F5F0">
+<title>Page not found — Portfolio</title>
+<meta name="description" content="This page doesn't exist on portfolio.sc.">
+<meta name="robots" content="noindex">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/brand/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Momo+Trust+Display&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/page-shell.css">
+
+<style>
+  main {
+    box-sizing: content-box;
+    max-width: 640px;
+    min-height: calc(100vh - 51px - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px var(--section-px) 96px;
+  }
+  .not-found-eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-faint);
+    margin-bottom: 12px;
+  }
+  .header {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 7vw, 64px);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+    margin: 0 0 16px;
+    color: var(--fg);
+  }
+  .subhead {
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--fg-muted);
+    margin: 0 0 32px;
+    max-width: 460px;
+  }
+  .not-found-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .btn-home {
+    display: inline-flex;
+    align-items: center;
+    padding: 13px 24px;
+    background: var(--fg);
+    color: var(--bg);
+    border-radius: 12px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    text-decoration: none;
+  }
+  .btn-home:hover { opacity: 0.9; }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 13px 24px;
+    border: 0.5px solid var(--hairline);
+    border-radius: 12px;
+    color: var(--fg);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    text-decoration: none;
+  }
+  .btn-ghost:hover { border-color: var(--fg-faint); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="/" class="wordmark">Portfolio</a>
+  </div>
+</header>
+
+<main id="main-content">
+  <p class="not-found-eyebrow">404</p>
+  <h1 class="header">This page doesn&rsquo;t exist.</h1>
+  <p class="subhead">It may have moved, or the link might just be wrong. Here&rsquo;s how to get back on track.</p>
+  <div class="not-found-links">
+    <a class="btn-home" href="/">Back to home</a>
+    <a class="btn-ghost" href="/contact">Get in touch</a>
+  </div>
+</main>
+
+<footer>
+  <p class="footer-legal"><a href="/privacy">Privacy Policy</a> | <a href="/sms-terms">SMS Terms</a></p>
+  <p class="footer-invite">Get in touch at <a href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+</footer>
+
+</body>
+</html>
