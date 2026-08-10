@@ -738,5 +738,13 @@
       els.forEach((el) => io.observe(el));
     })();
   </script>
+
+  <!-- Vercel Web Analytics: cookie-free pageview counts, no third-party
+       vendor. Same-origin script/beacon, so it needs no CSP allowance
+       beyond the 'self' already in vercel.json. -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
