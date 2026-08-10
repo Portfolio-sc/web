@@ -42,6 +42,15 @@ export default async function handler(req, res) {
 
   try {
     const { fields, fileBuffer, fileName, fileMime } = await parseForm(req);
+
+    // Honeypot, mirrored from the client-side check in contact/index.html.
+    // Defense in depth: a bot that POSTs directly to this endpoint, skipping
+    // the page's JS entirely, still gets caught here. Pretend success so it
+    // doesn't learn anything.
+    if (fields.website) {
+      return res.status(200).json({ success: true });
+    }
+
     const { name, email, linkedin, statement, referral, roleTitle } = fields;
     const mailingList     = fields.mailingList === "yes";
     const shareWithAllies = fields.shareWithAllies === "yes";

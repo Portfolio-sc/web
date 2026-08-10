@@ -126,6 +126,20 @@
   .role-row-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
   .form-group { margin-bottom: 18px; }
+
+  /* Honeypot: a field real visitors never see or reach by keyboard
+     (off-screen, not display:none, since some bots skip that check),
+     but that simple form-filling bots tend to auto-fill because it
+     looks like a normal "Website" field. Anything in it means the
+     submission is spam — see the JS below and api/submit.js. */
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
   label {
     display: block;
     font-size: 14px;
@@ -454,6 +468,11 @@
       </div>
     </div>
 
+    <div class="hp-field" aria-hidden="true">
+      <label for="main-website">Website</label>
+      <input type="text" id="main-website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
     <button type="submit" class="btn-submit" id="main-submit">Submit <span class="arrow">&rarr;</span></button>
     <div class="form-status" id="main-status" role="status" aria-live="polite"></div>
   </form>
@@ -512,6 +531,11 @@
         <div class="form-group">
           <label for="apply-statement">Why are you a good fit?</label>
           <textarea id="apply-statement" name="statement" rows="4" placeholder="Your relevant experience and why this role interests you…" required></textarea>
+        </div>
+
+        <div class="hp-field" aria-hidden="true">
+          <label for="apply-website">Website</label>
+          <input type="text" id="apply-website" name="website" tabindex="-1" autocomplete="off">
         </div>
 
         <button type="submit" class="btn-submit" id="apply-submit" style="margin-top: 20px;">Submit application <span class="arrow">&rarr;</span></button>
@@ -624,6 +648,17 @@
     const mailing   = form.querySelector('#main-mailing').checked;
     const share     = form.querySelector('#main-share').checked;
     const resumeFile = form.querySelector('#main-resume').files[0];
+    const website   = form.querySelector('#main-website').value.trim();
+
+    // Honeypot: real visitors never see or fill this field, so anything in
+    // it means a bot filled the form. Fake a normal success without ever
+    // hitting the network, so the bot's script doesn't learn it was caught.
+    if (website) {
+      document.getElementById('form-state').style.display = 'none';
+      document.getElementById('success-state').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
 
     if (!name || !email) {
       setStatus('main-status', 'Please fill in name and email.', 'error');
@@ -675,6 +710,16 @@
     const statement = form.querySelector('#apply-statement').value.trim();
     const roleTitle = form.querySelector('#apply-role-title').value;
     const resumeFile = form.querySelector('#apply-resume').files[0];
+    const website   = form.querySelector('#apply-website').value.trim();
+
+    // Honeypot — see the comment in the form-main handler above.
+    if (website) {
+      setStatus('apply-status', 'Application submitted — thanks.', 'success');
+      form.reset();
+      document.getElementById('apply-resume-name').textContent = 'No file chosen';
+      setTimeout(closeModal, 2200);
+      return;
+    }
 
     if (!name || !email || !statement) {
       setStatus('apply-status', 'Please fill in all required fields.', 'error');

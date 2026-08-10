@@ -6,7 +6,10 @@ export default async function handler(req, res) {
 
   if (!AIRTABLE_API_KEY) return res.status(500).json({ error: 'Server configuration error.' });
 
-  const { idea, email } = req.body;
+  const { idea, email, website } = req.body;
+
+  // Honeypot, mirrored from api/submit.js — see the comment there.
+  if (website) return res.status(200).json({ success: true });
 
   if (!idea) return res.status(400).json({ error: 'Idea is required.' });
 
