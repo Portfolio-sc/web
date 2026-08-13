@@ -239,6 +239,13 @@
     line-height: 1.5;
     color: var(--pf-text-muted);
   }
+  .footer-service-line {
+    margin: 0 0 16px;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+    color: var(--pf-text-muted);
+  }
   .footer-invite a { font-weight: 600; }
   @media (max-width: 520px) {
     .footer-row { flex-direction: column; align-items: flex-start; }
@@ -625,13 +632,16 @@
   </main>
 
   <footer class="pf-section-elevated" id="involved">
-    <div class="pf-inner footer-row">
-      <p class="footer-legal">
-        <a class="pf-link" href="/privacy">Privacy Policy</a> | <a class="pf-link" href="/sms-terms">SMS Terms</a>
-      </p>
-      <p class="footer-invite">
-        Get in touch at <a class="pf-link" href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a class="pf-link" href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      </p>
+    <div class="pf-inner">
+      <p class="footer-service-line">Portfolio operates a free phone and text support line for public benefits questions. See our <a class="pf-link" href="/privacy">Privacy Policy</a> and <a class="pf-link" href="/sms-terms">SMS Terms</a>.</p>
+      <div class="footer-row">
+        <p class="footer-legal">
+          <a class="pf-link" href="/privacy">Privacy Policy</a> | <a class="pf-link" href="/sms-terms">SMS Terms</a>
+        </p>
+        <p class="footer-invite">
+          Get in touch at <a class="pf-link" href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a class="pf-link" href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </p>
+      </div>
     </div>
   </footer>
 
