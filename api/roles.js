@@ -1,3 +1,19 @@
+// Short card blurb for the homepage. Prefers the sentence after
+// "Why this role exists:" (the house JD format); otherwise falls back to
+// the description's first paragraph, trimmed to ~220 characters.
+function summarize(text) {
+  const t = String(text).replace(/\r/g, '');
+  const m = t.match(/Why this role exists:\s*([^\n]+)/i);
+  let s = m ? m[1] : (t.split(/\n\s*\n/)[0] || '');
+  s = s.trim();
+  if (m) {
+    const first = s.match(/^.+?[.!?](\s|$)/);
+    if (first) s = first[0].trim();
+  }
+  if (s.length > 220) s = s.slice(0, 217).replace(/\s+\S*$/, '') + '…';
+  return s;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).end();
   const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
@@ -34,6 +50,7 @@ export default async function handler(req, res) {
         category:    r.fields['Role Category']         || '',
         description: r.fields['Description']           || '',
         postedDate:  r.fields['Posted Date']           || null,
+        summary:     summarize(r.fields['Description'] || ''),
       }));
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
     return res.status(200).json(roles);

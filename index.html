@@ -472,6 +472,136 @@
     .about-cta { margin-top: var(--pf-gap); }
   }
 
+
+  /* ============================================================
+     OPEN ROLES — cards fed live from /api/roles (Airtable Roles table,
+     Audience = Portfolio, Status = Active). The whole section stays
+     hidden until at least one role loads, so an empty board or an API
+     hiccup never shows a blank heading. Clicking a card opens a dialog
+     with the full description; "Apply" swaps the dialog to the form.
+     ============================================================ */
+  .roles-intro { margin: 0 0 32px; }
+  .roles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 760px) { .roles-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+  @media (min-width: 1280px) { .roles-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+  .role-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    padding: 24px;
+    background: var(--pf-bg-ground);
+    border: .5px solid var(--pf-border-ghost);
+    border-radius: var(--pf-radius);
+    color: inherit;
+    cursor: pointer;
+    transition: translate 220ms ease, border-color 150ms ease;
+  }
+  .role-card:hover { translate: 0 -3px; border-color: var(--pf-text-muted); }
+  .role-card:focus-visible { outline: 2px solid var(--pf-text-emphasis); outline-offset: 2px; }
+  .role-card-meta {
+    font-size: 13px;
+    letter-spacing: -0.1px;
+    color: var(--pf-text-muted);
+    margin: 0 0 10px;
+  }
+  .role-card-title {
+    font-family: var(--pf-font-heading);
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+    color: var(--pf-text-emphasis);
+    margin: 0 0 10px;
+  }
+  .role-card-summary { margin: 0 0 20px; font-size: 15px; line-height: 1.5; color: var(--pf-text-body); flex: 1; }
+  .role-card-more { font-size: 14px; font-weight: 500; color: var(--pf-text-emphasis); }
+  .role-card:hover .role-card-more { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* Role dialog */
+  .role-dialog {
+    width: min(680px, calc(100vw - 32px));
+    max-height: calc(100vh - 48px);
+    padding: 0;
+    border: .5px solid var(--pf-hairline);
+    border-radius: 16px;
+    background: var(--pf-bg-ground);
+    color: var(--pf-text-body);
+  }
+  .role-dialog::backdrop { background: rgba(27, 25, 18, .45); }
+  .role-dialog-inner { padding: 28px 28px 32px; }
+  @media (min-width: 640px) { .role-dialog-inner { padding: 36px 40px 40px; } }
+  .role-dialog-head { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+  .role-dialog-title {
+    font-family: var(--pf-font-heading);
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    color: var(--pf-text-emphasis);
+    margin: 6px 0 0;
+  }
+  .role-dialog-close {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 999px;
+    border: .5px solid var(--pf-border-ghost);
+    background: transparent;
+    color: var(--pf-text-muted);
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .role-dialog-close:hover, .role-dialog-close:focus-visible { color: var(--pf-text-emphasis); background: var(--pf-bg-section); }
+  .role-desc { font-size: 15.5px; line-height: 1.6; }
+  .role-desc p { margin: 0 0 1em; }
+  .role-desc h4 {
+    font-family: var(--pf-font-heading);
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--pf-text-emphasis);
+    margin: 1.6em 0 .5em;
+  }
+  .role-desc ul { margin: 0 0 1em; padding-left: 1.2em; }
+  .role-desc li { margin: 0 0 .5em; }
+  .role-dialog-actions {
+    position: sticky;
+    bottom: -32px;
+    margin: 24px -28px -32px;
+    padding: 16px 28px 24px;
+    background: var(--pf-bg-ground);
+    border-top: .5px solid var(--pf-hairline);
+    display: flex; gap: 12px; align-items: center;
+  }
+  @media (min-width: 640px) { .role-dialog-actions { margin: 24px -40px -40px; padding: 16px 40px 28px; bottom: -40px; } }
+  .apply-form label { display: block; font-size: 14px; font-weight: 500; color: var(--pf-text-emphasis); margin: 0 0 6px; }
+  .apply-form .opt { font-weight: 400; color: var(--pf-text-muted); }
+  .apply-form .field { margin: 0 0 18px; }
+  .apply-form input[type=text], .apply-form input[type=email], .apply-form input[type=url], .apply-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 15px;
+    color: var(--pf-text-emphasis);
+    background: #fff;
+    border: .5px solid var(--pf-border-ghost);
+    border-radius: 10px;
+  }
+  .apply-form textarea { resize: vertical; min-height: 120px; }
+  .apply-form input:focus, .apply-form textarea:focus { outline: 2px solid var(--pf-text-emphasis); outline-offset: 1px; }
+  .apply-form input[type=file] { font-size: 14px; }
+  .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .form-status { margin-top: 14px; font-size: 14px; min-height: 1.2em; }
+  .form-status.error { color: #9B2C1F; }
+  .form-status.success { color: #2F5E2E; }
+  .back-link { background: none; border: 0; padding: 0; font-size: 14px; color: var(--pf-text-muted); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .back-link:hover { color: var(--pf-text-emphasis); }
+  .pf-btn[disabled] { opacity: .6; cursor: default; }
+
   /* ============================================================
      SUPPORTERS STRIP
      ============================================================ */
@@ -572,6 +702,17 @@
       </div>
     </section>
 
+
+    <section class="pf-section-ground" id="roles" aria-labelledby="roles-title" hidden>
+      <div class="pf-inner">
+        <div class="section-heading-block">
+          <h2 id="roles-title" class="pf-section-heading">Open roles</h2>
+        </div>
+        <p class="pf-body roles-intro">We're hiring for projects in the studio. Click a role to read more and apply.</p>
+        <div class="roles-grid" id="rolesGrid"></div>
+      </div>
+    </section>
+
     <section class="pf-section-ground" id="about" aria-labelledby="about-title">
       <div class="pf-inner about-grid">
         <div class="about-text">
@@ -641,6 +782,203 @@
       </div>
     </div>
   </footer>
+
+
+  <dialog class="role-dialog" id="roleDialog" aria-labelledby="roleDialogTitle">
+    <div class="role-dialog-inner">
+      <div class="role-dialog-head">
+        <div>
+          <p class="pf-eyebrow" id="roleDialogMeta" style="margin:0;"></p>
+          <h3 class="role-dialog-title" id="roleDialogTitle"></h3>
+        </div>
+        <button class="role-dialog-close" type="button" id="roleDialogClose" aria-label="Close">&times;</button>
+      </div>
+
+      <div id="roleView">
+        <div class="role-desc" id="roleDialogDesc"></div>
+        <div class="role-dialog-actions">
+          <button class="pf-btn pf-btn-primary" type="button" id="roleApplyBtn">Apply for this role</button>
+        </div>
+      </div>
+
+      <form class="apply-form" id="applyForm" novalidate hidden>
+        <p class="pf-body" style="margin-bottom:24px;">Your application goes directly to the hiring team. <button type="button" class="back-link" id="roleBackBtn">Back to the role description</button></p>
+        <div class="field">
+          <label for="apply-name">Name</label>
+          <input type="text" id="apply-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="apply-email">Email</label>
+          <input type="email" id="apply-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="apply-linkedin">LinkedIn or website <span class="opt">(optional)</span></label>
+          <input type="url" id="apply-linkedin" name="linkedin" placeholder="https://">
+        </div>
+        <div class="field">
+          <label for="apply-resume">CV or resume <span class="opt">(optional, max 5 MB)</span></label>
+          <input type="file" id="apply-resume" name="resume" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
+        </div>
+        <div class="field">
+          <label for="apply-statement">Why are you a good fit?</label>
+          <textarea id="apply-statement" name="statement" rows="5" placeholder="Your relevant experience and why this role interests you" required></textarea>
+        </div>
+        <div class="hp-field" aria-hidden="true">
+          <label for="apply-website">Website</label>
+          <input type="text" id="apply-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit" class="pf-btn pf-btn-primary" id="applySubmit">Submit application</button>
+        <div class="form-status" id="applyStatus" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </dialog>
+
+  <script>
+    // Open roles: load from /api/roles, render cards, and drive the
+    // role dialog (description view -> application form). Each role is
+    // deep-linkable at /#role-<slug>, so a single role can be shared.
+    (function () {
+      const section = document.getElementById('roles');
+      const grid = document.getElementById('rolesGrid');
+      const dialog = document.getElementById('roleDialog');
+      if (!section || !grid || !dialog || typeof dialog.showModal !== 'function') return;
+
+      const $ = (id) => document.getElementById(id);
+      const view = $('roleView'), form = $('applyForm');
+      let roles = [], current = null;
+
+      function esc(str) {
+        return String(str == null ? '' : str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+      }
+      function slug(t) { return String(t).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+      function meta(r) {
+        const bits = [];
+        bits.push(r.type === 'Stealth' ? 'Stealth project' : (r.org || 'Portfolio'));
+        if (r.type && r.type !== 'Stealth' && r.type !== 'Listed') bits.push(r.type.charAt(0) + r.type.slice(1).toLowerCase());
+        if (r.category) bits.push(r.category);
+        return bits.join(' · ');
+      }
+      // Plain-text description -> paragraphs, bullet lists ("- " or "* "
+      // lines), and short headings (an ALL-CAPS line, or a short line
+      // ending in a colon). Everything is escaped first.
+      function render(text) {
+        const lines = String(text || '').replace(/\r/g, '').split('\n');
+        let html = '', list = false, para = [];
+        const flush = () => { if (para.length) { html += '<p>' + para.join(' ') + '</p>'; para = []; } };
+        const endList = () => { if (list) { html += '</ul>'; list = false; } };
+        lines.forEach((raw) => {
+          const line = raw.trim();
+          if (!line) { flush(); endList(); return; }
+          const b = line.match(/^[-*\u2022]\s+(.*)$/);
+          if (b) { flush(); if (!list) { html += '<ul>'; list = true; } html += '<li>' + esc(b[1]) + '</li>'; return; }
+          endList();
+          const isHead = (line.length < 60 && line === line.toUpperCase() && /[A-Z]/.test(line)) || (line.length < 60 && /:$/.test(line));
+          if (isHead) {
+            flush();
+            const label = line === line.toUpperCase() ? line.charAt(0) + line.slice(1).toLowerCase() : line.replace(/:$/, '');
+            html += '<h4>' + esc(label) + '</h4>';
+            return;
+          }
+          para.push(esc(line).replace(/^(Why this role exists:|Work environment:)/, '<strong>$1</strong>'));
+        });
+        flush(); endList();
+        return html;
+      }
+
+      function showView() { view.hidden = false; form.hidden = true; }
+      function showForm() {
+        view.hidden = true; form.hidden = false;
+        $('applyStatus').textContent = ''; $('applyStatus').className = 'form-status';
+        $('apply-name').focus();
+      }
+
+      function open(r, push) {
+        current = r;
+        $('roleDialogMeta').textContent = meta(r);
+        $('roleDialogTitle').textContent = r.title;
+        $('roleDialogDesc').innerHTML = render(r.description);
+        showView();
+        if (!dialog.open) dialog.showModal();
+        dialog.querySelector('.role-dialog-inner').scrollTop = 0;
+        dialog.scrollTop = 0;
+        if (push) history.replaceState(null, '', '#role-' + slug(r.title));
+      }
+      function close() { if (dialog.open) dialog.close(); }
+
+      dialog.addEventListener('close', () => {
+        if (location.hash.indexOf('#role-') === 0) history.replaceState(null, '', location.pathname + location.search);
+      });
+      dialog.addEventListener('click', (e) => { if (e.target === dialog) close(); });
+      $('roleDialogClose').addEventListener('click', close);
+      $('roleApplyBtn').addEventListener('click', showForm);
+      $('roleBackBtn').addEventListener('click', showView);
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const status = $('applyStatus');
+        const set = (msg, type) => { status.textContent = msg; status.className = 'form-status' + (type ? ' ' + type : ''); };
+        const name = $('apply-name').value.trim();
+        const email = $('apply-email').value.trim();
+        const linkedin = $('apply-linkedin').value.trim();
+        const statement = $('apply-statement').value.trim();
+        const file = $('apply-resume').files[0];
+        const done = () => { set('Application submitted. Thank you, we\u2019ll be in touch.', 'success'); form.reset(); };
+
+        // Honeypot: bots fill it, people never see it. Fake success.
+        if ($('apply-website').value.trim()) { done(); return; }
+        if (!name || !email || !statement) { set('Please fill in your name, email, and why you\u2019re a good fit.', 'error'); return; }
+        if (file && file.size > 5 * 1024 * 1024) { set('That file is over 5 MB. Please attach a smaller one or link to it instead.', 'error'); return; }
+
+        const btn = $('applySubmit');
+        btn.disabled = true; btn.textContent = 'Submitting\u2026'; set('', '');
+        try {
+          const fd = new FormData();
+          fd.append('name', name);
+          fd.append('email', email);
+          if (linkedin) fd.append('linkedin', linkedin);
+          fd.append('statement', statement);
+          if (current) fd.append('roleTitle', current.title);
+          if (file) fd.append('resume', file);
+          const res = await fetch('/api/submit', { method: 'POST', body: fd });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok || !data.success) throw new Error(data.error || 'Submission failed.');
+          done();
+        } catch (err) {
+          set(err.message || 'Something went wrong. Please try again.', 'error');
+        } finally {
+          btn.disabled = false; btn.textContent = 'Submit application';
+        }
+      });
+
+      function openFromHash() {
+        const m = location.hash.match(/^#role-(.+)$/);
+        if (!m) return;
+        const r = roles.find((x) => slug(x.title) === m[1]);
+        if (r) open(r, false);
+      }
+
+      fetch('/api/roles?audience=Portfolio')
+        .then((res) => (res.ok ? res.json() : []))
+        .then((data) => {
+          roles = Array.isArray(data) ? data : [];
+          if (!roles.length) return;
+          grid.innerHTML = roles.map((r, i) => `
+            <button type="button" class="role-card" data-i="${i}" aria-haspopup="dialog">
+              <p class="role-card-meta">${esc(meta(r))}</p>
+              <h3 class="role-card-title">${esc(r.title)}</h3>
+              <p class="role-card-summary">${esc(r.summary || '')}</p>
+              <span class="role-card-more">Read more and apply &rarr;</span>
+            </button>`).join('');
+          grid.querySelectorAll('.role-card').forEach((el) => {
+            el.addEventListener('click', () => open(roles[+el.dataset.i], true));
+          });
+          section.hidden = false;
+          openFromHash();
+        })
+        .catch(() => {});
+      window.addEventListener('hashchange', openFromHash);
+    })();
+  </script>
 
   <script>
     (function () {

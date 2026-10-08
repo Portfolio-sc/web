@@ -73,57 +73,8 @@
     max-width: 520px;
   }
 
-  .roles-section { margin-bottom: 48px; }
-  .section-label {
-    font-family: var(--font-body);
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--fg-faint);
-    margin-bottom: 14px;
-  }
-  .roles-list { display: flex; flex-direction: column; gap: 8px; }
-  .role-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 16px 18px;
-    background: var(--bg-input);
-    border: 0.5px solid var(--hairline);
-    border-radius: 12px;
-    transition: border-color 0.15s ease;
-  }
-  .role-row:hover { border-color: var(--hairline-strong); }
-  .role-row-left { flex: 1; min-width: 0; }
-  .role-row-title {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    color: var(--fg);
-    margin-bottom: 2px;
-  }
-  .role-row-meta {
-    font-size: 13px;
-    letter-spacing: -0.01em;
-    color: var(--fg-muted);
-  }
-  .role-row-btn {
-    flex-shrink: 0;
-    padding: 7px 16px;
-    background: var(--btn-bg);
-    color: var(--btn-fg);
-    border: none;
-    border-radius: 12px;
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    cursor: pointer;
-    transition: opacity 0.15s ease, transform 0.15s ease;
-  }
-  .role-row-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .roles-pointer { font-size: 15px; color: var(--fg-muted); margin: -8px 0 32px; }
+  .roles-pointer a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
 
   .form-group { margin-bottom: 18px; }
 
@@ -281,80 +232,6 @@
   .form-status.error { color: var(--error); }
   .form-status.success { color: var(--success); }
 
-  #modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: color-mix(in srgb, var(--bg) 78%, transparent);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-  #modal-overlay.open { display: flex; }
-  .modal {
-    display: none;
-    background: var(--bg);
-    border: 0.5px solid var(--hairline);
-    border-radius: 16px;
-    width: 100%;
-    max-width: 480px;
-    max-height: 88vh;
-    overflow-y: auto;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.16);
-  }
-  .modal.active { display: block; }
-  .modal-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 24px 24px 0;
-    gap: 16px;
-  }
-  .modal-header h3 {
-    font-family: var(--font-heading);
-    font-size: 26px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: var(--fg);
-    margin-bottom: 6px;
-    line-height: 1.1;
-  }
-  .modal-header p {
-    font-size: 13.5px;
-    letter-spacing: -0.01em;
-    color: var(--fg-muted);
-  }
-  .modal-role-badge {
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    color: var(--fg);
-    background: var(--bg-raised);
-    border: 0.5px solid var(--hairline);
-    border-radius: 10px;
-    padding: 10px 14px;
-    margin: 18px 24px 0;
-  }
-  .modal-close {
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    border: 0.5px solid var(--hairline);
-    background: transparent;
-    cursor: pointer;
-    font-size: 16px;
-    color: var(--fg-muted);
-    transition: background 0.15s ease, color 0.15s ease;
-  }
-  .modal-close:hover { background: var(--bg-raised); color: var(--fg); }
-  .modal-body { padding: 18px 24px 24px; }
 
   /* Same quiet pull-quote treatment as the homepage's supporters line,
      just a little smaller here since this page already runs a slightly
@@ -411,10 +288,7 @@
     <h1 class="header reveal">Get involved.</h1>
     <p class="subhead reveal reveal-d1">We're always looking for people who want to put their talents to work for democracy.</p>
 
-    <div class="roles-section" id="roles-section" style="display:none;">
-      <div class="section-label">Open roles</div>
-      <div class="roles-list" id="roles-list"></div>
-    </div>
+    <p class="roles-pointer reveal reveal-d1">Looking for a specific job? See our <a href="/#roles">open roles</a>.</p>
 
     <form id="form-main" class="reveal reveal-d2" novalidate>
     <div class="form-group">
@@ -489,62 +363,6 @@
   <p class="footer-invite">Get in touch at <a href="mailto:hello@portfolio.sc">hello@portfolio.sc</a> | <a href="https://www.linkedin.com/company/portfoliostudios/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
 </footer>
 
-<div id="modal-overlay" role="dialog" aria-modal="true">
-  <div class="modal" id="modal-apply" tabindex="-1">
-    <div class="modal-header">
-      <div>
-        <h3>Apply for this role</h3>
-        <p>Your application goes directly to the hiring team.</p>
-      </div>
-      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
-    </div>
-    <div class="modal-role-badge" id="apply-role-badge"></div>
-    <div class="modal-body">
-      <form id="form-apply" novalidate>
-        <input type="hidden" id="apply-role-title" name="roleTitle">
-
-        <div class="form-group">
-          <label for="apply-name">Name</label>
-          <input type="text" id="apply-name" name="name" autocomplete="name" placeholder="Your full name" required>
-        </div>
-
-        <div class="form-group">
-          <label for="apply-email">Email</label>
-          <input type="email" id="apply-email" name="email" autocomplete="email" placeholder="you@example.com" required>
-        </div>
-
-        <div class="form-group">
-          <label for="apply-linkedin">LinkedIn or website <span class="opt">(optional)</span></label>
-          <input type="url" id="apply-linkedin" name="linkedin" placeholder="https://...">
-        </div>
-
-        <div class="form-group">
-          <label>CV or resume <span class="opt">(optional, max 5 MB)</span></label>
-          <div class="file-wrap">
-            <span class="file-btn">Choose file</span>
-            <span class="file-name" id="apply-resume-name">No file chosen</span>
-            <input type="file" id="apply-resume" name="resume" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"
-              onchange="document.getElementById('apply-resume-name').textContent = this.files[0] ? this.files[0].name : 'No file chosen'">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="apply-statement">Why are you a good fit?</label>
-          <textarea id="apply-statement" name="statement" rows="4" placeholder="Your relevant experience and why this role interests you…" required></textarea>
-        </div>
-
-        <div class="hp-field" aria-hidden="true">
-          <label for="apply-website">Website</label>
-          <input type="text" id="apply-website" name="website" tabindex="-1" autocomplete="off">
-        </div>
-
-        <button type="submit" class="btn-submit" id="apply-submit" style="margin-top: 20px;">Submit application <span class="arrow">&rarr;</span></button>
-        <div class="form-status" id="apply-status" role="status" aria-live="polite"></div>
-      </form>
-    </div>
-  </div>
-</div>
-
 <script>
   function esc(str) {
     if (!str) return '';
@@ -561,79 +379,6 @@
     if (!btn) return;
     btn.disabled = isSubmitting;
     btn.innerHTML = isSubmitting ? 'Submitting…' : defaultHTML;
-  }
-
-  const overlay = document.getElementById('modal-overlay');
-  const modalApply = document.getElementById('modal-apply');
-  let lastFocusedEl = null;
-
-  // Keyboard-accessible modal: focus moves into it on open, Tab/Shift+Tab
-  // stay trapped inside it while it's open, and focus returns to whatever
-  // triggered it (the role's "Apply" button) on close — without this, a
-  // keyboard user could tab straight through to the page behind the modal.
-  function getFocusable(container) {
-    return Array.from(container.querySelectorAll(
-      'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
-    )).filter(el => el.offsetParent !== null);
-  }
-
-  function openApplyModal(roleTitle) {
-    lastFocusedEl = document.activeElement;
-    document.getElementById('apply-role-badge').textContent = roleTitle;
-    document.getElementById('apply-role-title').value = roleTitle;
-    modalApply.classList.add('active');
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    const focusables = getFocusable(modalApply);
-    (focusables[0] || modalApply).focus();
-  }
-  function closeModal() {
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-    document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
-    if (lastFocusedEl) {
-      lastFocusedEl.focus();
-      lastFocusedEl = null;
-    }
-  }
-  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-  document.addEventListener('keydown', e => {
-    if (!overlay.classList.contains('open')) return;
-    if (e.key === 'Escape') { closeModal(); return; }
-    if (e.key !== 'Tab') return;
-    const focusables = getFocusable(modalApply);
-    if (!focusables.length) return;
-    const first = focusables[0];
-    const last = focusables[focusables.length - 1];
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
-    }
-  });
-
-  async function loadRoles() {
-    try {
-      const res = await fetch('/api/roles?audience=Portfolio');
-      if (!res.ok) throw new Error();
-      const roles = await res.json();
-      if (!roles.length) return;
-
-      const section = document.getElementById('roles-section');
-      const list = document.getElementById('roles-list');
-      list.innerHTML = roles.map(r => `
-        <div class="role-row">
-          <div class="role-row-left">
-            <div class="role-row-title">${esc(r.title)}</div>
-            <div class="role-row-meta">${r.type === 'Stealth' ? 'Stealth role' : esc(r.org || '')}${r.category ? ' · ' + esc(r.category) : ''}</div>
-          </div>
-          <button class="role-row-btn" onclick="openApplyModal('${esc(r.title)}')">Apply</button>
-        </div>
-      `).join('');
-      section.style.display = 'block';
-    } catch (e) {}
   }
 
   document.getElementById('form-main').addEventListener('submit', async function(e) {
@@ -701,59 +446,6 @@
     }
   });
 
-  document.getElementById('form-apply').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const name      = form.querySelector('#apply-name').value.trim();
-    const email     = form.querySelector('#apply-email').value.trim();
-    const linkedin  = form.querySelector('#apply-linkedin').value.trim();
-    const statement = form.querySelector('#apply-statement').value.trim();
-    const roleTitle = form.querySelector('#apply-role-title').value;
-    const resumeFile = form.querySelector('#apply-resume').files[0];
-    const website   = form.querySelector('#apply-website').value.trim();
-
-    // Honeypot — see the comment in the form-main handler above.
-    if (website) {
-      setStatus('apply-status', 'Application submitted — thanks.', 'success');
-      form.reset();
-      document.getElementById('apply-resume-name').textContent = 'No file chosen';
-      setTimeout(closeModal, 2200);
-      return;
-    }
-
-    if (!name || !email || !statement) {
-      setStatus('apply-status', 'Please fill in all required fields.', 'error');
-      return;
-    }
-
-    setSubmitting('apply-submit', true);
-    setStatus('apply-status', '', '');
-
-    try {
-      const fd = new FormData();
-      fd.append('name', name);
-      fd.append('email', email);
-      if (linkedin)   fd.append('linkedin', linkedin);
-      fd.append('statement', statement);
-      if (roleTitle)  fd.append('roleTitle', roleTitle);
-      if (resumeFile) fd.append('resume', resumeFile);
-
-      const res = await fetch('/api/submit', { method: 'POST', body: fd });
-      const data = await res.json();
-      if (!res.ok || !data.success) throw new Error(data.error || 'Submission failed.');
-
-      setStatus('apply-status', 'Application submitted — thanks.', 'success');
-      form.reset();
-      document.getElementById('apply-resume-name').textContent = 'No file chosen';
-      setTimeout(closeModal, 2200);
-    } catch (err) {
-      setStatus('apply-status', err.message || 'Something went wrong. Please try again.', 'error');
-    } finally {
-      setSubmitting('apply-submit', false, 'Submit application <span class="arrow">&rarr;</span>');
-    }
-  });
-
-  loadRoles();
 </script>
 
 <script>
