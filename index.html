@@ -481,6 +481,9 @@
      with the full description; "Apply" swaps the dialog to the form.
      ============================================================ */
   .roles-intro { margin: 0 0 32px; }
+  .roles-cta { margin-top: 56px; }
+  .roles-cta .pf-body { margin-bottom: 20px; }
+  #aboutCta[hidden] { display: none; }
   .roles-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -703,15 +706,6 @@
     </section>
 
 
-    <section class="pf-section-ground" id="roles" aria-labelledby="roles-title" hidden>
-      <div class="pf-inner">
-        <div class="section-heading-block">
-          <h2 id="roles-title" class="pf-section-heading">Open roles</h2>
-        </div>
-        <p class="pf-body roles-intro">We're hiring for projects in the studio. Click a role to read more and apply.</p>
-        <div class="roles-grid" id="rolesGrid"></div>
-      </div>
-    </section>
 
     <section class="pf-section-ground" id="about" aria-labelledby="about-title">
       <div class="pf-inner about-grid">
@@ -761,7 +755,21 @@
         </button>
         </div>
         </div>
-        <div class="about-cta reveal reveal-d1">
+        <div class="about-cta reveal reveal-d1" id="aboutCta">
+          <a class="pf-btn pf-btn-primary" href="/contact">Join us</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf-section-elevated" id="roles" aria-labelledby="roles-title" hidden>
+      <div class="pf-inner">
+        <div class="section-heading-block">
+          <h2 id="roles-title" class="pf-section-heading">Open roles</h2>
+        </div>
+        <p class="pf-body roles-intro">We're hiring for projects in the studio. Click a role to read more and apply.</p>
+        <div class="roles-grid" id="rolesGrid"></div>
+        <div class="roles-cta">
+          <p class="pf-body">Don't see an open role? That's OK&mdash;get in touch anyway. We are constantly looking for talented collaborators.</p>
           <a class="pf-btn pf-btn-primary" href="/contact">Join us</a>
         </div>
       </div>
@@ -973,6 +981,8 @@
             el.addEventListener('click', () => open(roles[+el.dataset.i], true));
           });
           section.hidden = false;
+          const aboutCta = document.getElementById('aboutCta');
+          if (aboutCta) aboutCta.hidden = true;
           openFromHash();
         })
         .catch(() => {});
