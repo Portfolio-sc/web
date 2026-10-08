@@ -100,6 +100,10 @@
           <label for="apply-statement">Why are you a good fit?</label>
           <textarea id="apply-statement" name="statement" rows="5" placeholder="Your relevant experience and why this role interests you" required></textarea>
         </div>
+        <div class="field roles-checks">
+          <label class="roles-check"><input type="checkbox" id="apply-mailing"> <span>Add me to the Portfolio mailing list (once it exists).</span></label>
+          <label class="roles-check"><input type="checkbox" id="apply-share"> <span>Feel free to share my contact information with trusted pro-democracy organizations looking for talent.</span></label>
+        </div>
         <div class="roles-hp" aria-hidden="true">
           <label for="apply-website">Website</label>
           <input type="text" id="apply-website" name="website" tabindex="-1" autocomplete="off">
@@ -161,6 +165,8 @@
       if (linkedin) fd.append('linkedin', linkedin);
       fd.append('statement', statement);
       if (current) fd.append('roleTitle', current.title);
+      if ($('apply-mailing').checked) fd.append('mailingList', 'yes');
+      if ($('apply-share').checked) fd.append('shareWithAllies', 'yes');
       if (file) fd.append('resume', file);
       const res = await fetch('/api/submit', { method: 'POST', body: fd });
       const data = await res.json().catch(() => ({}));

@@ -188,6 +188,19 @@
 .apply-form textarea { resize: vertical; min-height: 120px; }
 .apply-form input:focus, .apply-form textarea:focus { outline: 2px solid var(--roles-fg); outline-offset: 1px; }
 .apply-form input[type=file] { font-size: 14px; }
+.apply-form .roles-checks { margin-top: 4px; }
+.apply-form label.roles-check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--roles-body);
+  margin: 0 0 10px;
+  cursor: pointer;
+}
+.apply-form .roles-check input { margin: 3px 0 0; flex-shrink: 0; width: 16px; height: 16px; accent-color: var(--roles-fg); }
 .roles-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .roles-status { margin-top: 14px; font-size: 14px; min-height: 1.2em; }
 .roles-status.error { color: #9B2C1F; }
