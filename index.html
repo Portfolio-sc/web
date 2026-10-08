@@ -984,8 +984,12 @@
           section.hidden = false;
           // /#roles (e.g. from the contact page): the section was hidden when
           // the browser tried to jump to it on load, so scroll there now.
+          // Instant, not smooth: the page-wide smooth scroll can stall a
+          // long jump on load. Re-run after load in case images shift layout.
           if (location.hash === '#roles') {
-            requestAnimationFrame(() => section.scrollIntoView({ block: 'start' }));
+            const jump = () => section.scrollIntoView({ block: 'start', behavior: 'instant' });
+            setTimeout(jump, 0);
+            if (document.readyState !== 'complete') window.addEventListener('load', () => setTimeout(jump, 0), { once: true });
           }
           const aboutCta = document.getElementById('aboutCta');
           if (aboutCta) aboutCta.hidden = true;
