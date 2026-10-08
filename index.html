@@ -472,6 +472,15 @@
     .about-cta { margin-top: var(--pf-gap); }
   }
 
+
+  /* Homepage-only bits of the Open roles section; cards and the
+     role dialog are styled in /assets/css/roles.css. */
+  .roles-intro { margin: 0 0 32px; }
+  .roles-cta { margin-top: 32px; }
+  .roles-cta .pf-body { margin-bottom: 20px; }
+  #roles { scroll-margin-top: 64px; }
+  #aboutCta[hidden] { display: none; }
+
   /* ============================================================
      SUPPORTERS STRIP
      ============================================================ */
@@ -530,6 +539,7 @@
     .project-card, .project-card.reveal { transition: none; }
   }
 </style>
+<link rel="stylesheet" href="/assets/css/roles.css">
 </head>
 <body>
 
@@ -571,6 +581,8 @@
         <a class="pf-btn pf-btn-primary building-cta reveal reveal-d2" href="/contact">Got an idea worth building?</a>
       </div>
     </section>
+
+
 
     <section class="pf-section-ground" id="about" aria-labelledby="about-title">
       <div class="pf-inner about-grid">
@@ -620,7 +632,21 @@
         </button>
         </div>
         </div>
-        <div class="about-cta reveal reveal-d1">
+        <div class="about-cta reveal reveal-d1" id="aboutCta" data-roles-hide-when-loaded>
+          <a class="pf-btn pf-btn-primary" href="/contact">Join us</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="pf-section-elevated" id="roles" aria-labelledby="roles-title" data-roles-section hidden>
+      <div class="pf-inner">
+        <div class="section-heading-block">
+          <h2 id="roles-title" class="pf-section-heading">Open roles</h2>
+        </div>
+        <p class="pf-body roles-intro">We're hiring for projects in the studio. Click a role to read more and apply.</p>
+        <div class="roles-grid roles-grid--wide" data-roles-grid></div>
+        <div class="roles-cta">
+          <p class="pf-body">Don't see an open role? That's OK&mdash;get in touch anyway. We are constantly looking for talented collaborators.</p>
           <a class="pf-btn pf-btn-primary" href="/contact">Join us</a>
         </div>
       </div>
@@ -641,6 +667,7 @@
       </div>
     </div>
   </footer>
+
 
   <script>
     (function () {
@@ -752,6 +779,7 @@
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
+  <script src="/assets/js/roles.js" defer></script>
   <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
