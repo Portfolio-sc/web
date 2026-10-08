@@ -481,6 +481,7 @@
      with the full description; "Apply" swaps the dialog to the form.
      ============================================================ */
   .roles-intro { margin: 0 0 32px; }
+  #roles { scroll-margin-top: 64px; }
   .roles-cta { margin-top: 56px; }
   .roles-cta .pf-body { margin-bottom: 20px; }
   #aboutCta[hidden] { display: none; }
@@ -981,6 +982,11 @@
             el.addEventListener('click', () => open(roles[+el.dataset.i], true));
           });
           section.hidden = false;
+          // /#roles (e.g. from the contact page): the section was hidden when
+          // the browser tried to jump to it on load, so scroll there now.
+          if (location.hash === '#roles') {
+            requestAnimationFrame(() => section.scrollIntoView({ block: 'start' }));
+          }
           const aboutCta = document.getElementById('aboutCta');
           if (aboutCta) aboutCta.hidden = true;
           openFromHash();
