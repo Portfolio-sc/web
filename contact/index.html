@@ -28,6 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Momo+Trust+Display&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/page-shell.css">
+<link rel="stylesheet" href="/assets/css/roles.css">
 
 <style>
   :root {
@@ -73,7 +74,11 @@
     max-width: 520px;
   }
 
+  .roles-pointer[hidden] { display: none; }
   .roles-pointer { font-size: 15px; color: var(--fg-muted); margin: -8px 0 32px; }
+  .contact-roles { margin-top: 72px; padding-top: 48px; border-top: 0.5px solid var(--hairline); scroll-margin-top: 80px; }
+  .contact-roles-title { font-family: var(--font-heading); font-weight: 600; font-size: 25px; letter-spacing: -0.5px; line-height: 1.15; color: var(--fg); margin: 0 0 12px; }
+  .contact-roles-intro { font-size: 15px; color: var(--fg-muted); margin: 0 0 28px; }
   .roles-pointer a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
 
   .form-group { margin-bottom: 18px; }
@@ -288,7 +293,7 @@
     <h1 class="header reveal">Get involved.</h1>
     <p class="subhead reveal reveal-d1">We're always looking for people who want to put their talents to work for democracy.</p>
 
-    <p class="roles-pointer reveal reveal-d1">Looking for a specific job? See our <a href="/#roles">open roles</a>.</p>
+    <p class="roles-pointer reveal reveal-d1" data-roles-show-when-loaded hidden>Looking for a specific job? See our <a href="#open-roles">open roles</a>.</p>
 
     <form id="form-main" class="reveal reveal-d2" novalidate>
     <div class="form-group">
@@ -350,6 +355,12 @@
     <button type="submit" class="btn-submit" id="main-submit">Submit <span class="arrow">&rarr;</span></button>
     <div class="form-status" id="main-status" role="status" aria-live="polite"></div>
   </form>
+
+    <section class="contact-roles" id="open-roles" aria-labelledby="open-roles-title" data-roles-section hidden>
+      <h2 class="contact-roles-title" id="open-roles-title">Open roles</h2>
+      <p class="contact-roles-intro">We're hiring for projects in the studio. Click a role to read more and apply.</p>
+      <div class="roles-grid" data-roles-grid></div>
+    </section>
   </div>
 
   <div id="success-state" style="display:none;">
@@ -480,6 +491,7 @@
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
+<script src="/assets/js/roles.js" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 
 </body>
